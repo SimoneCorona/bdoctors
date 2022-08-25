@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use Illuminate\Support\Str;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Foundation\Auth\User as AuthUser;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -51,6 +53,9 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
+            'surname' => ['required', 'string', 'max:255'],
+            'address' => ['required', 'string', 'max:255'],
+            // 'slug' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -66,8 +71,26 @@ class RegisterController extends Controller
     {
         return User::create([
             'name' => $data['name'],
+            'surname' => $data['surname'],
+            'address' => $data['address'],
+            // 'slug' => $this->generateUserSlugFromName($data['name'], $data['surname']),
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
     }
+
+
+
+    // private function generateUserSlugFromName($name, $surname) {
+    //     $base_slug = Str::slug($name . '_' . $surname, '-');   
+    //     $slug = $base_slug;
+    //     $count = 1;
+    //     $user_found = User::where('slug', '=', $slug)->first();
+    //     while ($user_found) {
+    //         $slug = $base_slug . '-' . $count;
+    //         $user_found = User::where('slug', '=', $slug)->first();
+    //         $count++;
+    //     }
+    //     return $slug;
+    // }
 }
