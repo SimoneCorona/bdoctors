@@ -69,19 +69,24 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
+
     protected function create(array $data)
     {
-        $specialty= User::specialties();
-        return User::create([
+        // dd($data);
+        $new_user = User::create([
             'name' => $data['name'],
             'surname' => $data['surname'],
             'address' => $data['address'],
             // 'slug' => $this->generateUserSlugFromName($data['name'], $data['surname']),
-            'specialty' => $data['specialties_name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        $new_user->specialties()->attach($data['specialty']);
+
+        return $new_user;
     }
+}
 
 
 
@@ -97,4 +102,4 @@ class RegisterController extends Controller
     //     }
     //     return $slug;
     // }
-}
+
