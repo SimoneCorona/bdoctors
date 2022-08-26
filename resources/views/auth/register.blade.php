@@ -40,30 +40,23 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="specialty_name" class="col-md-4 col-form-label text-md-right">{{ __('Specializzazione') }}</label>
+                            <label for="specialty" class="col-md-4 col-form-label text-md-right">{{ __('Specializzazione') }}</label>
 
-                            <div class="col-md-6">
-                                {{-- <select id="" class="form-control @error('specialty_name') is-invalid @enderror" name="specialty_name" value="{{ old('specialty_name') }}" required autocomplete="specialty_name" autofocus> --}}
-                                {{-- <select name="" id="specialty_name" class="form-control @error('specialty_name') is-invalid @enderror" name="specialty_name" value="{{ old('specialty_name') }}" required autocomplete="specialty_name" autofocus>
-                                @foreach ($specialties_name as $specialty_name)
-                                    <option value=""> {{$specialties_name}} </option>
-                                @endforeach --}}
-                                
+                            <div class="col-md-6">                                
                                 @php ($specialties = App\Specialty::specialties())
-                                {{-- {{$specialties = App\Specialty::specialties() }} --}}
-                                <select name="specialty" class="form-control">
+
+                                <select name="specialty" class="form-control" id="specialty">
                                     <option value="specialties_name" selected disabled style="display:none">Choose your specialty</option>
                                     
                                     @foreach ($specialties as $specialty) 
                                         <option value="{{ $specialty->id }}">{{ $specialty->specialty_name }}</option>
                                     @endforeach
                                 </select>
-                                @error('specialty_name')
+                                @error('specialty')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                                 @enderror
-                                {{-- </select> --}}
                             </div>
                         </div>
 
