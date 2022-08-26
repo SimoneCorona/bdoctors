@@ -26,7 +26,9 @@ Route::middleware('auth')
     ->prefix('admin')     // prefisso comune degli URL
     ->group(function() {  // il tutto si applica a un gruppo di rotte
         Route::get('/', 'HomeController@index')->name('home');
-        Route::resource('users', 'UserController');
+        Route::get('/profile','UserController@show')->name('profile');
+        Route::get('/profile/edit','UserController@edit')->name('profile');
+        // Route::resource('users', 'UserController');
     });
 
 

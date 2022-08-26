@@ -7,6 +7,7 @@ use App\Specialty;
 use App\Sponsorship;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -60,9 +61,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        $user = User::find($id);
+        // $user = User::find($id);
+        $user = Auth::user();
         $messages = $user->message;
         $reviews = $user->review;
         $sponsorships = $user->sponsorship;
@@ -76,9 +78,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        $user = User::findOrFail($id);
+        // $user = User::findOrFail($id);
+        $user = Auth::user();
         $messages = $user->message;
         $reviews = $user->review;
         $sponsorships = $user->sponsorship;
