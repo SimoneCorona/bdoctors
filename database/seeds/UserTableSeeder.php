@@ -142,8 +142,7 @@ class UserTableSeeder extends Seeder
             $new_user->specialties()->attach($user['specialty_id']);
 
             if (substr( $user['name'], 0, 1 ) === "G") {
-                $new_user->sponsorship()->attach([1 => ['date_start'=>now(), 'date_end'=>now()]]);
-
+                $new_user->sponsorships()->attach([1 => ['date_start'=>now(), 'date_end'=>now()]]);
             }
         }
     }

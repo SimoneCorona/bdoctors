@@ -29,15 +29,15 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Specialty');
     }
 
-    public function sponsorship() {
+    public function sponsorships() {
         return $this->belongsToMany('App\Sponsorship');
     }
 
-    public function message() {
+    public function messages() {
         return $this->hasMany('App\Message');
     }
 
-    public function review() {
+    public function reviews() {
         return $this->hasMany('App\Reviews');
     }
     /**

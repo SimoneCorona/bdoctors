@@ -20,4 +20,15 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::middleware('auth')
+    ->namespace('Admin')  // cartella dei Controller
+    ->name('admin.')      // pima parte del nome della route
+    ->prefix('admin')     // prefisso comune degli URL
+    ->group(function() {  // il tutto si applica a un gruppo di rotte
+        Route::get('/', 'HomeController@index')->name('home');
+        Route::resource('users', 'UserController');
+    });
+
+
+
 Route::get('/home', 'HomeController@index')->name('home');
