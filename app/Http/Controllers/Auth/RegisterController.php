@@ -56,8 +56,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'surname' => ['required', 'string', 'max:255'],
             'address' => ['required', 'string', 'max:255'],
-            'specialty' => ['required', 'exists:specialties, id'],
-            // 'slug' => ['required', 'string', 'max:255'],
+            'specialty' => ['required', 'exists:specialties,id'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -77,7 +76,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'surname' => $data['surname'],
             'address' => $data['address'],
-            // 'slug' => $this->generateUserSlugFromName($data['name'], $data['surname']),
+            'slug' => $this->generateUserSlugFromName($data['name'], $data['surname']),
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
@@ -86,20 +85,21 @@ class RegisterController extends Controller
 
         return $new_user;
     }
+
+
+
+
+    private function generateUserSlugFromName($name, $surname) {
+        $base_slug = Str::slug($name . '_' . $surname, '-');   
+        $slug = $base_slug;
+        $count = 1;
+        $user_found = User::where('slug', '=', $slug)->first();
+        while ($user_found) {
+            $slug = $base_slug . '-' . $count;
+            $user_found = User::where('slug', '=', $slug)->first();
+            $count++;
+        }
+        return $slug;
+    }
 }
-
-
-
-    // private function generateUserSlugFromName($name, $surname) {
-    //     $base_slug = Str::slug($name . '_' . $surname, '-');   
-    //     $slug = $base_slug;
-    //     $count = 1;
-    //     $user_found = User::where('slug', '=', $slug)->first();
-    //     while ($user_found) {
-    //         $slug = $base_slug . '-' . $count;
-    //         $user_found = User::where('slug', '=', $slug)->first();
-    //         $count++;
-    //     }
-    //     return $slug;
-    // }
 

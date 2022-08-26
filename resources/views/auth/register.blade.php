@@ -45,7 +45,7 @@
                             <div class="col-md-6">                                
                                 @php ($specialties = App\Specialty::specialties())
 
-                                <select name="specialty" class="form-control" id="specialty">
+                                <select name="specialty" id="specialty" class="form-control @error('specialty') is-invalid @enderror" required>
                                     <option value="specialties_name" selected disabled style="display:none">Choose your specialty</option>
                                     
                                     @foreach ($specialties as $specialty) 
