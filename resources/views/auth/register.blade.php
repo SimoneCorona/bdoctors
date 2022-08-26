@@ -51,8 +51,8 @@
                                 
                                 @php ($specialties = App\Specialty::specialties())
                                 {{-- {{$specialties = App\Specialty::specialties() }} --}}
-                                <select name="specialty_name" class="form-control">
-                                    <option value="" selected disabled style="display:none">choose your specialty</option>
+                                <select name="specialty" class="form-control">
+                                    <option value="specialties_name" selected disabled style="display:none">Choose your specialty</option>
                                     
                                     @foreach ($specialties as $specialty) 
                                         <option value="{{ $specialty->id }}">{{ $specialty->specialty_name }}</option>

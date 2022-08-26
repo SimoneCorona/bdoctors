@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use App\Specialty;
 use App\User;
 use Illuminate\Support\Str;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -55,6 +56,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'surname' => ['required', 'string', 'max:255'],
             'address' => ['required', 'string', 'max:255'],
+            // 'specialty' => ['required', 'exists:specialties, id'],
             // 'slug' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
@@ -69,11 +71,13 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $specialty= User::specialties();
         return User::create([
             'name' => $data['name'],
             'surname' => $data['surname'],
             'address' => $data['address'],
             // 'slug' => $this->generateUserSlugFromName($data['name'], $data['surname']),
+            'specialty' => $data['specialties_name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
