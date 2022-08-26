@@ -40,7 +40,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="specialty_name" class="col-md-4 col-form-label text-md-right">{{ __('Specialty_name') }}</label>
+                            <label for="specialty_name" class="col-md-4 col-form-label text-md-right">{{ __('Specializzazione') }}</label>
 
                             <div class="col-md-6">
                                 {{-- <select id="" class="form-control @error('specialty_name') is-invalid @enderror" name="specialty_name" value="{{ old('specialty_name') }}" required autocomplete="specialty_name" autofocus> --}}
@@ -49,12 +49,12 @@
                                     <option value=""> {{$specialties_name}} </option>
                                 @endforeach --}}
                                 
-                                {{ $specialties = App\Specialty::specialties() }}
+                                @php ($specialties = App\Specialty::specialties())
+                                {{-- {{$specialties = App\Specialty::specialties() }} --}}
                                 <select name="specialty_name" class="form-control">
                                     <option value="" selected disabled style="display:none">choose your specialty</option>
                                     
-                                    @foreach ($specialties as $specialty)
-                                    {{gettype($specialty)}}
+                                    @foreach ($specialties as $specialty) 
                                         <option value="{{ $specialty->id }}">{{ $specialty->specialty_name }}</option>
                                     @endforeach
                                 </select>
