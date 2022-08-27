@@ -49,7 +49,7 @@
                                     <option value="specialties_name" selected disabled style="display:none">Choose your specialty</option>
                                     
                                     @foreach ($specialties as $specialty) 
-                                        <option value="{{ $specialty->id }}">{{ $specialty->specialty_name }}</option>
+                                        <option value="{{ $specialty->id }}" {{ old('specialty') == $specialty->id ? 'selected' : '' }}>{{ $specialty->specialty_name }}</option>
                                     @endforeach
                                 </select>
                                 @error('specialty')
