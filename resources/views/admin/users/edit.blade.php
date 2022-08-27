@@ -15,7 +15,7 @@
     </div>
     @endif
 
-    <form action="{{ route('admin.users.update', ['user' => $user->id]) }}" method="POST">
+    <form action="{{ route('admin.users.update', ['user' => $user->id]) }}" method="POST" enctype="multipart/form-data">
         @method('PUT')
         @csrf
         <div>
@@ -26,30 +26,33 @@
             <label for="surname">Cognome</label>
             <input type="text" id="surname" name="surname" value="{{ old('surname') ? old('surname') : $user->surname }}">
         </div>
+        <div>
+            <label for="phone">Numero di telefono</label>
+            <input type="phone" id="phone" name="phone" value="{{ old('phone') ? old('phone') : $user->phone }}">
+        </div>
+        <div>
+            <label for="address">Indirizzo</label>
+            <input type="text" id="address" name="address" value="{{ old('address') ? old('address') : $user->address }}">
+        </div>
 
-
-
+        <div class="form-group">
+            <label for="photo">Photo</label>
+            <input type="file" class="form-control" name="photo" id="photo">
+        </div>
         
         <div class="form-group">
-            <h3 class="col-sm-2">Tag</h3>
+            <h3 class="col-sm-2">Specializzazione</h3>
             <div class="col-sm-10">
               <div class="form-check">
                 @foreach ($specialties as $specialty)
-                    <input type="checkbox" name="specialties[]" value="{{$specialty->id}}" id="{{$specialty->id}}" {{ $user->specialties->contains($specialty) ? 'checked' : '' }}>
-                    <label for="{{$specialty->id}}">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="specialties[]" value="{{$specialty->id}}" id="specialty-{{$specialty->id}}" {{ ($user->specialties->contains($specialty) || in_array($user->id, old('specialties', []))) ? 'checked' : '' }}>
+                    <label class="form-check-label" for="specialty-{{ $specialty->id }}">
                         {{ $specialty->specialty_name }}
                     </label>
+                </div>
                 @endforeach
             </div>
-        </div>
-        <div>
-            <label for="specialty_id">Specializzazione</label>
-            <select name="specialty_id" name="specialty_id">
-                <option value="">Nessuna</option>
-                @foreach ($user->specialties as $specialty)
-                    <option value="{{ $specialty->id }}" {{ $user->specialty &&  old('specialty_id', $user->specialty->id) == $specialty->id ? 'selected' : ''}}>{{ $specialty->name }}</option>
-                @endforeach
-            </select>
         </div>
 
         
@@ -59,5 +62,9 @@
         </div>
         <button type="submit">Modifica</button>
     </form>
-
+    <form action="{{ route('admin.users.destroy')}}" method="POST">
+        @csrf
+        @method("DELETE")
+        <button class="btn btn-danger">Elimina</button>
+    </form>
 @endsection

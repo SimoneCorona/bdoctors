@@ -23,6 +23,8 @@ class User extends Authenticatable
         'slug',
         'email', 
         'password',
+        'cv',
+        'photo'
     ];
 
     public function specialties() {

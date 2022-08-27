@@ -11,5 +11,8 @@
         {{ $specialty->specialty_name }}{{ $loop->last ? '' : ', ' }}
         @endforeach
         </li>
+        @if($user->photo)
+        <li><img src="{{ asset('storage/' . $user->photo) }}" alt="{{ $user->name }}"></li>
+        @endif
     </ul>
 @endsection

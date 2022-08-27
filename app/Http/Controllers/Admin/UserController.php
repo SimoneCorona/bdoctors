@@ -6,8 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Specialty;
 use App\Sponsorship;
 use App\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Stringable;
 
 class UserController extends Controller
 {
@@ -42,17 +45,16 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate($this->getValidationRules());
-        // $data = $request->all();
-        // $image_path = Storage::put('image_path', 'data');
-        // $post = new Post();
-        // $user->fill($data);
-        // $user->slug = $this->generatePostSlugFromTitle($user->title);
-        // $post->save();
-        // if(isset($data['tags'])) {
-        //     $post->tags()->sync($data['tags']);
-        // }
-        // return redirect()->route('admin.posts.show', ['post' => $post->id]);
+        $request->validate($this->getValidate());
+        $data = $request->all();
+        $user = new User();
+        $user->fill($data);
+        $user->slug = $this->generateUserSlugFromName($user->name,$user->surname);
+        $user->save();
+        if(isset($data['specialties'])) {
+            $user->specialties()->sync($data['specialties']);
+        }
+        return redirect()->route('admin.profile', ['user' => $user->id]);
     }
 
     /**
@@ -96,17 +98,33 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        // $data = $request->all();
-        // $post = Post::findOrFail($id);        
-        // $post->update($data);
-        // if(isset($data['tags'])) {
-        //     $post->tags()->sync($data['tags']);
-        // } else {
-        //     $post->tags()->sync([]);
-        // }
-        // return redirect()->route('admin.posts.show', ['post' => $post->id]);
+        // $user = Auth::user();
+        $data = $request->all();
+        $user = User::findOrFail($data['user']); 
+        // dd($data);
+        //se la richiesta contiene l'immagine
+        if (isset($data['photo'])) {
+            //  E se l'utente ha già una sua immagine
+            if ($user->photo) {
+                //cancelliamo l'immagine esistente
+                Storage::delete($user->photo);
+            }
+            //  E salviamo comunque l'immagine nuova
+            $image_path = Storage::put('profile_pics', $data['photo']);
+            //  Salviamo il relativo path nel database
+            $data['photo'] = $image_path;
+        }    
+        // dd($user);
+        $user->slug = $this->generateUserSlugFromName($user->name,$user->surname);
+        $user->update($data);
+        if(isset($data['specialties'])) {
+            $user->specialties()->sync($data['specialties']);
+        } else {
+            $user->specialties()->sync([]);
+        }
+        return redirect()->route('admin.users.show');
     }
 
     /**
@@ -115,11 +133,44 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        // $post = Post::findOrFail($id);
-        // $post->tags()->sync([]);
-        // $post->delete();
-        // return redirect()->route('admin.posts.index');
+        $logged_user = Auth::user();
+        $user = User::findOrFail($logged_user->id);
+        // dd($user);
+        if ($user->photo) {
+            Storage::delete($user->photo);
+        }
+        $user->specialties()->sync([]);
+        $user->delete();
+        return redirect()->route('home');
     }
-}
+    
+    
+    private function generateUserSlugFromName($name, $surname) {
+        $base_slug = Str::slug($name . '_' . $surname, '-');   
+        $slug = $base_slug;
+        $count = 1;
+        $user_found = User::where('slug', '=', $slug)->first();
+        while ($user_found) {
+            $slug = $base_slug . '-' . $count;
+            $user_found = User::where('slug', '=', $slug)->first();
+            $count++;
+        }
+        return $slug;
+    }
+
+    private function getValidate(){
+        return [
+            'name' => 'required|string|max:255',
+            'surname'=> 'required|string|max:255',
+            'photo' => 'image|max:512',
+            'specialty' => 'required|exists:specialties,id',
+            'cv' => 'nullable|string|max:5000',
+            'address' => 'required|string|nullable|',
+            'services' => 'nullable|string|max:1000',
+            'phone_number' => 'required|string|max:255',
+        ];
+    }
+}    
+
