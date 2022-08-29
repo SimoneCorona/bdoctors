@@ -1,5 +1,8 @@
 <template>
-  <h1>ciao belli</h1>
+  <div>
+    <h1>ciao Belli</h1>
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>

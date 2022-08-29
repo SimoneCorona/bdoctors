@@ -40,7 +40,7 @@ class User extends Authenticatable
     }
 
     public function reviews() {
-        return $this->hasMany('App\Reviews');
+        return $this->hasMany('App\Review');
     }
     /**
      * The attributes that should be hidden for arrays.
