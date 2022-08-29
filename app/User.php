@@ -42,6 +42,12 @@ class User extends Authenticatable
     public function reviews() {
         return $this->hasMany('App\Review');
     }
+
+    public function avg_rating() {
+        return $this->reviews()->avg('rating');
+        // return 'ciao';
+    }
+     
     /**
      * The attributes that should be hidden for arrays.
      *

@@ -2,6 +2,13 @@
     <div>
         <h2>Tutti i dottori:</h2>
         <div class="container">
+        <select v-model="minRating" name="" id="">
+            <option value="1">minimo 1</option>
+            <option value="2">minimo 2</option>
+            <option value="3">minimo 3</option>
+            <option value="4">minimo 4</option>
+            <option value="5">5</option>
+        </select>
         <div v-for="user in users" :key='user.id' class="row row-cols-3">
             <DoctorCard :user="user"/>
         </div>

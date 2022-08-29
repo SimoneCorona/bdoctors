@@ -5359,7 +5359,49 @@ var render = function render() {
 
   return _c("div", [_c("h2", [_vm._v("Tutti i dottori:")]), _vm._v(" "), _c("div", {
     staticClass: "container"
-  }, _vm._l(_vm.users, function (user) {
+  }, [_c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.minRating,
+      expression: "minRating"
+    }],
+    attrs: {
+      name: "",
+      id: ""
+    },
+    on: {
+      change: function change($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+        _vm.minRating = $event.target.multiple ? $$selectedVal : $$selectedVal[0];
+      }
+    }
+  }, [_c("option", {
+    attrs: {
+      value: "1"
+    }
+  }, [_vm._v("minimo 1")]), _vm._v(" "), _c("option", {
+    attrs: {
+      value: "2"
+    }
+  }, [_vm._v("minimo 2")]), _vm._v(" "), _c("option", {
+    attrs: {
+      value: "3"
+    }
+  }, [_vm._v("minimo 3")]), _vm._v(" "), _c("option", {
+    attrs: {
+      value: "4"
+    }
+  }, [_vm._v("minimo 4")]), _vm._v(" "), _c("option", {
+    attrs: {
+      value: "5"
+    }
+  }, [_vm._v("5")])]), _vm._v(" "), _vm._l(_vm.users, function (user) {
     return _c("div", {
       key: user.id,
       staticClass: "row row-cols-3"
@@ -5368,7 +5410,7 @@ var render = function render() {
         user: user
       }
     })], 1);
-  }), 0)]);
+  })], 2)]);
 };
 
 var staticRenderFns = [];
