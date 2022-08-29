@@ -10,9 +10,21 @@ class UserController extends Controller
 {
     public function index(){
         $users = User::with(['specialties', 'reviews', 'sponsorships'])->get();
-        foreach ($users as $user) {
-            $user->rating_average = $user->avg_rating(); 
-        }
+        // foreach ($users as $user) {
+        //     $user->rating_average = $user->avg_rating(); 
+        // }
+        // SELECT users.*,                                      ---->//selezioniamo tutte le colonne di users 
+        // AVG(reviews.rating) as avg_rating,                   ---->//il calcolo della media(parametro passato) come "nome_fittizzio",
+        // specialty.specialty_name,                            ------>//    
+        // 
+        // FROM users                                           ------>dalla tabella users
+        // LEFT JOIN reviews on reviews.user_id = users.id      ----->le reviews collegate tramite reviews.user_id = users.id 
+        // GROUP BY users.id                                    ----->raggruppati per users.id
+        
+        // $users_id = User::with(['specialties', 'reviews', 'sponsorships', ])
+        //     ->groupBy('users.id');
+        // dd($users_id->get());
+
         return response()->json([
             'success' => true,
             'results' => $users
@@ -25,11 +37,11 @@ class UserController extends Controller
             if($user->photo) {
                 $user->photo = url('storage/' . $user->photo);
             } 
-            $user->rating_average = $user->avg_rating(); 
-            return response()->json([
-                'success' => true,
-                'results' => $user
-            ]);
+            // $user->rating_average = $user->avg_rating(); 
+            // return response()->json([
+            //     'success' => true,
+            //     'results' => $user
+            // ]);
         } else {
             return response()->json([
                 'success' => false,
