@@ -3,6 +3,5 @@
 @section('content')
 
     HOMEPAGE
-
-
+    
 @endsection
