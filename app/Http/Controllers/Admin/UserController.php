@@ -82,8 +82,8 @@ class UserController extends Controller
      */
     public function edit(Request $request)
     {
-        // $user = User::findOrFail($id);
-        $user = Auth::user();
+        $logged_user = Auth::user();
+        $user = User::findOrFail($logged_user->id);
         $messages = $user->message;
         $reviews = $user->review;
         $sponsorships = $user->sponsorship;
@@ -103,8 +103,10 @@ class UserController extends Controller
         // $user = Auth::user();
         $request->validate($this->getValidate());
         $data = $request->all();
-        $user = User::findOrFail($data['user']); 
+        $logged_user = Auth::user();
+        $user = User::findOrFail($logged_user->id);
         // dd($data);
+        // $user = User::findOrFail($data['user']); 
         //se la richiesta contiene l'immagine
         if (isset($data['photo'])) {
             //  E se l'utente ha già una sua immagine
