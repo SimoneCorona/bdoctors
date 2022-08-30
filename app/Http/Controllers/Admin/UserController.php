@@ -166,11 +166,11 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'surname'=> 'required|string|max:255',
             'photo' => 'image|max:512',
-            'specialty' => 'required|exists:specialties,id',
+            'specialties' => 'required|exists:specialties,id',
             'cv' => 'nullable|string|max:5000',
             'address' => 'required|string|nullable|',
             'services' => 'nullable|string|max:1000',
-            'phone_number' => 'required|string|max:255',
+            'phone_number' => 'string|max:255',
         ];
     }
 }    

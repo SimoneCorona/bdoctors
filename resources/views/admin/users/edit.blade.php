@@ -20,11 +20,11 @@
         @csrf
         <div>
             <label for="name">Nome</label>
-            <input type="text" id="name" name="name" value="{{ old('name') ? old('name') : $user->name }}">
+            <input type="text" id="name" name="name" required value="{{ old('name') ? old('name') : $user->name }}">
         </div>
         <div>
             <label for="surname">Cognome</label>
-            <input type="text" id="surname" name="surname" value="{{ old('surname') ? old('surname') : $user->surname }}">
+            <input type="text" id="surname" name="surname" required value="{{ old('surname') ? old('surname') : $user->surname }}">
         </div>
         <div>
             <label for="phone">Numero di telefono</label>
@@ -32,7 +32,7 @@
         </div>
         <div>
             <label for="address">Indirizzo</label>
-            <input type="text" id="address" name="address" value="{{ old('address') ? old('address') : $user->address }}">
+            <input type="text" id="address" name="address" required value="{{ old('address') ? old('address') : $user->address }}">
         </div>
 
         <div class="form-group">
@@ -46,7 +46,7 @@
               <div class="form-check">
                 @foreach ($specialties as $specialty)
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="specialties[]" value="{{$specialty->id}}" id="specialty-{{$specialty->id}}" {{ ($user->specialties->contains($specialty) || in_array($user->id, old('specialties', []))) ? 'checked' : '' }}>
+                    <input class="form-check-input specialty-checkbox" type="checkbox" name="specialties[]" value="{{$specialty->id}}" id="specialty-{{$specialty->id}}" {{ ($user->specialties->contains($specialty) || in_array($user->id, old('specialties', []))) ? 'checked' : '' }}>
                     <label class="form-check-label" for="specialty-{{ $specialty->id }}">
                         {{ $specialty->specialty_name }}
                     </label>
@@ -71,4 +71,48 @@
         @method("DELETE")
         <button class="btn btn-danger">Elimina</button>
     </form>
+
+<!-- <script>
+    function checkCheckBoxes() {
+        let checkboxArray = document.querySelectorAll('.specialty-checkbox');
+        let checkedSpecialties = [];
+        checkboxArray.forEach(element => {
+        if (element.checked) {
+            checkedSpecialties.push(element);
+        }
+    });
+    console.log(checkedSpecialties);
+    return checkedSpecialties.length > 0 ? true : false;
+    }
+
+
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+(() => {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+        let checkboxArray = document.querySelectorAll('.specialty-checkbox');
+        let checkedSpecialties = [];
+        checkboxArray.forEach(element => {
+        if (element.checked) {
+            checkedSpecialties.push(element);
+        }
+    });
+        let atLeastOneSpecialty = checkedSpecialties > 0;
+
+      if (!form.checkValidity() || !atLeastOneSpecialty) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+
+      form.classList.add('was-validated')
+    }, false)
+  })
+})()
+</script> -->
 @endsection
