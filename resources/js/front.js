@@ -33,7 +33,7 @@ import router from './router';
   */
  
  const app = new Vue({
-    el: '#root',
+    el: '#app',
     render: h => h(App),
     router
  });

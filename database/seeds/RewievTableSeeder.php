@@ -22,7 +22,7 @@ class RewievTableSeeder extends Seeder
             [
                 'author' => 'Enrico B.',
                 'user_id' => 1,
-                'text_review' => 'un medico molto scimmione shshshhhhs',
+                'text_review' => 'un medico molto antipatico shshshhhhs',
                 'rating' => 4,
             ],
             [

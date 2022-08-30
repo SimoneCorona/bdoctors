@@ -38,10 +38,10 @@ class UserController extends Controller
                 $user->photo = url('storage/' . $user->photo);
             } 
             // $user->rating_average = $user->avg_rating(); 
-            // return response()->json([
-            //     'success' => true,
-            //     'results' => $user
-            // ]);
+            return response()->json([
+                'success' => true,
+                'results' => $user
+            ]);
         } else {
             return response()->json([
                 'success' => false,

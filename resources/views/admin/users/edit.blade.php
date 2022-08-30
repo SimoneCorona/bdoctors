@@ -7,7 +7,7 @@
 
     @if ($errors->any())
     <div>
-        <ul>
+        <ul class="alert alert-danger" role="alert">
             @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>
             @endforeach
@@ -55,12 +55,16 @@
             </div>
         </div>
 
-        
+        <div>
+            <label for="services">Prestazioni</label>
+            <textarea type="text" id="services" name="services" value="{{ old('services') ? old('services') : $user->services }}" rows="5" placeholder="Prestazioni">{{$user->services}}</textarea>
+        </div>
+
         <div>
             <label for="cv">CV</label>
-            <textarea type="text" id="cv" name="cv" value="{{ old('cv') ? old('cv') : $user->cv }}" rows="5" placeholder="Inserisci il tuo cv">{{$user->cv}}</textarea>
+            <textarea type="text" id="cv" name="cv" value="{{ old('cv') ? old('cv') : $user->cv }}" rows="5" placeholder="Inserisci il tuo CV">{{$user->cv}}</textarea>
         </div>
-        <button type="submit">Modifica</button>
+        <button type="submit">Salva</button>
     </form>
     <form action="{{ route('admin.users.destroy')}}" method="POST">
         @csrf

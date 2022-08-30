@@ -5359,49 +5359,7 @@ var render = function render() {
 
   return _c("div", [_c("h2", [_vm._v("Tutti i dottori:")]), _vm._v(" "), _c("div", {
     staticClass: "container"
-  }, [_c("select", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.minRating,
-      expression: "minRating"
-    }],
-    attrs: {
-      name: "",
-      id: ""
-    },
-    on: {
-      change: function change($event) {
-        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
-          return o.selected;
-        }).map(function (o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val;
-        });
-        _vm.minRating = $event.target.multiple ? $$selectedVal : $$selectedVal[0];
-      }
-    }
-  }, [_c("option", {
-    attrs: {
-      value: "1"
-    }
-  }, [_vm._v("minimo 1")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "2"
-    }
-  }, [_vm._v("minimo 2")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "3"
-    }
-  }, [_vm._v("minimo 3")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "4"
-    }
-  }, [_vm._v("minimo 4")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "5"
-    }
-  }, [_vm._v("5")])]), _vm._v(" "), _vm._l(_vm.users, function (user) {
+  }, _vm._l(_vm.users, function (user) {
     return _c("div", {
       key: user.id,
       staticClass: "row row-cols-3"
@@ -5410,7 +5368,7 @@ var render = function render() {
         user: user
       }
     })], 1);
-  })], 2)]);
+  }), 0)]);
 };
 
 var staticRenderFns = [];
@@ -5557,7 +5515,7 @@ var render = function render() {
 
   return _c("div", {
     staticClass: "container"
-  }, [_c("h1", [_vm._v("Pagina Home")]), _vm._v(" "), _c("p", [_vm._v("questo codice è contenuto solo nella home page")]), _vm._v(" "), _c("Doctors")], 1);
+  }, [_c("h1", [_vm._v("Pagina Home")]), _vm._v(" "), _c("Doctors")], 1);
 };
 
 var staticRenderFns = [];
@@ -57513,7 +57471,7 @@ window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
  */
 
 var app = new Vue({
-  el: '#root',
+  el: '#app',
   render: function render(h) {
     return h(_views_App_vue__WEBPACK_IMPORTED_MODULE_0__["default"]);
   },

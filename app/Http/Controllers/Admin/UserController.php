@@ -101,6 +101,7 @@ class UserController extends Controller
     public function update(Request $request)
     {
         // $user = Auth::user();
+        $request->validate($this->getValidate());
         $data = $request->all();
         $user = User::findOrFail($data['user']); 
         // dd($data);
@@ -143,7 +144,7 @@ class UserController extends Controller
         }
         $user->specialties()->sync([]);
         $user->delete();
-        return redirect()->route('home');
+        return redirect()->route('/login');
     }
     
     
