@@ -19,3 +19,4 @@ use Illuminate\Support\Facades\Route;
 // });
 Route::get('/users', 'Api\UserController@index')->name('api.users.index');
 Route::get('/users/{slug}', 'Api\UserController@show')->name('api.users.show');
+Route::get('/specialties', 'Api\SpecialtyController@index')->name('api.specialties.index');
