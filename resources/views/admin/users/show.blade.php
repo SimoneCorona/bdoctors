@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="d-flex justify-content-center">
-    <ul class="m-0 p-0">
+    <ul class="d-flex flex-column m-0 p-0">
         @if($user->photo)
         <li class="list-unstyled rounded-circle">
             <img src="{{ asset('storage/' . $user->photo) }}"  alt="{{ $user->name }}" class="rounded-circle">
@@ -14,9 +14,11 @@
         </li>
         @endif
         <li class="list-unstyled text-center"> <h2>{{ $user->name}} {{ $user->surname}}</h2></li>
-        <li class="list-unstyled text-center rounded-pill bg-primary m-auto text-light" style="width: 20%">
-        @foreach($user->specialties as $specialty)
-            {{ $specialty->specialty_name }}{{ $loop->last ? '' : ', ' }}
+        <li class="list-unstyled text-center text-light">
+            @foreach($user->specialties as $specialty)
+            <span class="rounded-pill bg-primary px-2 mx-1 text-light">
+                {{ $specialty->specialty_name }}
+            </span>
         @endforeach
         </li>
         <li class="list-unstyled text-center">{{ $user->address }}</li>
