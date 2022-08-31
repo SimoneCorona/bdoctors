@@ -4,7 +4,7 @@
             <h3>{{ user.name }} {{ user.surname }}</h3>
             <img class="doctor-image" :src="user.photo ? `/storage/${user.photo}`: '/img/img-not-found.png'" />
             <div v-for="specialty in user.specialties" :key="specialty.specialty_id">
-                <span class="badge rounded-pill text-bg-primary">{{ specialty.specialty_name }}</span>
+                <span class="badge rounded-pill text-bg-primary text-light">{{ specialty.specialty_name }}</span>
             </div>
             <p>{{ user.address }}</p>
             <p>{{ user.phone_number }}</p>

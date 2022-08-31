@@ -16,4 +16,4 @@ mix.js('resources/js/app.js', 'public/js')
 
 mix.js("resources/js/front.js", "public/js");
 
-mix.copy('node_moddules/@fortawesome-free/webfonts', 'public/webfonts');
+mix.copy('node_modules/@fortawesome-free/webfonts', 'public/webfonts');
