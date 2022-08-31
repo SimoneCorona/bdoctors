@@ -2,7 +2,7 @@
     <div>
         <h2>Tutti i dottori:</h2>
         <div class="container">
-        <div v-for="user in users" :key='user.id' class="row row-cols-3">
+        <div v-for="user in doctorsToShow" :key='user.id' class="row row-cols-3">
             <DoctorCard :user="user"/>
         </div>
         </div>
@@ -17,7 +17,7 @@ export default {
         DoctorCard,
     },
     props: {
-        specialtySearched: '',
+        doctorsToShow: Array,
     },
     data() {
         return {
@@ -25,16 +25,16 @@ export default {
         }    
     },
     created() {
-        this.getDoctors();
+        //this.getDoctors();
     },
-    methods: {
-        getDoctors() {
-             axios.get('/api/users')
-             .then((resp) => {
-                this.users = resp.data.results;
-            })
-        }
-    }
+    // methods: {
+    //     getDoctors() {
+    //          axios.get('/api/users')
+    //          .then((resp) => {
+    //             this.users = resp.data.results;
+    //         })
+    //     }
+    // }
 }
 </script>
 

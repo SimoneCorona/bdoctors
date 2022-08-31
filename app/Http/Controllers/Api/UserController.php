@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -49,4 +50,23 @@ class UserController extends Controller
             ]);
         }
     }
+
+    public function search($specialty_slug){
+        $doctor = User::with(['specialties', 'reviews', 'sponsorships'])->whereHas('specialties', function (Builder $query) use($specialty_slug) {
+            $query->where('specialty_slug', '=', $specialty_slug);
+        })->get();
+        if($doctor) {
+            return response()->json([
+                'success' => true,
+                'results' => $doctor,
+            ]);
+        }
+        else {
+            return response()->json([
+                'success' => false,
+                'results' => 'Nessun dottore trovato'
+            ]);
+        }
+    }      
 }
+

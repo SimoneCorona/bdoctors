@@ -5209,25 +5209,23 @@ __webpack_require__.r(__webpack_exports__);
     DoctorCard: _DoctorCard_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   props: {
-    specialtySearched: ''
+    doctorsToShow: Array
   },
   data: function data() {
     return {
       users: []
     };
   },
-  created: function created() {
-    this.getDoctors();
-  },
-  methods: {
-    getDoctors: function getDoctors() {
-      var _this = this;
+  created: function created() {//this.getDoctors();
+  } // methods: {
+  //     getDoctors() {
+  //          axios.get('/api/users')
+  //          .then((resp) => {
+  //             this.users = resp.data.results;
+  //         })
+  //     }
+  // }
 
-      axios.get('/api/users').then(function (resp) {
-        _this.users = resp.data.results;
-      });
-    }
-  }
 });
 
 /***/ }),
@@ -5271,18 +5269,28 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      specialtySearched: this.$route.params.specialty
+      specialtySearched: this.$route.params.specialty,
+      resultDoctors: []
     };
   },
+  mounted: function mounted() {
+    this.search(this.$route.params.specialty);
+  },
   methods: {
-    search: function search(searchedSpecialty) {
-      console.log(searchedSpecialty); //  axios.get('/api/users')
-      //  .then((resp) => {
-      //     this.specialtySearched = resp.data.results;
-      //     console.log(resp.data.results)
-      // })
+    search: function search(selectedSpecialty) {
+      var _this = this;
+
+      //console.log(searchedSpecialty);
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get('/api/search/' + selectedSpecialty).then(function (resp) {
+        _this.resultDoctors = resp.data.results;
+      });
     }
-  }
+  } // getDoctors() {
+  //     axios.get('/api/users').then((resp) => {
+  //         this.doctor = resp.data.results;
+  //     })
+  // }
+
 });
 
 /***/ }),
@@ -5452,19 +5460,20 @@ var render = function render() {
         value: specialty.id
       }
     }, [_vm._v(_vm._s(specialty.specialty_name))]);
-  })], 2), _vm._v(" "), _vm._m(0)]);
-};
-
-var staticRenderFns = [function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("form", {
+  })], 2), _vm._v(" "), _c("form", {
     attrs: {
       action: ""
     }
-  }, [_c("button", [_vm._v("Avvia ricerca per specializzazione")])]);
-}];
+  }, [_c("button", {
+    on: {
+      click: function click($event) {
+        return _vm.$emit("search", _vm.selectedSpecialty);
+      }
+    }
+  }, [_vm._v("Avvia ricerca per specializzazione")])])]);
+};
+
+var staticRenderFns = [];
 render._withStripped = true;
 
 
@@ -5531,7 +5540,7 @@ var render = function render() {
 
   return _c("div", [_c("h2", [_vm._v("Tutti i dottori:")]), _vm._v(" "), _c("div", {
     staticClass: "container"
-  }, _vm._l(_vm.users, function (user) {
+  }, _vm._l(_vm.doctorsToShow, function (user) {
     return _c("div", {
       key: user.id,
       staticClass: "row row-cols-3"
@@ -5687,15 +5696,9 @@ var render = function render() {
 
   return _c("div", {
     staticClass: "container"
-  }, [_c("h1", [_vm._v("Ricerca Avanzata")]), _vm._v(" "), _c("Banner", {
-    on: {
-      search: function search($event) {
-        return _vm.search($event);
-      }
-    }
-  }), _vm._v(" "), _c("Doctors", {
+  }, [_c("h1", [_vm._v("Ricerca Avanzata")]), _vm._v(" "), _c("Banner"), _vm._v(" "), _c("Doctors", {
     attrs: {
-      specialtySearched: _vm.specialtySearched
+      doctorsToShow: _vm.resultDoctors
     }
   })], 1);
 };

@@ -1,8 +1,9 @@
 <template>
     <div class="container">
       <h1>Ricerca Avanzata</h1>
-      <Banner @search="search($event)"/>
-      <Doctors :specialtySearched="specialtySearched"/>
+      <Banner/>
+      <!-- <Banner @search="search($event)"/> -->
+      <Doctors :doctorsToShow="resultDoctors"/>
     </div>
   </template>
   
@@ -20,19 +21,31 @@
       data(){
         return {
             specialtySearched : this.$route.params.specialty,
+            resultDoctors: [],
         }
       },
+      mounted() {
+        this.search(this.$route.params.specialty);
+    },
       methods: {
-        search(searchedSpecialty) {
-              console.log(searchedSpecialty);
-              //  axios.get('/api/users')
-              //  .then((resp) => {
-              //     this.specialtySearched = resp.data.results;
-              //     console.log(resp.data.results)
-              // })
+        search(selectedSpecialty) {
+              //console.log(searchedSpecialty);
+               axios.get('/api/search/'+ selectedSpecialty)
+               .then((resp) => {
+                  this.resultDoctors = resp.data.results;
+              })
+              
+              }
+
+               
           },
-      }
-  }
+        // getDoctors() {
+        //     axios.get('/api/users').then((resp) => {
+                
+        //         this.doctor = resp.data.results;
+        //     })
+        // }
+    }
   </script>
   
   <style>

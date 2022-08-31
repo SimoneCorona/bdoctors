@@ -5,7 +5,7 @@
       <option v-for="(specialty, index) in specialties" :key="index" :value="specialty.id">{{specialty.specialty_name}}</option>
     </select>
     <form action="">
-      <button>Avvia ricerca per specializzazione</button>
+      <button @click="$emit('search', selectedSpecialty)">Avvia ricerca per specializzazione</button>
     </form>
 </div>
 </template>
