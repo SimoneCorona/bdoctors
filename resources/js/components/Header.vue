@@ -6,15 +6,15 @@
     <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button> -->
-    <div class="bg-danger pd-0" id="navbarSupportedContent">
-      <ul class="mb-0">
-        <li class="list-unstyled">
+    <div class="p-0 flex-grow-1" id="navbarSupportedContent">
+      <ul class="mb-0 d-flex justify-content-center">
+        <li class="list-unstyled me-4 border border-dark">
           <a class="nav-link active" aria-current="page" href="/login">Login</a>
         </li>
-        <li class="list-unstyled">
+        <li class="list-unstyled me-4 border border-dark">
           <a class="nav-link" href="/register">Register</a>
         </li>
-        <li class="list-unstyled">
+        <li class="list-unstyled me-4 border border-dark">
           <a class="nav-link" href="/logout">Logout</a>
         </li>
         <!-- <li class="nav-item dropdown">

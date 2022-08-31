@@ -3,7 +3,6 @@
   <div class="container d-flex justify-content-center">
     <div class="row">
       <div class="col-auto">
-      <i class="fa-solid fa-bicycle"></i>
         <h4>Colonna 1</h4>
         <ul class="list-unstyled">
           <li><a>Home</a></li>
@@ -29,14 +28,30 @@
       </ul>
     </div>
 
-    <div class="col-auto">
-      <h4>Colonna 3</h4>
-      <ul class="list-unstyled">
-        <li><h2>DB</h2></li>
-        <li><a>Home</a></li>
-        <li><a>Privacy</a></li>
-        <li><a>Contatti</a></li>
-        <li><i class="fa-solid fa-house"></i></li>
+    <div class="col-auto social">
+      <h4>Social</h4>
+      <ul class="list-unstyled d-flex">
+        <li>
+          <a href="#">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fa-brands fa-facebook"></i>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fa-brands fa-linkedin"></i>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fa-brands fa-twitter"></i>
+          </a>
+        </li>
+
       </ul>
     </div>
   </div>
@@ -48,18 +63,35 @@
 <script>
 
 export default {
-    name: 'Footer',
+    name: 'Footer'
 }
 </script>
 
 <style scoped lang="scss">
 
  footer{
-  a {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
+  color: white;
+
+
+  h4 {
+    font-weight: 700;
+    font-size: 1.5rem;
   }
+
+  li { 
+      a { 
+          color: inherit; 
+          text-decoration: none; 
+          cursor: pointer;
+        }
+  }
+
+  .social{
+    li{
+      margin-right: 5px;
+    }
+  }
+
 
  }
 

@@ -5599,21 +5599,41 @@ var staticRenderFns = [function () {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-auto"
-  }, [_c("i", {
-    staticClass: "fa-solid fa-bicycle"
-  }), _vm._v(" "), _c("h4", [_vm._v("Colonna 1")]), _vm._v(" "), _c("ul", {
+  }, [_c("h4", [_vm._v("Colonna 1")]), _vm._v(" "), _c("ul", {
     staticClass: "list-unstyled"
   }, [_c("li", [_c("a", [_vm._v("Home")])]), _vm._v(" "), _c("li", [_c("a", [_vm._v("Privacy")])]), _vm._v(" "), _c("li", [_c("a", [_vm._v("Contatti")])]), _vm._v(" "), _c("li", [_c("a", [_vm._v("Lavoro")])]), _vm._v(" "), _c("li", [_c("a", [_vm._v("Link")])]), _vm._v(" "), _c("li", [_c("a", [_vm._v("Link")])]), _vm._v(" "), _c("li", [_c("a", [_vm._v("Link")])])])]), _vm._v(" "), _c("div", {
     staticClass: "col-auto"
   }, [_c("h4", [_vm._v("Colonna 2")]), _vm._v(" "), _c("ul", {
     staticClass: "list-unstyled"
   }, [_c("li", [_c("a", [_vm._v("Home")])]), _vm._v(" "), _c("li", [_c("a", [_vm._v("Privacy")])]), _vm._v(" "), _c("li", [_c("a", [_vm._v("Contatti")])]), _vm._v(" "), _c("li", [_c("a", [_vm._v("Lavoro")])]), _vm._v(" "), _c("li", [_c("a", [_vm._v("Link")])]), _vm._v(" "), _c("li", [_c("a", [_vm._v("Link")])]), _vm._v(" "), _c("li", [_c("a", [_vm._v("Link")])])])]), _vm._v(" "), _c("div", {
-    staticClass: "col-auto"
-  }, [_c("h4", [_vm._v("Colonna 3")]), _vm._v(" "), _c("ul", {
-    staticClass: "list-unstyled"
-  }, [_c("li", [_c("h2", [_vm._v("DB")])]), _vm._v(" "), _c("li", [_c("a", [_vm._v("Home")])]), _vm._v(" "), _c("li", [_c("a", [_vm._v("Privacy")])]), _vm._v(" "), _c("li", [_c("a", [_vm._v("Contatti")])]), _vm._v(" "), _c("li", [_c("i", {
-    staticClass: "fa-solid fa-house"
-  })])])])])])]);
+    staticClass: "col-auto social"
+  }, [_c("h4", [_vm._v("Social")]), _vm._v(" "), _c("ul", {
+    staticClass: "list-unstyled d-flex"
+  }, [_c("li", [_c("a", {
+    attrs: {
+      href: "#"
+    }
+  }, [_c("i", {
+    staticClass: "fa-brands fa-instagram"
+  })])]), _vm._v(" "), _c("li", [_c("a", {
+    attrs: {
+      href: "#"
+    }
+  }, [_c("i", {
+    staticClass: "fa-brands fa-facebook"
+  })])]), _vm._v(" "), _c("li", [_c("a", {
+    attrs: {
+      href: "#"
+    }
+  }, [_c("i", {
+    staticClass: "fa-brands fa-linkedin"
+  })])]), _vm._v(" "), _c("li", [_c("a", {
+    attrs: {
+      href: "#"
+    }
+  }, [_c("i", {
+    staticClass: "fa-brands fa-twitter"
+  })])])])])])])]);
 }];
 render._withStripped = true;
 
@@ -5649,14 +5669,14 @@ var staticRenderFns = [function () {
   }, [_c("h1", {
     staticClass: "navbar-brand"
   }, [_vm._v("BDOCTOR")]), _vm._v(" "), _c("div", {
-    staticClass: "bg-danger pd-0",
+    staticClass: "p-0 flex-grow-1",
     attrs: {
       id: "navbarSupportedContent"
     }
   }, [_c("ul", {
-    staticClass: "mb-0"
+    staticClass: "mb-0 d-flex justify-content-center"
   }, [_c("li", {
-    staticClass: "list-unstyled"
+    staticClass: "list-unstyled me-4 border border-dark"
   }, [_c("a", {
     staticClass: "nav-link active",
     attrs: {
@@ -5664,14 +5684,14 @@ var staticRenderFns = [function () {
       href: "/login"
     }
   }, [_vm._v("Login")])]), _vm._v(" "), _c("li", {
-    staticClass: "list-unstyled"
+    staticClass: "list-unstyled me-4 border border-dark"
   }, [_c("a", {
     staticClass: "nav-link",
     attrs: {
       href: "/register"
     }
   }, [_vm._v("Register")])]), _vm._v(" "), _c("li", {
-    staticClass: "list-unstyled"
+    staticClass: "list-unstyled me-4 border border-dark"
   }, [_c("a", {
     staticClass: "nav-link",
     attrs: {
@@ -11125,7 +11145,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "footer a[data-v-61a7c374] {\n  color: black;\n  text-decoration: none;\n  cursor: pointer;\n}", ""]);
+exports.push([module.i, "footer[data-v-61a7c374] {\n  color: white;\n}\nfooter h4[data-v-61a7c374] {\n  font-weight: 700;\n  font-size: 1.5rem;\n}\nfooter li a[data-v-61a7c374] {\n  color: inherit;\n  text-decoration: none;\n  cursor: pointer;\n}\nfooter .social li[data-v-61a7c374] {\n  margin-right: 5px;\n}", ""]);
 
 // exports
 
