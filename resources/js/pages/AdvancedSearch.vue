@@ -1,7 +1,6 @@
 <template>
     <div class="container">
       <h1>Ricerca Avanzata</h1>
-      <!-- <Banner/> -->
       <Banner @search="search($event)"/>
       <Doctors :doctorsToShow="resultDoctors"/>
     </div>
@@ -41,16 +40,8 @@
                   this.resultDoctors = resp.data.results;
               })
               
-              }
-
-               
+              }   
           },
-        // getDoctors() {
-        //     axios.get('/api/users').then((resp) => {
-                
-        //         this.doctor = resp.data.results;
-        //     })
-        // }
     }
   </script>
   
