@@ -1,24 +1,48 @@
 <template>
-<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <h1 class="navbar-brand" href="#">BoolPress</h1>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item active mr-3">
-        <router-link to="/">Home</router-link>
-      </li>
-      <li class="nav-item mr-3">
-        <router-link to="/about">About</router-link>
-      </li>
-      <li class="nav-item">
-        <router-link to="/blog">Blog</router-link>
-      </li>
-    </ul>
+<footer class="bg-primary">
+  <div class="container d-flex justify-content-center">
+    <div class="row">
+      <div class="col-auto">
+      <i class="fa-solid fa-bicycle"></i>
+        <h4>Colonna 1</h4>
+        <ul class="list-unstyled">
+          <li><a>Home</a></li>
+          <li><a>Privacy</a></li>
+          <li><a>Contatti</a></li>
+          <li><a>Lavoro</a></li>
+          <li><a>Link</a></li>
+          <li><a>Link</a></li>
+          <li><a>Link</a></li>
+        </ul>
+      </div>
+
+    <div class="col-auto">
+      <h4>Colonna 2</h4>
+      <ul class="list-unstyled">
+        <li><a>Home</a></li>
+        <li><a>Privacy</a></li>
+        <li><a>Contatti</a></li>
+        <li><a>Lavoro</a></li>
+        <li><a>Link</a></li>
+        <li><a>Link</a></li>
+        <li><a>Link</a></li>
+      </ul>
+    </div>
+
+    <div class="col-auto">
+      <h4>Colonna 3</h4>
+      <ul class="list-unstyled">
+        <li><h2>DB</h2></li>
+        <li><a>Home</a></li>
+        <li><a>Privacy</a></li>
+        <li><a>Contatti</a></li>
+        <li><i class="fa-solid fa-house"></i></li>
+      </ul>
+    </div>
   </div>
-</nav> -->
-<h1>Questo è il componente footer</h1>
+</div>
+  
+</footer>
 </template>
 
 <script>
@@ -28,6 +52,15 @@ export default {
 }
 </script>
 
-<style>
+<style scoped lang="scss">
+
+ footer{
+  a {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+ }
 
 </style>
