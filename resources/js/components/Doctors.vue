@@ -1,10 +1,9 @@
 <template>
     <div>
-        <h2>Tutti i dottori:</h2>
-        <div class="container">
-        <div v-for="user in doctorsToShow" :key='user.id' class="row row-cols-3">
-            <DoctorCard :user="user"/>
-        </div>
+        <h2>Risultati della ricerca</h2>
+        
+        <div class="row row-cols-3">
+            <DoctorCard v-for="user in doctorsToShow" :key='user.id' :user="user"/>
         </div>
     </div>
 </template>
