@@ -21,7 +21,7 @@
         @csrf
         <div class="form-group" id="name-formgroup">
             <label for="name">Nome *</label>
-            <input type="text" id="name" name="name" required
+            <input class="form-control" type="text" id="name" name="name" required
                 value="{{ old('name') ? old('name') : $user->name }}">
             <div class="invalid-feedback">
                 Please choose a name.
@@ -29,40 +29,41 @@
         </div>
         <div class="form-group" id="surname-formgroup">
             <label for="surname">Cognome *</label>
-            <input type="text" id="surname" name="surname" required
+            <input class="form-control" type="text" id="surname" name="surname" required
                 value="{{ old('surname') ? old('surname') : $user->surname }}">
             <div class="invalid-feedback">
                 Please choose a surname.
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group mb-2">
             <label for="phone">Numero di telefono</label>
-            <input type="phone" id="phone" name="phone" value="{{ old('phone') ? old('phone') : $user->phone }}">
+            <input class="form-control" type="phone" id="phone" name="phone"
+                value="{{ old('phone') ? old('phone') : $user->phone }}">
         </div>
-        <div class="form-group" id="address-formgroup">
+        <div class="form-group mb-2" id="address-formgroup">
             <label for="address">Indirizzo *</label>
-            <input type="text" id="address" name="address" required
+            <input class="form-control" type="text" id="address" name="address" required
                 value="{{ old('address') ? old('address') : $user->address }}">
             <div class="invalid-feedback">
                 Please insert an address.
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group mb-2">
             <label for="photo">Foto</label>
-            <input type="file" name="photo" id="photo">
+            <input class="form-control" type="file" name="photo" id="photo">
         </div>
 
-        <div class="form-group" id="specialties-formgroup">
-            <h3 class="col-sm-2">Specializzazione *</h3>
-            <div class="col-sm-10">
+        <div class="form-group mb-2" id="specialties-formgroup">
+            <h3>Specializzazione *</h3>
             <div class="invalid-feedback">
                 Please check at least one specialty.
             </div>
-                <div class="form-check" id="specialties">
+            <div class="form-check mb-2 container-fluid overflow-auto border border-gray-400 rounded" id="specialties" style="height:10rem;">
+                <div class="row row-cols-2">
                     @foreach ($specialties as $specialty)
-                        <div class="form-check">
-                            <input class="form-check-input specialty-checkbox" type="checkbox" name="specialties[]"
+                        <div class="form-check col">
+                            <input class="form-check-input specialty-checkbox ml-4" type="checkbox" name="specialties[]"
                                 value="{{ $specialty->id }}" id="specialty-{{ $specialty->id }}"
                                 {{ $user->specialties->contains($specialty) || in_array($user->id, old('specialties', [])) ? 'checked' : '' }}>
                             <label class="form-check-label" for="specialty-{{ $specialty->id }}">
@@ -70,21 +71,21 @@
                             </label>
                         </div>
                     @endforeach
-                </div>
+                </div> 
             </div>
 
-            <div>
+            <div class="form-group mb-2">
                 <label for="services">Prestazioni</label>
-                <textarea type="text" id="services" name="services"
+                <textarea class="form-control" type="text" id="services" name="services"
                     value="{{ old('services') ? old('services') : $user->services }}" rows="5" placeholder="Prestazioni">{{ $user->services }}</textarea>
             </div>
 
-            <div>
+            <div class="form-group mb-2">
                 <label for="cv">CV</label>
-                <textarea type="text" id="cv" name="cv" value="{{ old('cv') ? old('cv') : $user->cv }}" rows="5"
-                    placeholder="Inserisci il tuo CV">{{ $user->cv }}</textarea>
+                <textarea class="form-control" type="text" id="cv" name="cv"
+                    value="{{ old('cv') ? old('cv') : $user->cv }}" rows="5" placeholder="Inserisci il tuo CV">{{ $user->cv }}</textarea>
             </div>
-            <button class="btn btn-primary" type="submit">Salva</button>
+            <button class="btn btn-primary mb-2" type="submit">Salva</button>
     </form>
     <form action="{{ route('admin.users.destroy') }}" method="POST">
         @csrf
@@ -131,7 +132,7 @@
 
         form.addEventListener("submit", function(e) {
             e
-        .preventDefault(); //when we click on submit, it just submits, but we don't want that, we want to hold for a while
+                .preventDefault(); //when we click on submit, it just submits, but we don't want that, we want to hold for a while
             if (checkEmptyInputInFormGroup(name)) {
                 showError(name);
             } else {
@@ -153,11 +154,11 @@
             } else {
                 removeError(specialties);
             }
-            
+
             if (!checkEmptyInputInFormGroup(name) &&
-            !checkEmptyInputInFormGroup(surname) &&
-            !checkEmptyInputInFormGroup(address) &&
-            checkboxValidator(specialties)) {
+                !checkEmptyInputInFormGroup(surname) &&
+                !checkEmptyInputInFormGroup(address) &&
+                checkboxValidator(specialties)) {
                 form.submit();
             }
         });
