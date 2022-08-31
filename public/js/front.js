@@ -5280,7 +5280,9 @@ __webpack_require__.r(__webpack_exports__);
     search: function search(selectedSpecialty) {
       var _this = this;
 
-      //console.log(searchedSpecialty);
+      console.log(selectedSpecialty);
+      console.log(this.$route);
+      history.pushState({}, null, "/search/".concat(selectedSpecialty));
       axios__WEBPACK_IMPORTED_MODULE_2___default.a.get('/api/search/' + selectedSpecialty).then(function (resp) {
         _this.resultDoctors = resp.data.results;
       });
@@ -5439,7 +5441,7 @@ var render = function render() {
       "aria-label": "Default select example"
     },
     on: {
-      change: [function ($event) {
+      change: function change($event) {
         var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
           return o.selected;
         }).map(function (o) {
@@ -5447,7 +5449,7 @@ var render = function render() {
           return val;
         });
         _vm.selectedSpecialty = $event.target.multiple ? $$selectedVal : $$selectedVal[0];
-      }, _vm.sendSearchDoctor]
+      }
     }
   }, [_c("option", {
     attrs: {
@@ -5457,20 +5459,16 @@ var render = function render() {
     return _c("option", {
       key: index,
       domProps: {
-        value: specialty.id
+        value: specialty.specialty_slug
       }
     }, [_vm._v(_vm._s(specialty.specialty_name))]);
-  })], 2), _vm._v(" "), _c("form", {
-    attrs: {
-      action: ""
-    }
-  }, [_c("button", {
+  })], 2), _vm._v(" "), _c("button", {
     on: {
       click: function click($event) {
         return _vm.$emit("search", _vm.selectedSpecialty);
       }
     }
-  }, [_vm._v("Avvia ricerca per specializzazione")])])]);
+  }, [_vm._v("Avvia ricerca per specializzazione")])]);
 };
 
 var staticRenderFns = [];
@@ -5696,7 +5694,13 @@ var render = function render() {
 
   return _c("div", {
     staticClass: "container"
-  }, [_c("h1", [_vm._v("Ricerca Avanzata")]), _vm._v(" "), _c("Banner"), _vm._v(" "), _c("Doctors", {
+  }, [_c("h1", [_vm._v("Ricerca Avanzata")]), _vm._v(" "), _c("Banner", {
+    on: {
+      search: function search($event) {
+        return _vm.search($event);
+      }
+    }
+  }), _vm._v(" "), _c("Doctors", {
     attrs: {
       doctorsToShow: _vm.resultDoctors
     }

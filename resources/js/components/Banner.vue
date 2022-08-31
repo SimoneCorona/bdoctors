@@ -1,12 +1,10 @@
 <template>
 <div class="banner">
-    <select  @change="sendSearchDoctor" v-model="selectedSpecialty" class="form-select" aria-label="Default select example">
+    <select v-model="selectedSpecialty" class="form-select" aria-label="Default select example">
       <option selected>Open this select menu</option>
-      <option v-for="(specialty, index) in specialties" :key="index" :value="specialty.id">{{specialty.specialty_name}}</option>
+      <option v-for="(specialty, index) in specialties" :key="index" :value="specialty.specialty_slug">{{specialty.specialty_name}}</option>
     </select>
-    <form action="">
-      <button @click="$emit('search', selectedSpecialty)">Avvia ricerca per specializzazione</button>
-    </form>
+    <button @click="$emit('search', selectedSpecialty)">Avvia ricerca per specializzazione</button>
 </div>
 </template>
 

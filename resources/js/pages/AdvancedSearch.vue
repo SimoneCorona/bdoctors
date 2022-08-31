@@ -1,8 +1,8 @@
 <template>
     <div class="container">
       <h1>Ricerca Avanzata</h1>
-      <Banner/>
-      <!-- <Banner @search="search($event)"/> -->
+      <!-- <Banner/> -->
+      <Banner @search="search($event)"/>
       <Doctors :doctorsToShow="resultDoctors"/>
     </div>
   </template>
@@ -29,7 +29,13 @@
     },
       methods: {
         search(selectedSpecialty) {
-              //console.log(searchedSpecialty);
+              console.log(selectedSpecialty);
+              console.log(this.$route);
+              history.pushState(
+                    {},
+                    null,
+                    `/search/${selectedSpecialty}`
+                  );
                axios.get('/api/search/'+ selectedSpecialty)
                .then((resp) => {
                   this.resultDoctors = resp.data.results;
