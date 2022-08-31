@@ -1,6 +1,6 @@
 <template>
   <div class="col">
-      <div class="card p-3 mb-3">
+      <div class="card p-3 mb-3 ">
             <h3>{{ user.name }} {{ user.surname }}</h3>
             <img class="doctor-image" :src="user.photo ? `/storage/${user.photo}`: '/img/img-not-found.png'" />
             <div v-for="specialty in user.specialties" :key="specialty.specialty_id">

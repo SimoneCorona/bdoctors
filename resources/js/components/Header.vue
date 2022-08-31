@@ -14,6 +14,9 @@
         <li class="list-unstyled me-4">
           <a class="nav-link btn btn-primary text-light px-2" href="/register">Register</a>
         </li>
+        <li class="list-unstyled me-4">
+          <a class="nav-link btn btn-primary text-light px-2" href="/admin/profile">Il mio profilo</a>
+        </li>
         <!-- <li class="list-unstyled me-4 border border-dark">
           <a class="nav-link" href="/logout">Logout</a>
         </li> -->

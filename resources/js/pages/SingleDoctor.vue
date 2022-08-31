@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="container text-center">
         <h1>{{ user.name }} {{ user.surname }}</h1>
         <img class="doctor-image" :src="user.photo ? `/storage/${user.photo}`: '/img/img-not-found.png'" />
         <p>{{ user.address }}</p>

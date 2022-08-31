@@ -5602,7 +5602,14 @@ var staticRenderFns = [function () {
     attrs: {
       href: "/register"
     }
-  }, [_vm._v("Register")])])])])])])]);
+  }, [_vm._v("Register")])]), _vm._v(" "), _c("li", {
+    staticClass: "list-unstyled me-4"
+  }, [_c("a", {
+    staticClass: "nav-link btn btn-primary text-light px-2",
+    attrs: {
+      href: "/admin/profile"
+    }
+  }, [_vm._v("Il mio profilo")])])])])])])]);
 }];
 render._withStripped = true;
 
@@ -5797,7 +5804,9 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", [_c("h1", [_vm._v(_vm._s(_vm.user.name) + " " + _vm._s(_vm.user.surname))]), _vm._v(" "), _c("img", {
+  return _c("div", {
+    staticClass: "container text-center"
+  }, [_c("h1", [_vm._v(_vm._s(_vm.user.name) + " " + _vm._s(_vm.user.surname))]), _vm._v(" "), _c("img", {
     staticClass: "doctor-image",
     attrs: {
       src: _vm.user.photo ? "/storage/".concat(_vm.user.photo) : "/img/img-not-found.png"
