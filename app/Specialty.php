@@ -7,7 +7,8 @@ use App\User;
 class Specialty extends Model
 {
     protected $fillable = [
-        'specialty_name'
+        'specialty_name',
+        'specialty_slug'
     ];
 
     public function users() {

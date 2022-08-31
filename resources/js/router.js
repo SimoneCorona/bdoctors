@@ -8,6 +8,7 @@ import Home from './pages/Home.vue'
 import Doctors from './components/Doctors.vue'
 import SingleDoctor from './pages/SingleDoctor.vue'
 import NotFound from './pages/NotFound.vue'
+import AdvancedSearch from './pages/AdvancedSearch.vue'
 
 const router = new VueRouter({
     mode: "history",
@@ -17,11 +18,11 @@ const router = new VueRouter({
             name: "home",
             component: Home
         },
-        // {
-        //     path: "/about",
-        //     name: "about",
-        //     component: About
-        // },
+        {
+            path: "/search/:specialty",
+            name: "advanced-search",
+            component: AdvancedSearch
+        },
         {
             path: "/doctors",
             name: "doctors",

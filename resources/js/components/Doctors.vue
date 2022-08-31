@@ -16,6 +16,9 @@ export default {
     components: {
         DoctorCard,
     },
+    props: {
+        specialtySearched: '',
+    },
     data() {
         return {
             users: [],

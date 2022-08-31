@@ -2,9 +2,23 @@
 
 use App\Specialty;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class SpecialtyTableSeeder extends Seeder
 {
+
+    private function generateSpecialtySlugFromName($specialty_name) {
+        $base_slug = Str::slug($specialty_name);   
+        $slug = $base_slug;
+        $count = 1;
+        $specialty_found = Specialty::where('specialty_slug', '=', $slug)->first();
+        while ($specialty_found) {
+            $slug = $base_slug . '-' . $count;
+            $specialty_found = Specialty::where('specialty_slug', '=', $slug)->first();
+            $count++;
+        }
+        return $slug;
+    }
     /**
      * Run the database seeds.
      *
@@ -72,6 +86,7 @@ class SpecialtyTableSeeder extends Seeder
         foreach($specialties_name as $specialty_name) {
             $new_specialty_name = new Specialty();
             $new_specialty_name->specialty_name = $specialty_name;
+            $new_specialty_name->specialty_slug = $this->generateSpecialtySlugFromName($specialty_name);
             $new_specialty_name->save(); 
         }
     }
