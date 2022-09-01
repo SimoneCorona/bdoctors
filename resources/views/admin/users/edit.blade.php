@@ -2,8 +2,12 @@
 
 @section('content')
 
+    
+    
     EDIT PROFILO UTENTE
     <h1>Modifica Profilo</h1>
+
+    
 
     @if ($errors->any())
         <div>
