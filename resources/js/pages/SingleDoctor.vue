@@ -28,7 +28,7 @@
                             <p class="rounded-pill px-2 mx-1 text-light">{{ specialty.specialty_name }}</p>
                         </div>
                         <p><strong>Indirizzo: </strong>{{ user.address }}</p>
-                        <p><strong>Numero di tel.: </strong>{{ user.phone_number }}</p>
+                        <p v-if="user.phone_number"><strong>Numero di tel.: </strong>{{ user.phone_number }}</p>
                         <p><strong>Email: </strong>{{ user.email }}</p>
                         <p><strong>Voto medio: </strong>{{ user.avg_rating }}</p>
                         <h4 class="my-3">Curriculum Vitae:</h4>
