@@ -20,7 +20,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark flex-md-nowrap p-0">
+    {{-- <nav class="navbar navbar-expand-md navbar-dark bg-dark flex-md-nowrap p-0">
         <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">BDoctors</a>
         <ul class="navbar-nav px-3 ml-auto">
             <li class="nav-item">
@@ -39,7 +39,7 @@
                 </form>
             </li>
         </ul>
-    </nav>
+    </nav>  --}}
     <div class="container-fluid">
         <div class="row">
             <nav class="col-md-2 d-none d-md-block bg-light sidebar py-4">
