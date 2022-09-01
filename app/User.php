@@ -44,7 +44,7 @@ class User extends Authenticatable
     }
 
     public function getAvgRatingAttribute() {
-        return $this->reviews()->avg('rating');
+        return floatval($this->reviews()->avg('rating'));
     }
      
     public function getReviewCountAttribute() {
@@ -66,6 +66,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'phone_number' => 'integer'
     ];
     
     /**
