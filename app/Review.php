@@ -7,7 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Review extends Model
 {
     protected $fillable = [
-        'review'
+        'user_id',
+        'author',
+        'text_review',
+        'rating',
     ];
     public function user() {
         return $this->belongsTo('App\User');
