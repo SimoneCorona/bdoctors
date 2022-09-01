@@ -8,7 +8,7 @@
             <option selected>Open this select menu</option>
             <option v-for="(specialty, index) in specialties" :key="index" :value="specialty.specialty_slug">{{specialty.specialty_name}}</option>
           </select>
-          <router-link class="btn btn-primary" :to="{name: 'advanced-search', params: {specialty: selectedSpecialty }}">Cerca</router-link> 
+          <router-link class="btn btn-primary text-light" :to="{name: 'advanced-search', params: {specialty: selectedSpecialty }}">Cerca</router-link> 
         </div>
       </div>
     </div>

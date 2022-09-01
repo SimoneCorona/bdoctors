@@ -43,7 +43,12 @@
                     null,
                     `/search/${selectedSpecialty}`
                   );
-               axios.get('/api/search/'+ selectedSpecialty)
+               axios.get('/api/search/'+ selectedSpecialty, {
+                params: {
+                avg_rating: 0,
+                review_count: 0,
+              }
+            })
                .then((resp) => {
                   this.resultDoctors = resp.data.results;
               })
