@@ -11151,7 +11151,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.jumbotron img{\r\n  width: 100%;\n}\r\n", ""]);
+exports.push([module.i, "\n.jumbotron img{\n  width: 100%;\n}\n", ""]);
 
 // exports
 
@@ -59062,7 +59062,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\boolean-htdocs\bdoctors\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! /Users/karolina/Desktop/Boolean/Esercizi/bdoctors/resources/js/front.js */"./resources/js/front.js");
 
 
 /***/ })
