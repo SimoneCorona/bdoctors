@@ -5602,7 +5602,7 @@ var staticRenderFns = [function () {
     attrs: {
       href: "/register"
     }
-  }, [_vm._v("Register")])]), _vm._v(" "), _c("li", {
+  }, [_vm._v("Registrati")])]), _vm._v(" "), _c("li", {
     staticClass: "list-unstyled me-4"
   }, [_c("a", {
     staticClass: "nav-link btn btn-primary text-light px-2",
@@ -5747,7 +5747,7 @@ var render = function render() {
       }
     }, [_vm._v(_vm._s(specialty.specialty_name))]);
   })], 2), _vm._v(" "), _c("router-link", {
-    staticClass: "btn btn-primary",
+    staticClass: "btn btn-primary text-light",
     attrs: {
       to: {
         name: "advanced-search",
@@ -5780,7 +5780,7 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("h1", [_vm._v("Errore 404:Pagina non trovata")]);
+  return _c("h1", [_vm._v("Errore 404: Pagina non trovata!")]);
 };
 
 var staticRenderFns = [];
@@ -59062,7 +59062,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\VSCode-projects\Boolean\bdoctors\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\Users\boolean-htdocs\bdoctors\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })
