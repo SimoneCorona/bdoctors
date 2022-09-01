@@ -1,8 +1,8 @@
 @extends('layouts.dashboard')
+<x-header link1="Login" href1="/login" link2="Register" href2="/register" link3="Il mio profilo" href3="/admin" /> 
 
 @section('content')
 
-    
     
     EDIT PROFILO UTENTE
     <h1>Modifica Profilo</h1>

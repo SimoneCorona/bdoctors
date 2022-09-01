@@ -112,7 +112,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary text-light">
+                                <button id="btn" type="submit" class="btn btn-primary text-light">
                                     {{ __('Registrati') }}
                                 </button>
                             </div>
@@ -123,13 +123,16 @@
         </div>
     </div>
 </div>
-<script>
+<script >
 
-pwdInput = document.getElementById('password');
-confirmPwdInput = document.getElementById('password-confirm');
-pwdAlert = document.getElementById('password-alert')
+let pwdInput = document.getElementById('password');
+let confirmPwdInput = document.getElementById('password-confirm');
+let pwdAlert = document.getElementById('password-alert')
 pwdInput.addEventListener('keyup', checkpwd);
 confirmPwdInput.addEventListener('keyup', checkpwd);
+let btn = document.getElementById('btn');
+
+ 
 function checkpwd(pwd1, pwd2) {
     let pass1 = document.getElementById('password').value;
     let pass2 = document.getElementById('password-confirm').value;
@@ -151,6 +154,14 @@ function checkpwd(pwd1, pwd2) {
         pwdAlert.classList.add("text-success");
         pwdAlert.textContent = 'Password valida';
     }
+
+     
+    if (pwdAlert.textContent === 'Password valida') {
+        btn.disabled = false;
+    } else {
+        btn.disabled = true;
+    }
+    
 }
 </script>
 @endsection
