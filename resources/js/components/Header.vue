@@ -12,7 +12,7 @@
           <a class="nav-link btn btn-primary text-light px-2" aria-current="page" href="/login">Login</a>
         </li>
         <li class="list-unstyled me-4">
-          <a class="nav-link btn btn-primary text-light px-2" href="/register">Register</a>
+          <a class="nav-link btn btn-primary text-light px-2" href="/register">Registrati</a>
         </li>
         <li class="list-unstyled me-4">
           <a class="nav-link btn btn-primary text-light px-2" href="/admin/profile">Il mio profilo</a>
