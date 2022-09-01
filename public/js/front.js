@@ -5809,7 +5809,7 @@ var render = function render() {
   }, [_c("h1", [_vm._v(_vm._s(_vm.user.name) + " " + _vm._s(_vm.user.surname))]), _vm._v(" "), _c("img", {
     staticClass: "doctor-image",
     attrs: {
-      src: _vm.user.photo ? "/storage/".concat(_vm.user.photo) : "/img/img-not-found.png"
+      src: _vm.user.photo ? "".concat(_vm.user.photo) : "/img/img-not-found.png"
     }
   }), _vm._v(" "), _c("p", [_vm._v(_vm._s(_vm.user.address))]), _vm._v(" "), _c("p", [_vm._v(_vm._s(_vm.user.phone_number))]), _vm._v(" "), _c("p", [_vm._v(_vm._s(_vm.user.email))]), _vm._v(" "), _c("p", [_vm._v(_vm._s(_vm.user.cv ? _vm.user.cv : "nessun cv"))]), _vm._v(" "), _vm._l(_vm.user.specialties, function (specialty) {
     return _c("div", {
@@ -59062,7 +59062,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\VSCode-projects\Boolean\bdoctors\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\Users\boolean-htdocs\bdoctors\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })
