@@ -39,7 +39,10 @@
                 @foreach($user->reviews as $review)
                     <li class="review list-unstyled mb-2">
                         <div>
-                            {{ $review->text_review }}
+                            <span>
+                                {{ $review->text_review }}
+                            </span>
+                            <small>Inviato da {{ $review->author }}</small>
                         </div>
                     </li>
                 @endforeach
@@ -51,7 +54,9 @@
                 @foreach($user->messages as $message)
                     <li class="message list-unstyled" >
                         <div>
-                            {{ $message->text_message }}
+                            <div>
+                                {{ $message->text_message }}
+                            </div>
                             <small>Inviato da {{ $message->author }}</small>
                             <a href="#">{{ $message->email }}</a>
                         </div>
