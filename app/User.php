@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Specialty;
+use Illuminate\Support\Str;
 class User extends Authenticatable
 {
     use Notifiable;
@@ -75,4 +76,19 @@ class User extends Authenticatable
           * @var array
      */
     protected $appends = ['avg_rating','review_count'];
+
+
+    public static function generateUserSlugFromName($name, $surname) {
+        $base_slug = Str::slug($name . '_' . $surname, '-');   
+        $slug = $base_slug;
+        $count = 1;
+        $user_found = User::where('slug', '=', $slug)->first();
+        while ($user_found) {
+            $slug = $base_slug . '-' . $count;
+            $user_found = User::where('slug', '=', $slug)->first();
+            $count++;
+        }
+        return $slug;
+    }
+
 }
