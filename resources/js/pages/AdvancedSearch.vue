@@ -62,7 +62,7 @@
                axios.get('/api/search/'+ selectedSpecialty, {
                 params: {
                 avg_rating: this.minAvgRating,
-                review_count: this.minReviewCount,
+                min_reviews: this.minReviewCount,
               }
             })
                .then((resp) => {
