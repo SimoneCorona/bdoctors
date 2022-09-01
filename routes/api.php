@@ -21,3 +21,5 @@ Route::get('/users', 'Api\UserController@index')->name('api.users.index');
 Route::get('/users/{slug}', 'Api\UserController@show')->name('api.users.show');
 Route::get('/specialties', 'Api\SpecialtyController@index')->name('api.specialties.index');
 Route::get('/search/{slug}', 'Api\UserController@search')->name('api.users.search');
+
+Route::post("/review", 'Api\ReviewController@store')->name('api.reviews.store');
