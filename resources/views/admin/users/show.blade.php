@@ -5,12 +5,12 @@
 <div class="d-flex justify-content-center">
     <ul class="d-flex flex-column m-0 p-0">
         @if($user->photo)
-        <li class="list-unstyled rounded-circle">
-            <img src="{{ asset('storage/' . $user->photo) }}"  alt="{{ $user->name }}" class="rounded-circle">
+        <li class="avatar list-unstyled">
+            <img src="{{ asset('storage/' . $user->photo) }}"  alt="{{ $user->name }}">
         </li>
         @else
-        <li class="list-unstyled rounded-circle">
-            <img src="{{ asset('img/img-not-found.png') }}" alt="img-not-found" class="rounded-circle">
+        <li class="avatar list-unstyled">
+            <img src="{{ asset('img/img-not-found.png') }}" alt="img-not-found">
         </li>
         @endif
         <li class="list-unstyled text-center"> <h2>{{ $user->name}} {{ $user->surname}}</h2></li>
@@ -48,3 +48,17 @@
     </ul>
 </div>
 @endsection
+
+<style scoped>
+    .avatar {
+        width: 350px;
+        height: 350px;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+
+    .avatar img {
+        object-fit: cover;
+        translate: -50%;
+    }
+</style>
