@@ -23,7 +23,13 @@ class RewievTableSeeder extends Seeder
                 'author' => 'Enrico B.',
                 'user_id' => 1,
                 'text_review' => 'un medico molto antipatico shshshhhhs',
-                'rating' => 4,
+                'rating' => 1,
+            ],
+            [
+                'author' => 'Ettore Scola',
+                'user_id' => 1,
+                'text_review' => 'La migliore esperienza mai avuta',
+                'rating' => 5,
             ],
             [
                 'author' => 'Alfonso Giro',
