@@ -11,21 +11,24 @@
                             <p v-else>Nessuna prestazione segnala dal dottore</p>
                         </div>
                         <!-- Wrapper recensioni -->
-                        <div class="reviews-wrapper row mt-5 flex-column" style="width: 95%">
+                        <div class="reviews-wrapper row mt-5 flex-column" style="width: 90%">
                             <h4>Tutte le recensioni:</h4>
-                            <div class="mb-3 py-3 border border-info border-4 rounded-3" v-for="review in user.reviews" :key="review.id">
-                                <h4>Autore:</h4>
-                                <p>{{ review.author }}: {{ review.rating }} stelle</p>
-                                <!-- <i class="fa-star" :class="n <= starsInReviews ? 'fas' : 'far'" v-for="n in 5" :key="n"></i>  -->
-                                <p>{{ review.text_review }}</p>
+                            <div v-if="user.reviews.length > 0">
+                                <div class="mb-3 py-3 px-3 border border-info border-4 rounded-3" v-for="review in user.reviews" :key="review.id">
+                                    <h4>Autore:</h4>
+                                    <p>{{ review.author }}: {{ review.rating }} stelle</p>
+                                    <!-- <i class="fa-star" :class="n <= starsInReviews ? 'fas' : 'far'" v-for="n in 5" :key="n"></i>  -->
+                                    <p>{{ review.text_review }}</p>
+                                </div>
                             </div>
+                            <p v-else>Nessuna recensione!</p>
                         </div>
                     </div>
                     <!-- Wrapper info dottore -->
                     <div class="col p-0">
                         <h1>{{ user.name }} {{ user.surname }}</h1>
                         <div v-for="specialty in user.specialties" :key="specialty.specialty_id">
-                            <p class="rounded-pill px-2 mx-1 text-light">{{ specialty.specialty_name }}</p>
+                            <p class="badge rounded-pill text-bg-primary px-2 mx-1 text-light">{{ specialty.specialty_name }}</p>
                         </div>
                         <p><strong>Indirizzo: </strong>{{ user.address }}</p>
                         <p v-if="user.phone_number"><strong>Numero di tel.: </strong>{{ user.phone_number }}</p>
@@ -74,8 +77,6 @@
                         </div>
                     </div>    
                 </div>
-
-            
             </div>
     </div>
 </template>
