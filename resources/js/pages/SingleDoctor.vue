@@ -16,8 +16,8 @@
                             <div v-if="user.reviews.length > 0">
                                 <div class="mb-3 py-3 px-3 border border-info border-4 rounded-3" v-for="review in user.reviews" :key="review.id">
                                     <h4>Autore:</h4>
-                                    <p>{{ review.author }}: {{ review.rating }} stelle</p>
-                                    <!-- <i class="fa-star" :class="n <= starsInReviews ? 'fas' : 'far'" v-for="n in 5" :key="n"></i>  -->
+                                    <p>{{ review.author }}</p>
+                                      <i class="fa-star" :class="n <= review.rating  ? 'fas' : 'far'" v-for="n in 5" :key="n"></i>
                                     <p>{{ review.text_review }}</p>
                                 </div>
                             </div>
@@ -33,7 +33,7 @@
                         <p><strong>Indirizzo: </strong>{{ user.address }}</p>
                         <p v-if="user.phone_number"><strong>Numero di tel.: </strong>{{ user.phone_number }}</p>
                         <p><strong>Email: </strong>{{ user.email }}</p>
-                        <p><strong>Voto medio: </strong>{{ user.avg_rating }}</p>
+                        <p><strong>Voto medio: </strong><i class="fa-star" :class="n <= starsInReviews ? 'fas' : 'far'" v-for="n in 5" :key="n"></i></p>
                         <h4 class="my-3">Curriculum Vitae:</h4>
                         <p>{{ user.cv ? user.cv : 'nessun cv' }}</p>
                     </div>
@@ -61,13 +61,19 @@
                             </div>
                             <div class="col py-3 border border-info border-4 rounded-3">
                                 <h4>Come ti è sembrato il servizio?</h4>
-                                <!-- <i class="fa-star" :class="n <= starsInReviews ? 'fas' : 'far'" v-for="n in 5" :key="n"></i> -->
                                 <h5>Scrivigli/le una recensione!</h5>
                                 <div class="input-group my-3 flex-nowrap">
                                     <input type="text" class="form-control" placeholder="Nome" aria-label="name" aria-describedby="addon-wrapping">
                                 </div>
                                 <div class="input-group mb-3 flex-nowrap">
                                     <input type="text" class="form-control" placeholder="Cognome" aria-label="surname" aria-describedby="addon-wrapping">
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <i class="far fa-star  mx-2"></i> 
+                                    <i class="far fa-star  mx-2"></i> 
+                                    <i class="far fa-star  mx-2"></i> 
+                                    <i class="far fa-star  mx-2"></i> 
+                                    <i class="far fa-star  mx-2"></i> 
                                 </div>
                                 <div class="form-floating mb-3">
                                     <textarea class="form-control" placeholder="Scrivi qui il tuo messaggio" id="floatingTextarea2" style="height: 150px"></textarea>
@@ -104,25 +110,23 @@ export default {
                 this.$router.push({name: 'not-found'});
             }  
             })
-        }
+        },
+        // colorStarOnHover() {
+            
+        // }
     },
-    // computed: {
-    //     starsInReviews () {
-    //         return Math.ceil(this.user.review[rating])
-    //     }
-    // }
+    computed: {
+        starsInReviews () {
+            return Math.round(this.user.avg_rating)
+            console.log(this.starsInReviews())
+        }
+    }
 };
 </script>
 
 <style scoped lang="scss">
-// .reviews-wrapper{
-//     div {
-//         p{
-//         .fas{
-//             color: rgba(255, 255, 0, 0.762);
-//         }
-//         }
-//     }
-// }
+.fas{
+    color: rgb(255, 242, 0);
+}
 
 </style>
