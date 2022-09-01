@@ -69,11 +69,11 @@
                                     <input type="text" class="form-control" placeholder="Cognome" aria-label="surname" aria-describedby="addon-wrapping">
                                 </div>
                                 <div class="d-flex justify-content-center">
-                                    <i class="far fa-star  mx-2"></i> 
-                                    <i class="far fa-star  mx-2"></i> 
-                                    <i class="far fa-star  mx-2"></i> 
-                                    <i class="far fa-star  mx-2"></i> 
-                                    <i class="far fa-star  mx-2"></i> 
+                                    <i class="far fa-star mx-2"></i> 
+                                    <i class="far fa-star mx-2"></i> 
+                                    <i class="far fa-star mx-2"></i> 
+                                    <i class="far fa-star mx-2"></i> 
+                                    <i class="far fa-star mx-2"></i> 
                                 </div>
                                 <div class="form-floating mb-3">
                                     <textarea class="form-control" placeholder="Scrivi qui il tuo messaggio" id="floatingTextarea2" style="height: 150px"></textarea>
