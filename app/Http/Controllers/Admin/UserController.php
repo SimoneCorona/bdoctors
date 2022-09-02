@@ -127,7 +127,7 @@ class UserController extends Controller
         } else {
             $user->specialties()->sync([]);
         }
-        return redirect()->route('admin.users.show');
+        return redirect()->route('admin.home');
     }
 
     /**

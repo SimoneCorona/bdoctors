@@ -108,7 +108,6 @@
             <main role="main" class="mx-5">
                 @yield('content')
             </main>
-        </div>
-    </div>
+        <x-footer />
 </body>
 </html>

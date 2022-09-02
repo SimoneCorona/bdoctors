@@ -1,5 +1,6 @@
 <template>
-<footer class="bg-primary">
+<div></div>
+<!-- <footer class="bg-primary">
   <div class="container d-flex justify-content-center">
     <div class="row">
       <div class="col-auto">
@@ -57,7 +58,7 @@
   </div>
 </div>
   
-</footer>
+</footer> -->
 </template>
 
 <script>
@@ -69,30 +70,30 @@ export default {
 
 <style scoped lang="scss">
 
- footer{
-  color: white;
+//  footer{
+//   color: white;
 
 
-  h4 {
-    font-weight: 700;
-    font-size: 1.5rem;
-  }
+//   h4 {
+//     font-weight: 700;
+//     font-size: 1.5rem;
+//   }
 
-  li { 
-      a { 
-          color: inherit; 
-          text-decoration: none; 
-          cursor: pointer;
-        }
-  }
+//   li { 
+//       a { 
+//           color: inherit; 
+//           text-decoration: none; 
+//           cursor: pointer;
+//         }
+//   }
 
-  .social{
-    li{
-      margin-right: 5px;
-    }
-  }
+//   .social{
+//     li{
+//       margin-right: 5px;
+//     }
+//   }
 
 
- }
+//  }
 
 </style>

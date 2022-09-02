@@ -14,17 +14,22 @@
                 </li>
               @else
               <li class="list-unstyled me-4">
+                <a class="nav-link btn btn-primary text-light px-2" href="/admin">{{ $user->name }}</a>
+              </li>
+              
+              <li class="arrow btn btn-primary list-unstyled me-4 text-light px-2 h-25 ">
+                <i class="fa-solid fa-angle-down"></i>
+              </li>
+              <li class="list-unstyled me-4 d-none logout">
                 <a class="nav-link btn btn-primary text-light px-2" href="{{ route('logout') }}"
                     onclick="event.preventDefault();
-                                 document.getElementById('logout-form').submit();">
+                    document.getElementById('logout-form').submit();">
+
                     Logout
                 </a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST">
                     @csrf
                 </form>
-              </li>
-                <li class="list-unstyled me-4">
-                  <a class="nav-link btn btn-primary text-light px-2" href="/admin">{{ $user->name }}</a>
               </li>
               @endif
                
@@ -34,3 +39,9 @@
       </nav>
      
 </div>
+
+<style scoped >
+  .arrow:hover + .logout{
+    display: block;
+  }
+</style>
