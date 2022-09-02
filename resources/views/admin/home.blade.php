@@ -8,7 +8,7 @@
 @section('content')
 
 <div>
-    <div class="user d-flex pt-2 py-4">
+    <div class="user d-flex my-4 pt-2 py-4">
         <div class="user-avatar me-5">
             @if($user->photo)
             <li class="avatar list-unstyled">
@@ -49,7 +49,7 @@
             </div>
         </div>
 
-        <div class="user-info">
+        <div class="user-info ms-5">
             <li class="list-unstyled mb-3"> <h2>{{ $user->name }} {{ $user->surname }}</h2></li>
             <li class="list-unstyled text-light">
                 @foreach($user->specialties as $specialty)
