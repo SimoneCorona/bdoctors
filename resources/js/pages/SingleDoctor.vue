@@ -103,12 +103,16 @@ export default {
     data() {
         return {
             user: [],
+            rating: 0,
         }    
     },
     created() {
         this.getSingleDoctor();
     },
     methods: {
+        setRating() {
+
+        },
         getSingleDoctor() {
             const slug = this.$route.params.slug;
              axios.get(`/api/users/${slug}`)
