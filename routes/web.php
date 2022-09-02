@@ -25,17 +25,19 @@ Route::middleware('auth')
     ->name('admin.')      // pima parte del nome della route
     ->prefix('admin')     // prefisso comune degli URL
     ->group(function() {  // il tutto si applica a un gruppo di rotte
+        
         Route::get('/', 'HomeController@index')->name('home');
         Route::get('/profile','UserController@show')->name('users.show');
         Route::get('/profile/edit','UserController@edit')->name('users.edit');
         Route::put('/profile/update','UserController@update')->name('users.update');
         Route::delete('/profile/destroy','UserController@destroy')->name('users.destroy');
-        // Route::resource('profile', 'UserController');
+        
     });
 
 
 
-// Route::get('/home', 'HomeController@index')->name('home');
 Route::get('{any?}', function() {
-    return view('guest.home');
+    $user = Auth::user();
+    $user = collect($user)->toArray();
+    return view('guest.home',$user);
 })->where('any', '.*')->name('guest.home');
