@@ -146,7 +146,7 @@ class UserController extends Controller
         }
         $user->specialties()->sync([]);
         $user->delete();
-        return redirect()->route('/login');
+        return redirect()->route('login');
     }
     
     

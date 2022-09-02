@@ -16,21 +16,21 @@ class Header extends Component
      */
 
     //variabili da inserire dentro l header 
-    public $link1;
-    public $href1;
-    public $link2;
-    public $href2;
-    public $link3;
-    public $href3;
+    // public $link1;
+    // public $href1;
+    // public $link2;
+    // public $href2;
+    // public $link3;
+    // public $href3;
 
-    public function __construct($link1, $href1,  $link2, $href2, $link3, $href3)
+    public function __construct()
     {
-        $this->link1 = $link1;
-        $this->href1 = $href1;
-        $this->link2 = $link2;
-        $this->href2 = $href2;
-        $this->link3 = $link3;
-        $this->href3 = $href3;
+        // $this->link1 = $link1;
+        // $this->href1 = $href1;
+        // $this->link2 = $link2;
+        // $this->href2 = $href2;
+        // $this->link3 = $link3;
+        // $this->href3 = $href3;
     }
 
     public function boot()

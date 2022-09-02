@@ -1,4 +1,4 @@
-<x-header link1="Login" href1="/login" link2="Register" href2="/register" link3="Il mio profilo" href3="/admin" /> 
+<x-header {{-- link1="Login" href1="/login" link2="Register" href2="/register" link3="Il mio profilo" href3="/admin" --}} /> 
 @extends('layouts.dashboard')
 
 
@@ -90,15 +90,16 @@
                 <textarea class="form-control" type="text" id="cv" name="cv"
                     value="{{ old('cv') ? old('cv') : $user->cv }}" rows="5" placeholder="Inserisci il tuo CV">{{ $user->cv }}</textarea>
             </div>
-            <div class="btns d-flex mt-4">
-                <button class="btn btn-primary me-3 text-light" type="submit">Salva</button>
-                <form action="{{ route('admin.users.destroy') }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button class="btn btn-danger text-light">Elimina</button>
-                </form>
-            </div>
+            
     </form>
+    <div class="btns d-flex mt-4">
+        <button class="btn btn-primary me-3 text-light" type="submit">Salva</button>
+        <form action="{{ route('admin.users.destroy') }}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button class="btn btn-danger text-light">Elimina</button>
+        </form>
+    </div>
 
     <script>
         let form = document.getElementById('user-edit-form');
