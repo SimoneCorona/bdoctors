@@ -1,6 +1,7 @@
 <?php
 
 use App\Message;
+use App\User;
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
 
@@ -19,6 +20,17 @@ class MessageTableSeeder extends Seeder
             $message = new Message();
             $message->author = $faker->name();
             $message->user_id = $faker->numberBetween(1, 100);
+            $message->text_message = $faker->text();
+            $message->email = $faker->email();
+            $message->save();
+        }
+
+        // generiamo messaggi per l'utente di test
+        for ($i=0; $i < 10 ; $i++) { 
+            
+            $message = new Message();
+            $message->author = $faker->name();
+            $message->user_id = User::where('email','=','test@example.com')->first()->id;
             $message->text_message = $faker->text();
             $message->email = $faker->email();
             $message->save();
