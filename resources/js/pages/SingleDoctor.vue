@@ -68,13 +68,18 @@
                                 <div class="input-group mb-3 flex-nowrap">
                                     <input type="text" class="form-control" placeholder="Cognome" aria-label="surname" aria-describedby="addon-wrapping">
                                 </div>
-                                <div class="d-flex justify-content-center">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <star-rating v-model="rating" :increment="1"></star-rating>
+                                    </div>
+                                    <div class="col-md-6"></div>
+                                    <!-- <i class="far fa-star mx-2"></i> 
                                     <i class="far fa-star mx-2"></i> 
                                     <i class="far fa-star mx-2"></i> 
                                     <i class="far fa-star mx-2"></i> 
-                                    <i class="far fa-star mx-2"></i> 
-                                    <i class="far fa-star mx-2"></i> 
+                                    <i class="far fa-star mx-2"></i>  -->
                                 </div>
+                                <button @click="setRating" class="btn btn-primary">Invia</button>
                                 <div class="form-floating mb-3">
                                     <textarea class="form-control" placeholder="Scrivi qui il tuo messaggio" id="floatingTextarea2" style="height: 150px"></textarea>
                                     <label for="floatingTextarea2">Scrivi qui la tua recensione</label>
@@ -89,8 +94,12 @@
 
 <script>
 import { computed } from 'vue';
+import StarRating from 'vue-dynamic-star-rating';
 export default {
     name: 'SingleDoctor',
+    components: {
+        StarRating,
+    },
     data() {
         return {
             user: [],
