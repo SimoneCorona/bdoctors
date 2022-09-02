@@ -119,9 +119,9 @@ class UserController extends Controller
             //  Salviamo il relativo path nel database
             $data['photo'] = $image_path;
         }    
-        // dd($user);
         $user->slug = $this->generateUserSlugFromName($user->name,$user->surname);
         $user->update($data);
+        // dd($user);
         if(isset($data['specialties'])) {
             $user->specialties()->sync($data['specialties']);
         } else {

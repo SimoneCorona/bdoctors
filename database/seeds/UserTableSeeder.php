@@ -2,6 +2,7 @@
 
 use App\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 use Faker\Generator as Faker;
 
 
@@ -28,9 +29,22 @@ class UserTableSeeder extends Seeder
             $user->save();
             $user->specialties()->attach($faker->numberBetween(1, 54));
             if (substr( $user['name'], 0, 1 ) === "G") {
-                $user->sponsorships()->attach([1 => ['date_start'=>now(), 'date_end'=>now()]]);
+                $user->sponsorships()->attach([1 => ['date_start'=>now(), 'date_end'=>now()->addDays(10)]]);
             }
         }
+        // Creiamo un utente "Mario Rossi"
+        $new_user = new User();
+            $new_user->name = 'Mario';
+            $new_user->surname = 'Rossi';
+            $new_user->email = 'test@example.com';
+            $new_user->address = 'Via del Corso 123, Roma';
+            $new_user->slug = User::generateUserSlugFromName($new_user->name, $new_user->surname);
+            $new_user->password = Hash::make('asdfasdf');
+            $new_user->cv = 'Sono Mario Rossi, un Geriatra con 40 anni di esperienza';
+            $new_user->phone_number = '051 8060';
+            $new_user->save(); 
+            $new_user->specialties()->attach(2);
+            // $new_user->sponsorships()->attach([1 => ['date_start'=>now(), 'date_end'=>now()]]);
     }
 }
     

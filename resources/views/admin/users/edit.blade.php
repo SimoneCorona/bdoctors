@@ -41,9 +41,9 @@
             </div>
         </div>
         <div class="form-group mb-2">
-            <label for="phone">Numero di telefono</label>
-            <input class="form-control" type="phone" id="phone" name="phone"
-                value="{{ old('phone') ? old('phone') : $user->phone }}">
+            <label for="phone_number">Numero di telefono</label>
+            <input class="form-control" type="phone" id="phone_number" name="phone_number"
+                value="{{ old('phone_number') ? old('phone_number') : $user->phone_number }}">
         </div>
         <div class="form-group mb-2" id="address-formgroup">
             <label for="address">Indirizzo *</label>
@@ -92,9 +92,9 @@
             </div>
             
     </form>
-    <div class="btns d-flex mt-4">
+    <div class="btns d-flex mt-4 justify-content-end">
         <button class="btn btn-primary me-3 text-light" type="submit">Salva</button>
-        <form action="{{ route('admin.users.destroy') }}" method="POST">
+        <form class="mb-0" action="{{ route('admin.users.destroy') }}" method="POST">
             @csrf
             @method('DELETE')
             <button class="btn btn-danger text-light">Elimina</button>
