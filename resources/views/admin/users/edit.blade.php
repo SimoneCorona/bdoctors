@@ -41,9 +41,9 @@
             </div>
         </div>
         <div class="form-group mb-2">
-            <label for="phone">Numero di telefono</label>
-            <input class="form-control" type="phone" id="phone" name="phone"
-                value="{{ old('phone') ? old('phone') : $user->phone }}">
+            <label for="phone_number">Numero di telefono</label>
+            <input class="form-control" type="phone" id="phone_number" name="phone_number"
+                value="{{ old('phone_number') ? old('phone_number') : $user->phone_number }}">
         </div>
         <div class="form-group mb-2" id="address-formgroup">
             <label for="address">Indirizzo *</label>
