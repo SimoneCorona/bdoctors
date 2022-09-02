@@ -11,10 +11,10 @@
               <li class="list-unstyled me-4">
                 <a class="nav-link btn btn-primary text-light px-2" href="{{ $href2 }}">{{ $link2 }}</a>
               </li>
-              {{-- <li class="list-unstyled me-4">
+               {{-- <li class="list-unstyled me-4">
                 <a class="nav-link btn btn-primary text-light px-2" href="{{ $href3 }}">{{ $link3 }}</a>
-              </li> --}}
-              @if ($user->name !== null )
+              </li>  --}}
+              @if ($user)
               <li class="nav-item">
                 <a class="nav-link" href="{{ $href3 }}"
                     onclick="event.preventDefault();
@@ -24,11 +24,13 @@
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
                 </form>
-                </li>
+                </li> 
               @else
               <li class="list-unstyled me-4">
                 <a class="nav-link btn btn-primary text-light px-2" href="{{ $href3 }}">{{ $link3 }}</a>
               </li>
+              
+                  
               @endif
             </ul>
           </div>
