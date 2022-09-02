@@ -23,3 +23,4 @@ Route::get('/specialties', 'Api\SpecialtyController@index')->name('api.specialti
 Route::get('/search/{slug}', 'Api\UserController@search')->name('api.users.search');
 
 Route::post("/review", 'Api\ReviewController@store')->name('api.reviews.store');
+Route::post("/message", 'Api\messageController@store')->name('api.messages.store');
