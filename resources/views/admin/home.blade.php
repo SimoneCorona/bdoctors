@@ -8,7 +8,7 @@
 @section('content')
 
 <div>
-    <ul class="user d-flex pt-2 py-4">
+    <div class="user d-flex pt-2 py-4">
         <div class="user-avatar me-5">
             @if($user->photo)
             <li class="avatar list-unstyled">
@@ -20,7 +20,7 @@
             </li>
             @endif
             <div class="mt-4">
-                <ul class="p-0">
+                <div class="p-0">
                     <li class="nav-item list-unstyled mb-2">
                         <a class="nav-link active" href="{{ route('admin.users.edit') }}"> 
                             <i class="fa-solid fa-pen me-2"></i>
@@ -45,7 +45,7 @@
                             <strong>Le mie statistiche</strong> 
                         </a>
                     </li>
-                </ul>
+                </div>
             </div>
         </div>
 
@@ -64,7 +64,7 @@
             <li class="list-unstyled mt-4"><h3>Il mio Curriculum Vitae:</h3></li>
             <li class="list-unstyled">{{ $user->cv }}</li>
         </div>
-    </ul>
+    </div>
 
     {{-- Wrapper reviews --}}
     <div id="reviews" class="container-fluid d-flex mb-4">
