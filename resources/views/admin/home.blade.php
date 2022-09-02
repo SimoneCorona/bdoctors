@@ -19,6 +19,34 @@
                 <img src="{{ asset('img/img-not-found.png') }}" alt="img-not-found">
             </li>
             @endif
+            <div class="mt-4">
+                <ul class="p-0">
+                    <li class="nav-item list-unstyled mb-2">
+                        <a class="nav-link active" href="{{ route('admin.users.edit') }}"> 
+                            <i class="fa-solid fa-pen me-2"></i>
+                            <strong>Modifica profilo</strong> 
+                        </a>
+                    </li>
+                    <li class="nav-item list-unstyled mb-2">
+                        <a class="nav-link active" href=""> 
+                            <i class="fa-solid fa-comments me-2"></i>
+                            <strong>Messaggi</strong> 
+                        </a>
+                    </li>
+                    <li class="nav-item list-unstyled mb-2">
+                        <a class="nav-link active" href=""> 
+                            <i class="fa-solid fa-comments me-2"></i>
+                            <strong>Recensioni</strong> 
+                        </a>
+                    </li>
+                    <li class="nav-item list-unstyled mb-2">
+                        <a class="nav-link active" href=""> 
+                            <i class="fa-solid fa-ranking-star me-2"></i>
+                            <strong>Le mie statistiche</strong> 
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
 
         <div class="user-info">
@@ -30,75 +58,71 @@
                 </span>
             @endforeach
             </li>
-            <li class="list-unstyled mt-3">{{ $user->address }}</li>
-            <li class="list-unstyled">{{ $user->phone_number }}</li>
-            <li class="list-unstyled">{{ $user->email }}</li>
+            <li class="list-unstyled mt-3"><strong>Indirizzo: </strong>{{ $user->address }}</li>
+            <li class="list-unstyled"><strong>Numero di tel.:</strong>{{ $user->phone_number }}</li>
+            <li class="list-unstyled"><strong>Email: </strong>{{ $user->email }}</li>
+            <li class="list-unstyled mt-4"><h3>Il mio Curriculum Vitae:</h3></li>
             <li class="list-unstyled">{{ $user->cv }}</li>
         </div>
     </ul>
 
-    <ul id="mex-rev" class="container-fluid d-flex">
-        <li class="row col-6 reviews list-unstyled my-3 me-2">
-            <h3>Le tue recensioni</h3>
-            <ul class="m-0 p-0">
+    {{-- Wrapper reviews --}}
+    <div id="mex-rev" class="container-fluid d-flex mb-4">
+        <div class="row col-6 reviews my-3 pe-4 border-end border-dark">
+            <h3 class="mb-3">Le tue recensioni:</h3>
+            <div class="m-0 p-0">
                 @foreach($user->reviews as $review)
-                    <li class="review list-unstyled mb-2">
+                    <div class="review mb-4">
                         <div>
+                            <small>Inviato da: <strong>{{ $review->author }}</strong></small><br>
                             <span>
                                 {{ $review->text_review }}
                             </span>
-                            <small>Inviato da {{ $review->author }}</small>
                         </div>
-                    </li>
+                    </div>
                 @endforeach
-            </ul>
-        </li>
-        <li class="messages row col-6 list-unstyled my-3 ms-2">
-            <h3>I tuoi messaggi</h3>
-            <ul class="m-0 p-0">
+            </div>
+        </div>
+        {{-- Wrapper messages --}}
+        <div class="messages d-flex row col-6 my-3 ps-5 ">
+            <h3>I tuoi messaggi:</h3>
+            <div class="m-0 p-0">
                 @foreach($user->messages as $message)
-                    <li class="message list-unstyled" >
-                        <div>
-                            <div>
+                    <div class="message" >
+                        <div class="mb-1">
+                            <small>Inviato da: <strong>{{ $message->author }}</strong></small>
+                            <div class="p-0">
+                                <strong>Email: </strong><a href="#">{{ $message->email }}</a>
+                            </div>
+                            <div class="p-0">
                                 {{ $message->text_message }}
                             </div>
-                            <small>Inviato da {{ $message->author }}</small>
-                            <a href="#">{{ $message->email }}</a>
                         </div>
-                    </li>
+                    </div>
                 @endforeach
-            </ul>
-        </li>
-    </ul>
+            </div>
+        </div>
+    </div>
+
+    {{-- Wrapper statistic --}}
+    <div class="border-top pt-2 border-dark">
+        Le mie statistiche
+    </div>
 </div>
 @endsection
 
 <style scoped>
 
-    /* Reset */
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    .user {
-        margin-left: -2rem;
-    }
 
     #mex-rev {
         padding-left: 0;
     }
-
-
     .user {
         border-bottom: 1px solid black;
     }
 
     /* Foto tonda */
     .avatar {
-        width: 200px;
-        height: 200px;
         border: 1px solid black;
         border-radius: 50%;
         overflow: hidden;
@@ -111,11 +135,7 @@
     }
 
     /* Sezione messaggi e recensioni ricevute */
-    .reviews, .messages {
-        padding-bottom: 1rem;
-    }
-
-    .message {
+    .message, .review  {
         border-radius: 15px 0 15px 15px;
         border: 1px solid black;
         margin-bottom: 3rem;
@@ -123,16 +143,7 @@
 
     .message div, .review div {
         padding: .5rem 1.5rem;
-        margin-bottom: 1rem;
     }
-
-    .review {
-        border-radius: 0 15px 15px 15px;
-        border: 1px solid black;
-
-    }
-
-
 </style>
 
     

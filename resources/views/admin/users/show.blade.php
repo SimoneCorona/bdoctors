@@ -3,34 +3,34 @@
 @section('content')
 
 <div>
-    <ul class="user d-flex pt-2 py-4">
+    <div class="user d-flex pt-2 py-4">
         <div class="user-avatar me-5">
             @if($user->photo)
-            <li class="avatar list-unstyled">
+            <div class="avatar">
                 <img src="{{ asset('storage/' . $user->photo) }}"  alt="{{ $user->name }}">
-            </li>
+            </div>
             @else
-            <li class="avatar list-unstyled">
+            <div class="avatar">
                 <img src="{{ asset('img/img-not-found.png') }}" alt="img-not-found">
-            </li>
+            </div>
             @endif
         </div>
 
         <div class="user-info">
-            <li class="list-unstyled mb-3"> <h2>{{ $user->name }} {{ $user->surname }}</h2></li>
-            <li class="list-unstyled text-light">
+            <span class="mb-3"> <h2>{{ $user->name }} {{ $user->surname }}</h2></span>
+            <div>
                 @foreach($user->specialties as $specialty)
                 <span class="rounded-pill bg-primary px-3 py-1 me-2 text-light">
                     {{ $specialty->specialty_name }}
                 </span>
             @endforeach
-            </li>
-            <li class="list-unstyled mt-3">{{ $user->address }}</li>
-            <li class="list-unstyled">{{ $user->phone_number }}</li>
-            <li class="list-unstyled">{{ $user->email }}</li>
-            <li class="list-unstyled">{{ $user->cv }}</li>
+            </div>
+            <span class="mt-3">Indirizzo: {{ $user->address }}</span>
+            <span class="">Numero di tel.: {{ $user->phone_number }}</span>
+            <span class="mb-5">Email: {{ $user->email }}</span>
+            <span class="">{{ $user->cv }}</span>
         </div>
-    </ul>
+    </div>
 
     <ul id="mex-rev" class="container-fluid d-flex">
         <li class="row col-6 reviews list-unstyled my-3 me-2">
@@ -54,7 +54,7 @@
                 @foreach($user->messages as $message)
                     <li class="message list-unstyled" >
                         <div>
-                            <div>
+                            <div class="ps-0">
                                 {{ $message->text_message }}
                             </div>
                             <small>Inviato da {{ $message->author }}</small>
@@ -126,6 +126,4 @@
         border: 1px solid black;
 
     }
-
-
 </style>
