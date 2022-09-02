@@ -13,7 +13,7 @@
                         <!-- Wrapper recensioni -->
                         <div class="reviews-wrapper row mt-5 flex-column" style="width: 90%">
                             <h4>Tutte le recensioni:</h4>
-                            <div v-if="user.reviews.length > 0">
+                            <div v-if="user.reviews && user.reviews.length > 0">
                                 <div class="mb-3 py-3 px-3 border border-info border-4 rounded-3" v-for="review in user.reviews" :key="review.id">
                                     <h4>Autore:</h4>
                                     <p>{{ review.author }}</p>
@@ -68,17 +68,20 @@
                                 <div class="input-group mb-3 flex-nowrap">
                                     <input type="text" class="form-control" placeholder="Cognome" aria-label="surname" aria-describedby="addon-wrapping">
                                 </div>
-                                <div class="d-flex justify-content-center">
-                                    <i class="far fa-star mx-2"></i> 
-                                    <i class="far fa-star mx-2"></i> 
-                                    <i class="far fa-star mx-2"></i> 
-                                    <i class="far fa-star mx-2"></i> 
-                                    <i class="far fa-star mx-2"></i> 
+                                <div class="d-flex justify-content-center mb-3">
+                                    <i v-for="n in 5"
+                                    :key="n"
+                                    class="fa-star fs-3 rating-star"
+                                    :class="rating >= n ? 'fas' : 'far' "
+                                    @mouseover="colorStarOnHover(n)"
+                                    @mouseout="showClickedStar()"
+                                    @click="clickRating(n)"></i>
                                 </div>
                                 <div class="form-floating mb-3">
                                     <textarea class="form-control" placeholder="Scrivi qui il tuo messaggio" id="floatingTextarea2" style="height: 150px"></textarea>
                                     <label for="floatingTextarea2">Scrivi qui la tua recensione</label>
                                 </div>
+                                <button></button>
                             </div> 
                         </div>
                     </div>    
@@ -94,6 +97,8 @@ export default {
     data() {
         return {
             user: [],
+            rating: 0,
+            clicked_rating: 0,
         }    
     },
     created() {
@@ -111,9 +116,16 @@ export default {
             }  
             })
         },
-        // colorStarOnHover() {
-            
-        // }
+        colorStarOnHover(rating) {
+            this.rating = rating;
+        },
+        showClickedStar() {
+            this.rating = this.clicked_rating;
+        },
+        clickRating(rating) {
+            this.clicked_rating = this.rating;
+        }
+        
     },
     computed: {
         starsInReviews () {
