@@ -74,10 +74,18 @@
                 @foreach($user->reviews as $review)
                     <div class="review mb-4">
                         <div>
-                            <small>Inviato da: <strong>{{ $review->author }}</strong></small><br>
-                            <span>
+                            @for ($i = 1; $i <= 5; $i++)
+                                @if($i <= $review->rating)
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                @elseif($i > $review->rating)
+                                    <i class="fa-solid fa-star text-muted"></i>
+                                @endif
+                            @endfor
+                            <span class="d-inline-block my-3">
                                 {{ $review->text_review }}
                             </span>
+                            <small>Inviato da: <strong>{{ $review->author }}</strong></small><br>
+
                         </div>
                     </div>
                 @endforeach
@@ -94,7 +102,7 @@
                             <div class="p-0">
                                 <strong>Email: </strong><a href="#">{{ $message->email }}</a>
                             </div>
-                            <div class="p-0">
+                            <div class="p-0 mt-3">
                                 {{ $message->text_message }}
                             </div>
                         </div>
