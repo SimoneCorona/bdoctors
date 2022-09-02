@@ -35,7 +35,7 @@
                         <p><strong>Email: </strong>{{ user.email }}</p>
                         <p><strong>Voto medio: </strong><i class="fa-star" :class="n <= starsInReviews ? 'fas' : 'far'" v-for="n in 5" :key="n"></i></p>
                         <h4 class="my-3">Curriculum Vitae:</h4>
-                        <p class="me-5" style="height: 75vh; overflow-y: auto">{{ user.cv ? user.cv : 'nessun cv' }}</p>
+                        <p class="me-5" style="height: 65vh; overflow-y: auto">{{ user.cv ? user.cv : 'nessun cv' }}</p>
                     </div>
 
                     <!-- Wrapper invio messaggi e recensioni -->
