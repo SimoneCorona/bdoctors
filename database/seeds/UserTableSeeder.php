@@ -28,7 +28,7 @@ class UserTableSeeder extends Seeder
             $user->save();
             $user->specialties()->attach($faker->numberBetween(1, 54));
             if (substr( $user['name'], 0, 1 ) === "G") {
-                $user->sponsorships()->attach([1 => ['date_start'=>now(), 'date_end'=>now()]]);
+                $user->sponsorships()->attach([1 => ['date_start'=>now(), 'date_end'=>now()->addDays(10)]]);
             }
         }
     }
