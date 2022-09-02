@@ -19,6 +19,34 @@
                 <img src="{{ asset('img/img-not-found.png') }}" alt="img-not-found">
             </li>
             @endif
+            <div class="mt-4">
+                <ul class="p-0">
+                    <li class="nav-item list-unstyled mb-2">
+                        <a class="nav-link active" href="{{ route('admin.users.edit') }}"> 
+                            <i class="fa-solid fa-pen me-2"></i>
+                            <strong>Modifica profilo</strong> 
+                        </a>
+                    </li>
+                    <li class="nav-item list-unstyled mb-2">
+                        <a class="nav-link active" href=""> 
+                            <i class="fa-solid fa-comments me-2"></i>
+                            <strong>Messaggi</strong> 
+                        </a>
+                    </li>
+                    <li class="nav-item list-unstyled mb-2">
+                        <a class="nav-link active" href=""> 
+                            <i class="fa-solid fa-comments me-2"></i>
+                            <strong>Recensioni</strong> 
+                        </a>
+                    </li>
+                    <li class="nav-item list-unstyled mb-2">
+                        <a class="nav-link active" href=""> 
+                            <i class="fa-solid fa-ranking-star me-2"></i>
+                            <strong>Le mie statistiche</strong> 
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
 
         <div class="user-info">
@@ -39,7 +67,7 @@
     </ul>
 
     {{-- Wrapper reviews --}}
-    <div id="mex-rev" class="container-fluid d-flex">
+    <div id="mex-rev" class="container-fluid d-flex mb-4">
         <div class="row col-6 reviews my-3 pe-4 border-end border-dark">
             <h3 class="mb-3">Le tue recensioni:</h3>
             <div class="m-0 p-0">
@@ -74,6 +102,11 @@
                 @endforeach
             </div>
         </div>
+    </div>
+
+    {{-- Wrapper statistic --}}
+    <div class="border-top pt-2 border-dark">
+        Le mie statistiche
     </div>
 </div>
 @endsection
