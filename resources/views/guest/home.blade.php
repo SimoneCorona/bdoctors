@@ -14,6 +14,8 @@
     <div id="app">
 
     </div>
+
+    <x-footer />
     
     <script src="{{ asset('js/front.js') }}"></script>
 </body>
