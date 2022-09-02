@@ -78,6 +78,8 @@
                             <span>
                                 {{ $review->text_review }}
                             </span>
+                            <small>Inviato da <strong>{{ $review->author }}</strong></small><br>
+                            <small>Scritta il {{ $review->created_at->format('d-m-Y') }} alle ore {{ $review->created_at->format('g:i') }} </small>
                         </div>
                     </div>
                 @endforeach
@@ -90,13 +92,14 @@
                 @foreach($user->messages as $message)
                     <div class="message" >
                         <div class="mb-1">
-                            <small>Inviato da: <strong>{{ $message->author }}</strong></small>
                             <div class="p-0">
                                 <strong>Email: </strong><a href="#">{{ $message->email }}</a>
                             </div>
-                            <div class="p-0">
+                            <div class="p-0 mb-3">
                                 {{ $message->text_message }}
                             </div>
+                            <small>Inviato da <strong>{{ $message->author }}</strong></small><br>
+                            <small>Scritto il {{ $message->created_at->format('d-m-Y') }} alle ore {{ $message->created_at->format('g:i') }} </small>
                         </div>
                     </div>
                 @endforeach
