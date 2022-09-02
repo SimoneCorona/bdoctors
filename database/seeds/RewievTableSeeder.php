@@ -1,6 +1,7 @@
 <?php
 
 use App\Review;
+use App\User;
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
 
@@ -15,9 +16,21 @@ class RewievTableSeeder extends Seeder
     {   
         for ($i=0; $i < 100 ; $i++) { 
             
-            $review = new review();
+            $review = new Review();
             $review->author = $faker->name();
             $review->user_id = $faker->numberBetween(1, 100);
+            $review->text_review = $faker->text();
+            $review->rating = $faker->numberBetween(1, 5);
+            $review->save();
+        }
+
+        //generiamo recensioni per l'utente di test
+
+        for ($i=0; $i < 10 ; $i++) { 
+            
+            $review = new Review();
+            $review->author = $faker->name();
+            $review->user_id = User::where('email','=','test@example.com')->first()->id;
             $review->text_review = $faker->text();
             $review->rating = $faker->numberBetween(1, 5);
             $review->save();
