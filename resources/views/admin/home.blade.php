@@ -28,19 +28,19 @@
                         </a>
                     </li>
                     <li class="nav-item list-unstyled mb-2">
-                        <a class="nav-link active" href=""> 
+                        <a class="nav-link active" href="#messages"> 
                             <i class="fa-solid fa-comments me-2"></i>
                             <strong>Messaggi</strong> 
                         </a>
                     </li>
                     <li class="nav-item list-unstyled mb-2">
-                        <a class="nav-link active" href=""> 
+                        <a class="nav-link active" href="#reviews"> 
                             <i class="fa-solid fa-comments me-2"></i>
                             <strong>Recensioni</strong> 
                         </a>
                     </li>
                     <li class="nav-item list-unstyled mb-2">
-                        <a class="nav-link active" href=""> 
+                        <a class="nav-link active" href="#stats"> 
                             <i class="fa-solid fa-ranking-star me-2"></i>
                             <strong>Le mie statistiche</strong> 
                         </a>
@@ -67,7 +67,7 @@
     </ul>
 
     {{-- Wrapper reviews --}}
-    <div id="mex-rev" class="container-fluid d-flex mb-4">
+    <div id="reviews" class="container-fluid d-flex mb-4">
         <div class="row col-6 reviews my-3 pe-4 border-end border-dark">
             <h3 class="mb-3">Le tue recensioni:</h3>
             <div class="m-0 p-0">
@@ -84,7 +84,7 @@
             </div>
         </div>
         {{-- Wrapper messages --}}
-        <div class="messages d-flex row col-6 my-3 ps-5 ">
+        <div id="messages" class="messages d-flex row col-6 my-3 ps-5 ">
             <h3>I tuoi messaggi:</h3>
             <div class="m-0 p-0">
                 @foreach($user->messages as $message)
@@ -105,7 +105,7 @@
     </div>
 
     {{-- Wrapper statistic --}}
-    <div class="border-top pt-2 border-dark">
+    <div id="stats" class="border-top pt-2 border-dark">
         Le mie statistiche
     </div>
 </div>
@@ -113,10 +113,6 @@
 
 <style scoped>
 
-
-    #mex-rev {
-        padding-left: 0;
-    }
     .user {
         border-bottom: 1px solid black;
     }
