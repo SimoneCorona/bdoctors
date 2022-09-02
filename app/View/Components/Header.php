@@ -2,6 +2,8 @@
 
 namespace App\View\Components;
 
+
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\View\Component;
 
@@ -33,7 +35,7 @@ class Header extends Component
 
     public function boot()
     {
-    Blade::component('header', AlertComponent::class);
+        Blade::component('header', AlertComponent::class);
     }
 
     /**
@@ -43,6 +45,7 @@ class Header extends Component
      */
     public function render()
     {
-        return view('components.header');
+        $user = Auth::user();
+        return view('components.header', compact('user'));
     }
 }
