@@ -4,11 +4,7 @@
 
 @section('content')
 
-    
-    EDIT PROFILO UTENTE
     <h1>Modifica Profilo</h1>
-
-    
 
     @if ($errors->any())
         <div>
@@ -29,7 +25,7 @@
             <input class="form-control" type="text" id="name" name="name" required
                 value="{{ old('name') ? old('name') : $user->name }}">
             <div class="invalid-feedback">
-                Please choose a name.
+                Inserisci il tuo nome
             </div>
         </div>
         <div class="form-group" id="surname-formgroup">
@@ -37,7 +33,7 @@
             <input class="form-control" type="text" id="surname" name="surname" required
                 value="{{ old('surname') ? old('surname') : $user->surname }}">
             <div class="invalid-feedback">
-                Please choose a surname.
+                Inserisci il tuo cognome
             </div>
         </div>
         <div class="form-group mb-2">
@@ -50,7 +46,7 @@
             <input class="form-control" type="text" id="address" name="address" required
                 value="{{ old('address') ? old('address') : $user->address }}">
             <div class="invalid-feedback">
-                Please insert an address.
+                Inserisci un indirizzo
             </div>
         </div>
 
@@ -62,7 +58,7 @@
         <div class="form-group mb-2" id="specialties-formgroup">
             <h3>Specializzazione *</h3>
             <div class="invalid-feedback">
-                Please check at least one specialty.
+                Inserisci almeno una specializzazione.
             </div>
             <div class="form-check mb-2 container-fluid overflow-auto border border-gray-400 rounded" id="specialties" style="height:10rem;">
                 <div class="row row-cols-2">
