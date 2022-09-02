@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <h1>Modifica Profilo</h1>
+    <h1 class="mt-3">Modifica Profilo</h1>
 
     @if ($errors->any())
         <div>
@@ -20,7 +20,7 @@
         enctype="multipart/form-data">
         @method('PUT')
         @csrf
-        <div class="form-group" id="name-formgroup">
+        <div class="form-group my-3" id="name-formgroup">
             <label for="name">Nome *</label>
             <input class="form-control" type="text" id="name" name="name" required
                 value="{{ old('name') ? old('name') : $user->name }}">
@@ -28,7 +28,7 @@
                 Inserisci il tuo nome
             </div>
         </div>
-        <div class="form-group" id="surname-formgroup">
+        <div class="form-group my-3" id="surname-formgroup">
             <label for="surname">Cognome *</label>
             <input class="form-control" type="text" id="surname" name="surname" required
                 value="{{ old('surname') ? old('surname') : $user->surname }}">
@@ -36,12 +36,12 @@
                 Inserisci il tuo cognome
             </div>
         </div>
-        <div class="form-group mb-2">
+        <div class="form-group my-3">
             <label for="phone_number">Numero di telefono</label>
             <input class="form-control" type="phone" id="phone_number" name="phone_number"
                 value="{{ old('phone_number') ? old('phone_number') : $user->phone_number }}">
         </div>
-        <div class="form-group mb-2" id="address-formgroup">
+        <div class="form-group my-3" id="address-formgroup">
             <label for="address">Indirizzo *</label>
             <input class="form-control" type="text" id="address" name="address" required
                 value="{{ old('address') ? old('address') : $user->address }}">
@@ -50,17 +50,17 @@
             </div>
         </div>
 
-        <div class="form-group mb-2">
+        <div class="form-group my-3">
             <label for="photo">Foto</label>
             <input class="form-control" type="file" name="photo" id="photo">
         </div>
 
-        <div class="form-group mb-2" id="specialties-formgroup">
+        <div class="form-group my-3" id="specialties-formgroup">
             <h3>Specializzazione *</h3>
             <div class="invalid-feedback">
                 Inserisci almeno una specializzazione.
             </div>
-            <div class="form-check mb-2 container-fluid overflow-auto border border-gray-400 rounded" id="specialties" style="height:10rem;">
+            <div class="form-check mb-4 container-fluid overflow-auto border border-gray-400 rounded" id="specialties" style="height:10rem;">
                 <div class="row row-cols-2">
                     @foreach ($specialties as $specialty)
                         <div class="form-check col">
@@ -75,7 +75,7 @@
                 </div> 
             </div>
 
-            <div class="form-group mb-2">
+            <div class="form-group mb-3">
                 <label for="services">Prestazioni</label>
                 <textarea class="form-control" type="text" id="services" name="services"
                     value="{{ old('services') ? old('services') : $user->services }}" rows="5" placeholder="Prestazioni">{{ $user->services }}</textarea>
@@ -88,7 +88,7 @@
             </div>
             
     </form>
-    <div class="btns d-flex mt-4 justify-content-end">
+    <div class="btns d-flex my-4 justify-content-end">
         <button class="btn btn-primary me-3 text-light" type="submit">Salva</button>
         <form class="mb-0" action="{{ route('admin.users.destroy') }}" method="POST">
             @csrf

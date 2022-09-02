@@ -35,7 +35,7 @@
                         <p><strong>Email: </strong>{{ user.email }}</p>
                         <p><strong>Voto medio: </strong><i class="fa-star" :class="n <= starsInReviews ? 'fas' : 'far'" v-for="n in 5" :key="n"></i></p>
                         <h4 class="my-3">Curriculum Vitae:</h4>
-                        <p class="me-5" style="height: 75vh; overflow-y: auto">{{ user.cv ? user.cv : 'nessun cv' }}</p>
+                        <p class="me-5" style="height: 65vh; overflow-y: auto">{{ user.cv ? user.cv : 'nessun cv' }}</p>
                     </div>
 
                     <!-- Wrapper invio messaggi e recensioni -->
@@ -61,13 +61,7 @@
                             </div>
                             <div class="col py-3 border border-info border-4 rounded-3">
                                 <h4>Come ti è sembrato il servizio?</h4>
-                                <h5>Scrivigli/le una recensione!</h5>
-                                <div class="input-group my-3 flex-nowrap">
-                                    <input type="text" class="form-control" placeholder="Nome" aria-label="name" aria-describedby="addon-wrapping">
-                                </div>
-                                <div class="input-group mb-3 flex-nowrap">
-                                    <input type="text" class="form-control" placeholder="Cognome" aria-label="surname" aria-describedby="addon-wrapping">
-                                </div>
+                                <h5>Scrivi una recensione!</h5>
                                 <div class="d-flex justify-content-center mb-3">
                                     <i v-for="n in 5"
                                     :key="n"
@@ -77,11 +71,18 @@
                                     @mouseout="showClickedStar()"
                                     @click="clickRating(n)"></i>
                                 </div>
+                                    <div v-show="errors.review.includes('rating')">Inserisci un voto da 1 a 5</div>
+                                <div class="my-3 flex-nowrap">
+                                    <input type="text" class="form-control" v-model="review_author" placeholder="Nome e cognome" aria-label="name" aria-describedby="addon-wrapping">
+                                    <div v-show="errors.review.includes('author')">Inserisci il nome</div>
+                                </div>
                                 <div class="form-floating mb-3">
-                                    <textarea class="form-control" placeholder="Scrivi qui il tuo messaggio" id="floatingTextarea2" style="height: 150px"></textarea>
+                                    <textarea class="form-control" v-model="review_text" placeholder="Scrivi qui il tuo messaggio" id="floatingTextarea2" style="height: 150px"></textarea>
                                     <label for="floatingTextarea2">Scrivi qui la tua recensione</label>
                                 </div>
-                                <button></button>
+                                <div class="d-flex justify-content-end">
+                                    <button class="btn btn-primary" @click="postReview()">Invia</button>
+                                </div>
                             </div> 
                         </div>
                     </div>    
@@ -99,6 +100,12 @@ export default {
             user: [],
             rating: 0,
             clicked_rating: 0,
+            review_author:'',
+            review_text:'',
+            errors: {
+                review: [],
+                message: []
+            }
         }    
     },
     created() {
@@ -122,9 +129,31 @@ export default {
         showClickedStar() {
             this.rating = this.clicked_rating;
         },
-        clickRating(rating) {
+        clickRating() {
             this.clicked_rating = this.rating;
-        }
+        },
+        postReview() {
+            console.log(this.errors.review)
+            axios.post('/api/review',{
+                user_id: this.user.id,
+                author: this.review_author,
+                rating: this.clicked_rating,
+                text_review: this.review_text,
+            })
+             .then((resp) => {
+            if (resp.data.success) {
+                this.getSingleDoctor();
+            } else {
+                // this.$router.push({name: ''});
+                // console.log(typeof(resp.data))
+                // console.log(resp.data.response);
+                for (const key in resp.data.response) {
+                    this.errors.review.push(key);
+                    // console.log(key);
+                }
+            }  
+            })
+        },
         
     },
     computed: {

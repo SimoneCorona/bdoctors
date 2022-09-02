@@ -8,7 +8,7 @@
 @section('content')
 
 <div>
-    <ul class="user d-flex pt-2 py-4">
+    <div class="user d-flex my-4 pt-2 py-4">
         <div class="user-avatar me-5">
             @if($user->photo)
             <li class="avatar list-unstyled">
@@ -20,7 +20,7 @@
             </li>
             @endif
             <div class="mt-4">
-                <ul class="p-0">
+                <div class="p-0">
                     <li class="nav-item list-unstyled mb-2">
                         <a class="nav-link active" href="{{ route('admin.users.edit') }}"> 
                             <i class="fa-solid fa-pen me-2"></i>
@@ -45,11 +45,11 @@
                             <strong>Le mie statistiche</strong> 
                         </a>
                     </li>
-                </ul>
+                </div>
             </div>
         </div>
 
-        <div class="user-info">
+        <div class="user-info ms-5">
             <li class="list-unstyled mb-3"> <h2>{{ $user->name }} {{ $user->surname }}</h2></li>
             <li class="list-unstyled text-light">
                 @foreach($user->specialties as $specialty)
@@ -64,13 +64,13 @@
             <li class="list-unstyled mt-4"><h3>Il mio Curriculum Vitae:</h3></li>
             <li class="list-unstyled">{{ $user->cv }}</li>
         </div>
-    </ul>
+    </div>
 
     {{-- Wrapper reviews --}}
     <div id="reviews" class="container-fluid d-flex mb-4">
-        <div class="row col-6 reviews my-3 pe-4 border-end border-dark">
+        <div class="col-6 reviews my-3 pe-4 border-end border-dark">
             <h3 class="mb-3">Le tue recensioni:</h3>
-            <div class="m-0 p-0">
+            <div class="mb-3 p-0">
                 @foreach($user->reviews as $review)
                     <div class="review mb-4">
                         <div>
@@ -93,10 +93,10 @@
         </div>
         {{-- Wrapper messages --}}
         <div id="messages" class="messages d-flex row col-6 my-3 ps-5 ">
-            <h3>I tuoi messaggi:</h3>
+            <h3 class="mb-3">I tuoi messaggi:</h3>
             <div class="m-0 p-0">
                 @foreach($user->messages as $message)
-                    <div class="message" >
+                    <div class="message mb-4" >
                         <div class="mb-1">
                             <div class="p-0 mb-3">
                                 {{ $message->text_message }}
@@ -143,7 +143,6 @@
     .message, .review  {
         border-radius: 15px 0 15px 15px;
         border: 1px solid black;
-        margin-bottom: 3rem;
     }
 
     .message div, .review div {

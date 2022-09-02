@@ -16,8 +16,8 @@ class ReviewController extends Controller
         $validator = Validator::make($data, [
             "user_id" => "required|exists:users,id",
             "author" => "required|min:2,max:50",
-            "rating" => "required|digits_between:0,5|integer",
-            "text_review" => "required|min:10",
+            "rating" => "required|min:1,max:5|integer",
+            "text_review" => "string|nullable",
         ]);
         
         if ($validator->fails()) {
