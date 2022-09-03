@@ -14,7 +14,7 @@ class RewievTableSeeder extends Seeder
      */
     public function run(Faker $faker)
     {   
-        for ($i=0; $i < 100 ; $i++) { 
+        for ($i=0; $i < 500 ; $i++) { 
             
             $review = new Review();
             $review->author = $faker->name();
