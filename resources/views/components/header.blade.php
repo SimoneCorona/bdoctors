@@ -1,16 +1,17 @@
 <div>
-    
     <nav class=" border-bottom header-vl navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-          <a class="navbar-brand" href="/">Bdoctor</a>
+          <a class="navbar-brand" href="/">
+            <img src="images/logo.png" alt="">
+          </a>
           <div class="p-0 flex-grow-1" id="navbarSupportedContent">
             <ul class="mb-0 d-flex justify-content-end">
               @if (!$user)
               <li class="list-unstyled me-4">
-                  <a class="nav-link btn btn-primary text-light px-2" aria-current="page" href="/login">Login</a>
+                  <a class="mybtn nav-link text-black px-2" aria-current="page" href="/login"><b>L O G I N</b></a>
                 </li>
                 <li class="list-unstyled me-4">
-                  <a class="nav-link btn btn-primary text-light px-2" href="/register">Register</a>
+                  <b><a class="mybtn nav-link text-black px-2" href="/register">R E G I S T E R</a></b>
                 </li>
               @else
               {{-- <li class="list-unstyled me-4">
@@ -60,7 +61,6 @@
           </div>
         </div>
       </nav>
-     
 </div>
 
 <style scoped>
@@ -71,6 +71,14 @@
     position: absolute;
     bottom: -30px;
     right: 40px;
+  }
+
+  .navbar-brand img {
+    height: 40px;
+  }
+
+  .mybtn:hover {
+    color: red;
   }
 
 </style>
