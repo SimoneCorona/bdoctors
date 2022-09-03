@@ -74,6 +74,14 @@
                 @foreach($user->reviews->sortByDesc('created_at') as $review)
                     <div class="review mb-4">
                         <div>
+                            @for ($i = 1; $i <= 5; $i++)
+                                @if($i <= $review->rating)
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                @elseif($i > $review->rating)
+                                    <i class="fa-solid fa-star text-muted"></i>
+                                @endif
+                            @endfor
+                            <span class="mb-3 d-inline-block">
                             <small>Inviato da: <strong>{{ $review->author }}</strong></small><br>
                             <small>Pubblicato il: <strong>{{$review->created_at}}</strong></small><br>
                             <span>
@@ -100,6 +108,9 @@
                             </div>
                             <div class="p-0 mb-3">
                                 {{ $message->text_message }}
+                            </div>
+                            <div class="p-0">
+                                <strong>Email: </strong><a href="#">{{ $message->email }}</a>
                             </div>
                             <small>Inviato da <strong>{{ $message->author }}</strong></small><br>
                             <small>Scritto il {{ $message->created_at->format('d-m-Y') }} alle ore {{ $message->created_at->format('g:i') }} </small>
