@@ -15,7 +15,7 @@ class MessageTableSeeder extends Seeder
 
     public function run(Faker $faker)
     {   
-        for ($i=0; $i < 100 ; $i++) { 
+        for ($i=0; $i < 500 ; $i++) { 
             
             $message = new Message();
             $message->author = $faker->name();
