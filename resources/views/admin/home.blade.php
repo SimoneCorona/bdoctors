@@ -81,13 +81,10 @@
                                     <i class="fa-solid fa-star text-muted"></i>
                                 @endif
                             @endfor
-                            <span class="mb-3 d-inline-block">
-                            <small>Inviato da: <strong>{{ $review->author }}</strong></small><br>
-                            <small>Pubblicato il: <strong>{{$review->created_at}}</strong></small><br>
-                            <span>
+                            <p class='my-2'>
                                 {{ $review->text_review }}
-                            </span>
-                            <small>Inviato da <strong>{{ $review->author }}</strong></small><br>
+                            </p>
+                            <small>Inviata da <strong>{{ $review->author }}</strong></small><br>
                             <small>Scritta il {{ $review->created_at->format('d-m-Y') }} alle ore {{ $review->created_at->format('g:i') }} </small>
                         </div>
                     </div>
@@ -101,12 +98,7 @@
                 @foreach($user->messages->sortByDesc('created_at') as $message)
                     <div class="message mb-4" >
                         <div class="mb-1">
-                            <small>Inviato da: <strong>{{ $message->author }}</strong></small><br>
-                            <small>Pubblicato il: <strong>{{$review->created_at}}</strong></small><br>
-                            <div class="p-0">
-                                <strong>Email: </strong><a href="#">{{ $message->email }}</a>
-                            </div>
-                            <div class="p-0 mb-3">
+                            <div class="p-0 my-2">
                                 {{ $message->text_message }}
                             </div>
                             <div class="p-0">

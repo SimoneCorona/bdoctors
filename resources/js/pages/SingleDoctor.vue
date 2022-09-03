@@ -12,7 +12,7 @@
                         <!-- Info di base -->
                         <div class="col-6">
                             <h1>{{ user.name }} {{ user.surname }}</h1>
-                            <p><i class="fa-star" :class="n <= starsInReviews ? 'fas' : 'far'" v-for="n in 5" :key="n"></i></p>
+                            <p><i class="fas fa-star" :class="n <= starsInReviews ? 'text-warning' : 'text-muted'" v-for="n in 5" :key="n"></i></p>
                             <div v-for="specialty in user.specialties" :key="specialty.specialty_id">
                                 <p class="badge rounded-pill text-bg-primary px-2 mx-1 text-light">{{ specialty.specialty_name }}</p>
                             </div>
@@ -96,7 +96,7 @@
                 </div>
                 <div class="d-flex align-items-center justify-content-end">
                   <span v-show="message_sent" class="text-success me-2">Messaggio inviato! &#10004;</span>
-                  <button class="btn btn-primary" @click="postMessage()">
+                  <button :disabled="message_sent" class="btn btn-primary" @click="postMessage()">
                     Invia
                   </button>
                 </div>
@@ -115,8 +115,8 @@
         <i
           v-for="n in 5"
           :key="n"
-          class="fa-star fs-3 rating-star"
-          :class="rating >= n ? 'fas' : 'far'"
+          class="fas fa-star fs-3 rating-star"
+          :class="rating >= n ? 'text-warning' : 'text-muted'"
           @mouseover="colorStarOnHover(n)"
           @mouseout="showClickedStar()"
           @click="clickRating(n)"
@@ -159,7 +159,7 @@
       </div>
       <div class="d-flex align-items-center justify-content-end">
         <span v-show="review_sent" class="text-success me-2">Recensione inviata! &#10004;</span>
-        <button class="btn btn-primary" @click="postReview()">
+        <button :disabled="review_sent" class="btn btn-primary" @click="postReview()">
           Invia
         </button>
       </div>
@@ -173,7 +173,7 @@
                 <div class="mb-3 py-3 px-3 border border-info border-4 rounded-3" v-for="review in user.reviews" :key="review.id">
                     <h4>Autore:</h4>
                     <p>{{ review.author }}</p>
-                        <i class="fa-star" :class="n <= review.rating  ? 'fas' : 'far'" v-for="n in 5" :key="n"></i>
+                        <i class="fas fa-star" :class="n <= review.rating  ? 'text-warning' : 'text-muted'" v-for="n in 5" :key="n"></i>
                     <p>{{ review.text_review }}</p>
                 </div>
             </div>
@@ -306,7 +306,4 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.fas {
-  color: rgb(255, 242, 0);
-}
 </style>
