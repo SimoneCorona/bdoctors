@@ -62,7 +62,7 @@
                             <div class="col py-3 border border-info border-4 rounded-3">
                                 <h4>Come ti è sembrato il servizio?</h4>
                                 <h5>Scrivi una recensione!</h5>
-                                <div class="d-flex justify-content-center mb-3">
+                                <div class="d-flex justify-content-center p-2 mb-1" :class="{'border border-1 border-danger rounded-3': errors.review.includes('rating')}" >
                                     <i v-for="n in 5"
                                     :key="n"
                                     class="fa-star fs-3 rating-star"
@@ -71,10 +71,13 @@
                                     @mouseout="showClickedStar()"
                                     @click="clickRating(n)"></i>
                                 </div>
-                                    <div v-show="errors.review.includes('rating')">Inserisci un voto da 1 a 5</div>
+                                    <div v-show="errors.review.includes('rating')" class="text-danger">Inserisci un voto da 1 a 5</div>
                                 <div class="my-3 flex-nowrap">
-                                    <input type="text" class="form-control" v-model="review_author" placeholder="Nome e cognome" aria-label="name" aria-describedby="addon-wrapping">
-                                    <div v-show="errors.review.includes('author')">Inserisci il nome</div>
+                                    <input type="text" class="form-control"
+                                    v-model="review_author" placeholder="Nome e cognome"
+                                    :class="{'is-invalid': errors.review.includes('author')}"
+                                    aria-label="name" aria-describedby="addon-wrapping">
+                                    <div v-show="errors.review.includes('author')" class="text-danger">Inserisci il nome</div>
                                 </div>
                                 <div class="form-floating mb-3">
                                     <textarea class="form-control" v-model="review_text" placeholder="Scrivi qui il tuo messaggio" id="floatingTextarea2" style="height: 150px"></textarea>
@@ -133,7 +136,16 @@ export default {
             this.clicked_rating = this.rating;
         },
         postReview() {
-            console.log(this.errors.review)
+            this.errors.review = [];
+            if (this.review_author === '') {
+                this.errors.review.push('author');
+            } 
+            if (this.clicked_rating === 0) {
+                this.errors.review.push('rating');
+            }
+            if (this.errors.review.length > 0) {
+                return
+            }
             axios.post('/api/review',{
                 user_id: this.user.id,
                 author: this.review_author,
