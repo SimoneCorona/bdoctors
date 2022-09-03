@@ -72,7 +72,16 @@ export default {
             this.clicked_rating = this.rating;
         },
         postReview() {
-            console.log(this.errors.review)
+            this.errors.review = [];
+            if (this.review_author === '') {
+                this.errors.review.push('author');
+            } 
+            if (this.clicked_rating === 0) {
+                this.errors.review.push('rating');
+            }
+            if (this.errors.review.length > 0) {
+                return
+            }
             axios.post('/api/review',{
                 user_id: this.user.id,
                 author: this.review_author,

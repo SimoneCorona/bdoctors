@@ -71,7 +71,7 @@
         <div class="col-6 reviews my-3 pe-4 border-end border-dark">
             <h3 class="mb-3">Le tue recensioni:</h3>
             <div class="mb-3 p-0">
-                @foreach($user->reviews as $review)
+                @foreach($user->reviews->sortByDesc('created_at') as $review)
                     <div class="review mb-4">
                         <div>
                             @for ($i = 1; $i <= 5; $i++)
@@ -82,6 +82,9 @@
                                 @endif
                             @endfor
                             <span class="mb-3 d-inline-block">
+                            <small>Inviato da: <strong>{{ $review->author }}</strong></small><br>
+                            <small>Pubblicato il: <strong>{{$review->created_at}}</strong></small><br>
+                            <span>
                                 {{ $review->text_review }}
                             </span>
                             <small>Inviato da <strong>{{ $review->author }}</strong></small><br>
@@ -95,9 +98,14 @@
         <div id="messages" class="messages d-flex row col-6 my-3 ps-5 ">
             <h3 class="mb-3">I tuoi messaggi:</h3>
             <div class="m-0 p-0">
-                @foreach($user->messages as $message)
+                @foreach($user->messages->sortByDesc('created_at') as $message)
                     <div class="message mb-4" >
                         <div class="mb-1">
+                            <small>Inviato da: <strong>{{ $message->author }}</strong></small><br>
+                            <small>Pubblicato il: <strong>{{$review->created_at}}</strong></small><br>
+                            <div class="p-0">
+                                <strong>Email: </strong><a href="#">{{ $message->email }}</a>
+                            </div>
                             <div class="p-0 mb-3">
                                 {{ $message->text_message }}
                             </div>
