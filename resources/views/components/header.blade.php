@@ -1,5 +1,5 @@
 <div>
-    <nav class=" border-bottom header-vl navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="border-bottom header-vl navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
           <a class="navbar-brand" href="/">
             <img src="images/logo.png" alt="">
@@ -33,12 +33,12 @@
                 </form>
               </li> --}}
               
-              <li class="list-unstyled me-4">
+              <li class="position-relative list-unstyled me-4">
                 <div class="row ">
                   <div class="col-auto text-light">
                     <a class="nav-link btn btn-primary px-2" href="/admin">{{ $user->name }}</a>
                   </div>
-                  <div class="col-auto arrow btn btn-primary px-2 h-25 text-light ">
+                  <div class="col-auto arrow btn btn-primary py-0 px-2 h-25 text-light ">
                     <i class="fa-solid fa-angle-down"></i>
                   </div>
                 </div>
@@ -64,13 +64,13 @@
 </div>
 
 <style scoped>
-  header{
+  nav {
     position: relative;
   }
   .logout{
     position: absolute;
-    bottom: -30px;
-    right: 40px;
+    top: 32px;
+    right: calc(-0.5 * var(--bs-gutter-x));
   }
 
   .navbar-brand img {
@@ -87,8 +87,10 @@
   let arrow = document.querySelector('.arrow');
   let logout = document.querySelector('.logout'); 
   
-  arrow.addEventListener('click', function(){
-    logout.classList.toggle('d-none')
-  })
+  if(arrow) {
+    arrow.addEventListener('click', function(){
+      logout.classList.toggle('d-none')
+    })
+  }
   
 </script>
