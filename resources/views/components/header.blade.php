@@ -38,8 +38,8 @@
                   <div class="col-auto text-light">
                     <a class="nav-link btn btn-primary px-2" href="/admin">{{ $user->name }}</a>
                   </div>
-                  <div class="col-auto arrow btn btn-primary py-0 px-2 h-25 text-light ">
-                    <i class="fa-solid fa-angle-down"></i>
+                  <div class="col-auto arrow text-light ">
+                    <span class="nav-link btn btn-primary px-2"></span>
                   </div>
                 </div>
                 <div class="logout text-light d-none">
@@ -67,10 +67,18 @@
   nav {
     position: relative;
   }
+  .arrow span {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+  }
+  .arrow span::before {
+    content: "\F107";
+  }
+
   .logout{
     position: absolute;
     top: 32px;
-    right: calc(-0.5 * var(--bs-gutter-x));
+    right: 0;
   }
 
   .navbar-brand img {
