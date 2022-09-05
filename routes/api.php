@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 Route::get('/users', 'Api\UserController@index')->name('api.users.index');
+Route::get('/sponsored-users', 'Api\UserController@index_sponsored')->name('api.users.index-sponsored');
 Route::get('/users/{slug}', 'Api\UserController@show')->name('api.users.show');
 Route::get('/specialties', 'Api\SpecialtyController@index')->name('api.specialties.index');
 Route::get('/sponsorships', 'Api\SponsorshipController@index')->name('api.sponsorships.index');
