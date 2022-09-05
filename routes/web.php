@@ -34,8 +34,6 @@ Route::middleware('auth')
         
     });
 
-
-
 Route::get('{any?}', function() {
     $user = Auth::user();
     $user = collect($user)->toArray();

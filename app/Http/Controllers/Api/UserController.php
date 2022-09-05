@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Sponsorship;
 use App\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -50,7 +51,7 @@ class UserController extends Controller
             ]);
         }
     }
-
+    
     // funzione chiamata dalla route /search/
     // accetta la richiesta GET e una stringa ($specialty_slug)
     public function search(Request $request,$specialty_slug){

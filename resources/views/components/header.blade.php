@@ -85,10 +85,6 @@
     height: 40px;
   }
 
-  .mybtn:hover {
-    color: red;
-  }
-
 </style>
 
 <script>
