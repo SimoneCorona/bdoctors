@@ -66,7 +66,7 @@
       margin-top: .8rem; 
     }
 
-    a { 
+    .social a { 
       text-decoration: none; 
       cursor: pointer;
       text-transform: uppercase;
