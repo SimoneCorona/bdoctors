@@ -67,13 +67,13 @@ class UserController extends Controller
         }
         // eseguiamo la query. Da qui in poi filtreremo per le proprietà calcolate (avg rating e numero review)
         $doctors = $query->get();
-        // dd($doctors);
+        
         // se la richiesta GET contiene il parametro 'avg_rating'
-        if ($request->filled('avg_rating')) {
-            // filtriamo per voto medio
-            $doctors = $doctors->where('avg_rating','>=',$request->avg_rating);
+         if ($request->filled('avg_rating')) {
+             // filtriamo per voto medio
+             $doctors = $doctors->where('avg_rating','>=',$request->avg_rating);
         }
-        // similarmente facciamo per il numero delle recensioni
+        // // similarmente facciamo per il numero delle recensioni
         if ($request->filled('min_reviews')) {
             $doctors = $doctors->where('review_count','>=',$request->min_reviews);
         }

@@ -15,6 +15,7 @@
             </div>
             <router-link :to="{ name: 'single-user', params: { slug: user.slug } }">Vedi info dottore</router-link>
         </div>
+        
     </div>
 </template>
 
