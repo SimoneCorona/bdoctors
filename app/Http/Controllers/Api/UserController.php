@@ -83,11 +83,12 @@ class UserController extends Controller
             $query->having('reviews_count','>=',$request->min_reviews);
         }
         // Aggiungiamo il filtro HAVING per la media dei voti
-        if ($request->filled('avg_rating')) {
+        if ($request->filled('avg_rating') && $request->avg_rating > 0)
+ {
             $query->having('reviews_avg_rating','>=',$request->avg_rating);
         }
         // eseguiamo la query e paginiamo.
-        $doctors = $query->get();
+        $doctors = $query->paginate(3);
         // dd($doctors);
         
         // se la collection risultante è popolata, mandiamo la response di successo

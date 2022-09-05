@@ -41,6 +41,25 @@
 
         </div>
       <Doctors :doctorsToShow="resultDoctors" />
+      <nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">Previous</span>
+      </a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a @click="search(currentPage + 1)" class="page-link" href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+      </a>
+    </li>
+  </ul>
+</nav>
     </div>
 
   </div>
@@ -65,16 +84,17 @@ export default {
       minReviewCount: 0,
       specialties: [],
       resultDoctors: [],
+      currentPage: 1
     }
   },
   created() {
     this.getSpecialties();
   },
   mounted() {
-    this.search(this.$route.params.specialty);
+    this.search(this.$route.params.specialty, this.currentPage);
   },
   methods: {
-    search(selectedSpecialty) {
+    search(selectedSpecialty, numberPage) {
       history.pushState(
         {},
         null,
@@ -84,10 +104,12 @@ export default {
         params: {
           avg_rating: this.minAvgRating,
           min_reviews: this.minReviewCount,
+          page: numberPage
         }
       })
         .then((resp) => {
-          this.resultDoctors = resp.data.results;
+          this.resultDoctors = resp.data.results.data;
+          this.currentPage = resp.data.results.current_page;
         })
 
     },
