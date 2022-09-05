@@ -85,7 +85,7 @@
             {{-- Wrapper Reviews --}}
             <div id="reviews" class="col-6 reviews my-3 pe-5 border-end border-dark">
                 <h3 class="mb-3">Le tue recensioni:</h3>
-                @foreach ($user->reviews->sortByDesc('created_at') as $review)
+                @forelse ($user->reviews->sortByDesc('created_at') as $review)
                     <div class="review mb-4">
                         <div>
                             @for ($i = 1; $i <= 5; $i++)
@@ -103,26 +103,30 @@
                                 {{ $review->created_at->format('g:i') }} </small>
                         </div>
                     </div>
-                @endforeach
+                @empty
+                    <div>Nessuna recensione</div>
+                @endforelse
             </div>
             {{-- Wrapper messages --}}
             <div id="messages" class="messages col-6 my-3 ps-5 ">
                 <h3 class="mb-3">I tuoi messaggi:</h3>
-                @foreach ($user->messages->sortByDesc('created_at') as $message)
+                @forelse ($user->messages->sortByDesc('created_at') as $message)
                     <div class="message mb-4">
                         <div class="mb-1">
                             <div class="p-0 my-2">
                                 {{ $message->text_message }}
                             </div>
                             <div class="p-0">
-                                <strong>Email: </strong><a href="#">{{ $message->email }}</a>
+                                <strong>Email: </strong><a href="{{'mailto:'.$message->email}}">{{ $message->email }}</a>
                             </div>
                             <small>Inviato da <strong>{{ $message->author }}</strong></small><br>
                             <small>Scritto il {{ $message->created_at->format('d-m-Y') }} alle ore
                                 {{ $message->created_at->format('g:i') }} </small>
                         </div>
                     </div>
-                @endforeach
+                @empty
+                <div>Nessun messaggio</div>
+                @endforelse
             </div>
         </div>
 

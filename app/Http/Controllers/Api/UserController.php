@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     public function index(){
-        $users = User::with(['specialties', 'reviews', 'sponsorships'])->get();
+        $users = User::with(['specialties'])->get();
         // foreach ($users as $user) {
         //     $user->rating_average = $user->avg_rating(); 
         // }
@@ -27,6 +27,16 @@ class UserController extends Controller
         //     ->groupBy('users.id');
         // dd($users_id->get());
 
+        return response()->json([
+            'success' => true,
+            'results' => $users
+        ]);
+    }
+
+    public function index_sponsored(){
+        $users = User::with(['specialties'])->whereHas('sponsorships', function (Builder $query) {
+            $query->whereRaw('(now() between date_start and date_end)');
+        })->paginate(12);
         return response()->json([
             'success' => true,
             'results' => $users

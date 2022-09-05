@@ -34,7 +34,7 @@ class User extends Authenticatable
     }
 
     public function sponsorships() {
-        return $this->belongsToMany('App\Sponsorship');
+        return $this->belongsToMany('App\Sponsorship')->withPivot('date_start','date_end');
     }
 
     public function messages() {
@@ -51,6 +51,10 @@ class User extends Authenticatable
      
     public function getReviewCountAttribute() {
         return $this->reviews()->count();
+    }
+     
+    public function getIsSponsoredAttribute() {
+        return $this->sponsorships()->whereRaw('(now() between date_start and date_end)')->get()->isNotEmpty();
     }
     /**
      * The attributes that should be hidden for arrays.
@@ -75,7 +79,7 @@ class User extends Authenticatable
      * The accessors to append to the model's array form.
           * @var array
      */
-    protected $appends = ['avg_rating','review_count'];
+    protected $appends = ['avg_rating','review_count','is_sponsored'];
 
 
     public static function generateUserSlugFromName($name, $surname) {
