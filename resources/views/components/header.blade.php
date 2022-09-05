@@ -1,43 +1,41 @@
 <div>
-    
-    <header class="position-fixed  fixed-top">
-      <nav class=" border-bottom header-vl navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-          <a class="navbar-brand" href="/">Bdoctor</a>
+  <header class="position-fixed  fixed-top">
+    <nav class=" border-bottom header-vl navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          <img src="images/logo.png" alt="">
+        </a>
           <div class="p-0 flex-grow-1" id="navbarSupportedContent">
             <ul class="mb-0 d-flex justify-content-end">
               @if (!$user)
               <li class="list-unstyled me-4">
-                  <a class="nav-link btn btn-primary text-light px-2" aria-current="page" href="/login">Login</a>
+                  <a class="mybtn nav-link text-black px-2" aria-current="page" href="/login"><b>L O G I N</b></a>
                 </li>
                 <li class="list-unstyled me-4">
-                  <a class="nav-link btn btn-primary text-light px-2" href="/register">Register</a>
+                  <b><a class="mybtn nav-link text-black px-2" href="/register">R E G I S T E R</a></b>
                 </li>
               @else
               
-              <li class="list-unstyled me-4 w-25 my-container">
-                <div class="d-flex justify-content-end ">
-                  <div class=" text-light m-1">
-                    <a class="nav-link btn btn-primary px-3 py-1" href="/admin">{{ $user->name }}</a>
+              <li class="position-relative list-unstyled me-4">
+                <div class="row ">
+                  <div class="col-auto text-light">
+                    <a class="nav-link btn btn-primary px-2" href="/admin">{{ $user->name }}</a>
                   </div>
-                  {{-- <div class="arrow bg-primary  rounded text-light m-1 ">
-                    <i class="fa-solid fa-angle-down"></i>
-                  </div> --}}
-                  <i class="fa-solid fa-angle-down arrow nav-link btn btn-primary px-3 py-2 m-1 text-light"></i>
+                  <div class="col-auto arrow text-light ">
+                    <span class="nav-link btn btn-primary px-2"></span>
+                  </div>
                 </div>
-                
-                <div class="logout text-light d-none  d-flex justify-content-end mx-1">
-                  <a class="nav-link btn btn-primary px-3 py-1" href="{{ route('logout') }}"
+                <div class="logout text-light d-none">
+                  <a class="nav-link btn btn-primary px-2" href="{{ route('logout') }}"
                       onclick="event.preventDefault();
                       document.getElementById('logout-form').submit();">
-  
+                
                       Logout
                   </a>
                   <form id="logout-form" action="{{ route('logout') }}" method="POST">
                       @csrf
                   </form>
                 </div>
-                
               </li>
               
               @endif
@@ -46,32 +44,42 @@
           </div>
         </div>
       </nav>
-    </header>
-     
 </div>
 
 {{-- css --}}
 <style scoped>
-.my-container{
-  position: relative;
-}
+  nav {
+    position: relative;
+  }
+  .arrow span {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+  }
+  .arrow span::before {
+    content: "\F107";
+  }
 
-.logout{
-  position: absolute;
-  right: 0;
-}
+  .logout{
+    position: absolute;
+    top: 32px;
+    right: 0;
+  }
 
-
+  .navbar-brand img {
+    height: 40px;
+  }
 
 </style>
 
 {{-- js --}}
 <script>
-  
-  let logout = document.querySelector('.logout'); 
   let arrow = document.querySelector('.arrow');
-  arrow.addEventListener('click', function(){
-    logout.classList.toggle('d-none')
-  })
+  let logout = document.querySelector('.logout'); 
+  
+  if(arrow) {
+    arrow.addEventListener('click', function(){
+      logout.classList.toggle('d-none')
+    })
+  }
   
 </script>

@@ -91,4 +91,10 @@ class User extends Authenticatable
         return $slug;
     }
 
+    // public static function checkSponsorshipValidity($startDate, $endDate) {
+    //     $startDate = \Carbon\Carbon::createFromFormat('Y-m-d','2019-10-01');
+    //     $endDate = \Carbon\Carbon::createFromFormat('Y-m-d','2019-10-30');
+    //     $check = \Carbon\Carbon::now()->between($startDate,$endDate);
+    //     return $check;
+    // }
 }

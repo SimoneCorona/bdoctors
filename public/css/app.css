@@ -23113,6 +23113,6 @@ readers do not read off random characters that represent icons */
 }
 
 body {
-  margin-top: 5%;
+  padding-top: 56px;
 }
 

@@ -3,6 +3,7 @@
 
 // Variables
 @import 'variables';
+@import '../../public/style/variables.scss';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
@@ -14,5 +15,5 @@
 @import "~@fortawesome/fontawesome-free/scss/brands";
 
 body{
-    margin-top: 5%;
+    padding-top: 56px;
 }
