@@ -111,7 +111,7 @@
                                 {{ $message->text_message }}
                             </div>
                             <div class="p-0">
-                                <strong>Email: </strong><a href="#">{{ $message->email }}</a>
+                                <strong>Email: </strong><a href="{{'mailto:'.$message->email}}">{{ $message->email }}</a>
                             </div>
                             <small>Inviato da <strong>{{ $message->author }}</strong></small><br>
                             <small>Scritto il {{ $message->created_at->format('d-m-Y') }} alle ore
