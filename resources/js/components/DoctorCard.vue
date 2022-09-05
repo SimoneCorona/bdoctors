@@ -4,8 +4,9 @@
             <div class="card-top">
                 <img class="doctor-image rounded-circle mx-auto d-block mb-4"
                     :src="user.photo ? `/storage/${user.photo}` : '/img/img-not-found.png'" style="width: 65%" />
-                <h3 class="mb-2 text-center">{{ user.name }} {{ user.surname }}</h3>
-                <div class="mb-3" v-for="specialty in user.specialties" :key="specialty.specialty_id">
+                <p class="stars text-center"><i class="fas fa-star" :class="n <= starsInReviews ? 'text-warning' : 'text-muted'" v-for="n in 5" :key="n"></i></p>
+                <h3 class="text-center">{{ user.name }} {{ user.surname }}</h3>
+                <div class="mb-3 text-center" v-for="specialty in user.specialties" :key="specialty.specialty_id">
                     <div class="px-3 py-1 me-2 text-light">{{ specialty.specialty_name }}</div>
                 </div>
                 <div class="details p-1">
@@ -28,6 +29,11 @@ export default {
     props: {
         user: Object,
     },
+    computed: {
+        starsInReviews() {
+        return Math.round(this.user.reviews_avg_rating);
+    },
+  },
 }
 </script>
 
@@ -47,11 +53,14 @@ export default {
             margin-top: 2rem;
         }
 
+        .stars {
+            font-size: 1.5rem;
+        }
+
         h3 {
             color: white;
             text-transform: uppercase;
             letter-spacing: .4rem;
-            padding-bottom: 1rem;
         }
 
         p {
