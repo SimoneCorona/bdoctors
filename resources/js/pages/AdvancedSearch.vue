@@ -1,6 +1,6 @@
 <template>
   <div class="adv-search container-fluid back">
-    <div class="container pt-5">
+    <div class="container pt-4">
       <h1 class="adv-search-title text-light pt-5">Ricerca avanzata</h1>
       <div class="input-group mb-5">
         <select v-model="specialtySearched" class="form-select me-4" aria-label="Selezione Specializzazione">
