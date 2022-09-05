@@ -54,19 +54,19 @@
     </footer>
 </div>
 
-<style scoped>
+<style>
 
-    h4 {
+    #footer h4 {
     font-weight: 700;
     font-size: 1.2rem;
     margin-bottom: 2rem;
     padding-left: .5rem;
     }
-    li { 
+    #footer li { 
       margin-top: .8rem; 
     }
 
-    a { 
+    #footer a { 
       text-decoration: none; 
       cursor: pointer;
       text-transform: uppercase;
