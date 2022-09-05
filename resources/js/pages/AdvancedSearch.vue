@@ -2,29 +2,33 @@
   <div class="container-fluid back">
     <div class="container">
       <h1>Ricerca Avanzata</h1>
-      <div class="input-group">
-        <select v-model="specialtySearched" class="form-select w-50" aria-label="Selezione Specializzazione">
-          <option selected>Seleziona la Specializzazione</option>
-          <option v-for="(specialty, index) in specialties" :key="index" :value="specialty.specialty_slug">
-            {{ specialty.specialty_name }}</option>
-        </select>
-        <select v-model="minAvgRating" class="form-select" name="min-avg-rating"
-          aria-label="Selezione voto medio minimo">
-          <option value="0" selected>Media voti recensioni</option>
-          <option value="1">1+</option>
-          <option value="2">2+</option>
-          <option value="3">3+</option>
-          <option value="4">4+</option>
-          <option value="5">5</option>
-        </select>
-        <select v-model="minReviewCount" class="form-select" name="min-avg-rating"
-          aria-label="Selezione numero minimo recensioni">
-          <option value="0" selected>Numero minimo recensioni</option>
-          <option value="1">1+</option>
-          <option value="5">5+</option>
-          <option value="10">10+</option>
-        </select>
-        <button class="btn btn-primary text-white" @click="search(specialtySearched)">Cerca</button>
+      <div class="row-cols-4">
+
+        <div class="input-group">
+          <select v-model="specialtySearched" class="form-select w-30 me-2" aria-label="Selezione Specializzazione">
+            <option selected>Seleziona la Specializzazione</option>
+            <option v-for="(specialty, index) in specialties" :key="index" :value="specialty.specialty_slug">
+              {{ specialty.specialty_name }}</option>
+          </select>
+          <select v-model="minAvgRating" class="form-select w-30 me-2" name="min-avg-rating"
+            aria-label="Selezione voto medio minimo">
+            <option value="0" selected>Media voti recensioni</option>
+            <option value="1">1+</option>
+            <option value="2">2+</option>
+            <option value="3">3+</option>
+            <option value="4">4+</option>
+            <option value="5">5</option>
+          </select>
+          <select v-model="minReviewCount" class="form-select w-30 me-2" name="min-avg-rating"
+            aria-label="Selezione numero minimo recensioni">
+            <option value="0" selected>Numero minimo recensioni</option>
+            <option value="1">1+</option>
+            <option value="5">5+</option>
+            <option value="10">10+</option>
+          </select>
+          <button class="btn btn-primary text-white" @click="search(specialtySearched)">Cerca</button>
+        </div>
+        
       </div>
       <Doctors :doctorsToShow="resultDoctors" />
     </div>
@@ -90,6 +94,6 @@ export default {
   
   <style lang="scss" scoped>
   .back {
-    background-color: #83d3ea;
+    background-color: #82c6c6;
   }
   </style>
