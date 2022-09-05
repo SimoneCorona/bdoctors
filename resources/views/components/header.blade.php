@@ -43,13 +43,16 @@
             </ul>
           </div>
         </div>
-      </nav>
+    </nav>
+  </header>    
 </div>
 
 {{-- css --}}
 <style scoped>
+  
   nav {
     position: relative;
+    height: 80px;
   }
   .arrow span {
     font-family: "Font Awesome 6 Free";
