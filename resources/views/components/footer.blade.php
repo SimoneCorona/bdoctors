@@ -2,7 +2,7 @@
     <footer class="py-5">
         <div class="container">
           <div class="row">
-            <div class="col-5">
+            <div class="col-sm-6 col-md-4 col-lg-5">
               <h4><span class="d-inline-block bg-dark px-2 text-light">P</span> U B B L I C O</h4>
               <ul class="f-links list-unstyled">
                 <li><a>Home</a></li>
@@ -14,7 +14,7 @@
               </ul>
             </div>
       
-          <div class="col-5">
+          <div class="col-sm-6 col-md-5 col-lg-5">
             <h4><span class="d-inline-block bg-dark px-2 text-light">D</span> A S H B O A R D</h4>
             <ul class="f-links list-unstyled">
               <li><a>Il tuo profilo</a></li>
@@ -24,12 +24,12 @@
             </ul>
           </div>
       
-          <div class="col-2 social">
+          <div class="col-sm-12 col-md-3 col-lg-2 social">
             <h4 class="px-2 ms-1"><span id="square" class="d-inline-block bg-dark px-2 text-light">S</span> O C I A L</h4>
 
             <div class="social container-fluid">
               <div class="row">
-                <div class="col-12 d-flex mb-3">
+                <div class="col-4 col-md-12 d-flex mb-3">
                   <a href="#">
                     <i class="fa-brands fa-instagram"></i>
                   </a>
@@ -37,7 +37,7 @@
                     <i class="fa-brands fa-facebook"></i>
                   </a>
                 </div>
-                <div class="col-12 d-flex mb-3">
+                <div class="col-4 col-md-12 d-flex mb-3">
                   <a href="#">
                     <i class="fa-brands fa-linkedin"></i>
                   </a>
