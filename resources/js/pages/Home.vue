@@ -8,17 +8,15 @@
             <option selected disabled></option>
             <option v-for="(specialty, index) in specialties" :key="index" :value="specialty.specialty_slug">{{specialty.specialty_name}}</option>
           </select>
-          <router-link class="mybtn btn btn-light text-light" :to="{name: 'advanced-search', params: {specialty: selectedSpecialty }}"><b>cerca</b></router-link> 
+          <router-link class="mybtn text-light ps-3 pe-2" :to="{name: 'advanced-search', params: {specialty: selectedSpecialty }}"><b>cerca</b></router-link> 
         </div>
       </div>
     </div>
 
     <div class="sponsorship container mt-5">
       <h2 class="mb-5"><span class="first-letter">M</span>edici in evidenza</h2>
-      <div class="row">
-        <div class="card" v-for="user in sponsorships.user_sponsorships" :key="user.id">
-          </div>
-        </div>
+      <div class="slider">
+        
       </div>
     </div>
   </div>
@@ -77,6 +75,7 @@ export default {
       h2 {
         text-transform: uppercase;
         letter-spacing: .5rem;
+        text-align: center;
 
         .first-letter {
           display: inline-block;
@@ -88,14 +87,21 @@ export default {
         }
       }
 
-      .row {
+      .slider {
         width: 100%;
-        height: 300px;
+        height: 500px;
         background-color: darkcyan;
       }
     }
 
     .mybtn {
       background-color: #000000;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+    }
+
+    select {
+      border-radius: 0;
     }
 </style>
