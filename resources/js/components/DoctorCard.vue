@@ -2,7 +2,7 @@
     <div class="col-12 col-md-6 col-lg-4 col-xl-3 container mb-5 pb-5">
         <div class="card ms_card p-3 mb-4 pt-0">
             <div class="card-top">
-                <img class="doctor-image rounded-circle mx-auto d-block mb-4 pt-3"
+                <img class="doctor-image rounded-circle mx-auto d-block mb-4"
                     :src="user.photo ? `/storage/${user.photo}` : '/img/img-not-found.png'" style="width: 65%" />
                 <h3 class="mb-2 text-center">{{ user.name }} {{ user.surname }}</h3>
                 <div class="mb-3" v-for="specialty in user.specialties" :key="specialty.specialty_id">
@@ -43,6 +43,12 @@ export default {
         height: calc(100% - 2rem);
         overflow: scroll;
 
+        img {
+            outline: 1px solid white;
+            outline-offset: 10px;
+            margin-top: 2rem;
+        }
+
         h3 {
             color: white;
             text-transform: uppercase;
@@ -76,9 +82,6 @@ export default {
         height: 2rem;
         line-height: 2rem;
         text-align: end;
-        
-        router-link {
-        }
     }
 }
 
