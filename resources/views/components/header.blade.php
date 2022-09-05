@@ -1,6 +1,7 @@
 <div>
     
-    <nav class=" border-bottom header-vl navbar navbar-expand-lg navbar-light bg-light">
+    <header class="position-fixed  fixed-top">
+      <nav class=" border-bottom header-vl navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
           <a class="navbar-brand" href="/">Bdoctor</a>
           <div class="p-0 flex-grow-1" id="navbarSupportedContent">
@@ -13,36 +14,20 @@
                   <a class="nav-link btn btn-primary text-light px-2" href="/register">Register</a>
                 </li>
               @else
-              {{-- <li class="list-unstyled me-4">
-                <a class="nav-link btn btn-primary text-light px-2" href="/admin">{{ $user->name }}</a>
-              </li>
               
-              <li class="arrow btn btn-primary list-unstyled me-4 text-light px-2 h-25 ">
-                <i class="fa-solid fa-angle-down"></i>
-              </li>
-              <li class="list-unstyled me-4 logout">
-                <a class="nav-link btn btn-primary text-light px-2" href="{{ route('logout') }}"
-                    onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();">
-
-                    Logout
-                </a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                    @csrf
-                </form>
-              </li> --}}
-              
-              <li class="list-unstyled me-4">
-                <div class="row ">
-                  <div class="col-auto text-light">
-                    <a class="nav-link btn btn-primary px-2" href="/admin">{{ $user->name }}</a>
+              <li class="list-unstyled me-4 w-25 my-container">
+                <div class="d-flex justify-content-end ">
+                  <div class=" text-light m-1">
+                    <a class="nav-link btn btn-primary px-3 py-1" href="/admin">{{ $user->name }}</a>
                   </div>
-                  <div class="col-auto arrow btn btn-primary px-2 h-25 text-light ">
+                  {{-- <div class="arrow bg-primary  rounded text-light m-1 ">
                     <i class="fa-solid fa-angle-down"></i>
-                  </div>
+                  </div> --}}
+                  <i class="fa-solid fa-angle-down arrow nav-link btn btn-primary px-3 py-2 m-1 text-light"></i>
                 </div>
-                <div class="logout text-light d-none">
-                  <a class="nav-link btn btn-primary px-2" href="{{ route('logout') }}"
+                
+                <div class="logout text-light d-none  d-flex justify-content-end mx-1">
+                  <a class="nav-link btn btn-primary px-3 py-1" href="{{ route('logout') }}"
                       onclick="event.preventDefault();
                       document.getElementById('logout-form').submit();">
   
@@ -52,6 +37,7 @@
                       @csrf
                   </form>
                 </div>
+                
               </li>
               
               @endif
@@ -60,25 +46,30 @@
           </div>
         </div>
       </nav>
+    </header>
      
 </div>
 
+{{-- css --}}
 <style scoped>
-  header{
-    position: relative;
-  }
-  .logout{
-    position: absolute;
-    bottom: -30px;
-    right: 40px;
-  }
+.my-container{
+  position: relative;
+}
+
+.logout{
+  position: absolute;
+  right: 0;
+}
+
+
 
 </style>
 
+{{-- js --}}
 <script>
-  let arrow = document.querySelector('.arrow');
-  let logout = document.querySelector('.logout'); 
   
+  let logout = document.querySelector('.logout'); 
+  let arrow = document.querySelector('.arrow');
   arrow.addEventListener('click', function(){
     logout.classList.toggle('d-none')
   })

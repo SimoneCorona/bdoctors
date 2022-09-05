@@ -71,7 +71,8 @@
         <div class="col-6 reviews my-3 pe-4 border-end border-dark">
             <h3 class="mb-3">Le tue recensioni:</h3>
             <div class="mb-3 p-0">
-                @foreach($user->reviews->sortByDesc('created_at') as $review)
+                
+                @forelse($user->reviews->sortByDesc('created_at') as $review)
                     <div class="review mb-4">
                         <div>
                             @for ($i = 1; $i <= 5; $i++)
@@ -88,14 +89,16 @@
                             <small>Scritta il {{ $review->created_at->format('d-m-Y') }} alle ore {{ $review->created_at->format('g:i') }} </small>
                         </div>
                     </div>
-                @endforeach
+                @empty
+                    <div>Nessuna recensione</div>
+                @endforelse
             </div>
         </div>
         {{-- Wrapper messages --}}
         <div id="messages" class="messages d-flex row col-6 my-3 ps-5 ">
             <h3 class="mb-3">I tuoi messaggi:</h3>
             <div class="m-0 p-0">
-                @foreach($user->messages->sortByDesc('created_at') as $message)
+                @forelse($user->messages->sortByDesc('created_at') as $message)
                     <div class="message mb-4" >
                         <div class="mb-1">
                             <div class="p-0 my-2">
@@ -108,7 +111,9 @@
                             <small>Scritto il {{ $message->created_at->format('d-m-Y') }} alle ore {{ $message->created_at->format('g:i') }} </small>
                         </div>
                     </div>
-                @endforeach
+                @empty
+                <div>Nessun messaggio</div>
+                @endforelse
             </div>
         </div>
     </div>

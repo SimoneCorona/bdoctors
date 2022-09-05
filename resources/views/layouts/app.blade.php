@@ -22,7 +22,7 @@
 <body>
     <div id="app">
         
-        <x-header {{-- link1="Login" href1="/login" link2="Register" href2="/register" link3="Il mio profilo" href3="/admin" --}} /> 
+        <x-header /> 
         
         {{-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
