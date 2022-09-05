@@ -3,7 +3,7 @@
     <nav class=" border-bottom header-vl navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
         <a class="navbar-brand" href="/">
-          <img src="images/logo.png" alt="">
+          <img src="{{ asset('images/logo.png')}}" alt="">
         </a>
           <div class="p-0 flex-grow-1" id="navbarSupportedContent">
             <ul class="mb-0 d-flex justify-content-end">
