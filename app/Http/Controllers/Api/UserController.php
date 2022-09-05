@@ -68,27 +68,28 @@ class UserController extends Controller
         // inizializziamo una query al modello user
         $query = User::query();
         // ci aggiungiamo l'eager loading delle relationships
-        $query->with(['specialties', 'reviews', 'sponsorships']);
+        $query->with(['specialties']);
         // se lo specialty slug è truthy
+        $query->withCount('reviews');
+        $query->withAvg('reviews','rating');
         if ($specialty_slug) {
             //aggiungiamo una query alla relationship
             $query->whereHas('specialties', function (Builder $query) use($specialty_slug) {
                 $query->where('specialty_slug', '=', $specialty_slug);
             });
         }
-        // eseguiamo la query. Da qui in poi filtreremo per le proprietà calcolate (avg rating e numero review)
+        // Aggiungiamo il filtro HAVING per il numero di review
+        if ($request->filled('min_reviews')) {
+            $query->having('reviews_count','>=',$request->min_reviews);
+        }
+        // Aggiungiamo il filtro HAVING per la media dei voti
+        if ($request->filled('avg_rating')) {
+            $query->having('reviews_avg_rating','>=',$request->avg_rating);
+        }
+        // eseguiamo la query e paginiamo.
         $doctors = $query->get();
         // dd($doctors);
-        // se la richiesta GET contiene il parametro 'avg_rating'
-        if ($request->filled('avg_rating')) {
-            // filtriamo per voto medio
-            $doctors = $doctors->where('avg_rating','>=',$request->avg_rating);
-        }
-        // similarmente facciamo per il numero delle recensioni
-        if ($request->filled('min_reviews')) {
-            $doctors = $doctors->where('review_count','>=',$request->min_reviews);
-        }
-
+        
         // se la collection risultante è popolata, mandiamo la response di successo
         if($doctors) {
             return response()->json([
