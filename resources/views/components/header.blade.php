@@ -26,7 +26,7 @@
                   </div>
                 </div>
                 <div class="logout d-none">
-                  <a class="nav-link px-2 mybtn" href="{{ route('logout') }}"
+                  <a class="nav-link mybtn" href="{{ route('logout') }}"
                       onclick="event.preventDefault();
                       document.getElementById('logout-form').submit();">
                 
@@ -64,8 +64,10 @@
 
   .logout{
     position: absolute;
-    top: 32px;
+    padding-left: 3.5rem; 
+    top: 28px;
     right: 0;
+    border-top: 3px solid black;
   }
 
   .navbar-brand img {
