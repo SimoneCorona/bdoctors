@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use App\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -44,7 +46,8 @@ class UserTableSeeder extends Seeder
             $new_user->phone_number = '051 8060';
             $new_user->save(); 
             $new_user->specialties()->attach(2);
-            // $new_user->sponsorships()->attach([1 => ['date_start'=>now(), 'date_end'=>now()]]);
+            $new_user->sponsorships()->attach([1 => ['date_start'=>now()->subDays(4), 'date_end'=>now()->subSeconds(1)]]);
+            $new_user->sponsorships()->attach([1 => ['date_start'=>now(), 'date_end'=>now()->addDays(10)]]);
     }
 }
     

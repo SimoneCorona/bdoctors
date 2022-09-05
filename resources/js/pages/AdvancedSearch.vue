@@ -1,31 +1,45 @@
 <template>
   <div class="adv-search container-fluid back">
-    <div class="container pt-5">
-      <h1 class="adv-search-title text-light pt-5">Ricerca avanzata</h1>
-      <div class="input-group mb-5">
-        <select v-model="specialtySearched" class="form-select me-4" aria-label="Selezione Specializzazione">
-          <option selected>Seleziona la Specializzazione</option>
-          <option v-for="(specialty, index) in specialties" :key="index" :value="specialty.specialty_slug">
-            {{ specialty.specialty_name }}</option>
-        </select>
-        <select v-model="minAvgRating" class="form-select me-4" name="min-avg-rating"
-          aria-label="Selezione voto medio minimo">
-          <option value="0" selected>Media voti recensioni</option>
-          <option value="1">1+</option>
-          <option value="2">2+</option>
-          <option value="3">3+</option>
-          <option value="4">4+</option>
-          <option value="5">5</option>
-        </select>
-        <select v-model="minReviewCount" class="form-select me-4" name="min-avg-rating"
-          aria-label="Selezione numero minimo recensioni">
-          <option value="0" selected>Numero minimo recensioni</option>
-          <option value="1">1+</option>
-          <option value="5">5+</option>
-          <option value="10">10+</option>
-        </select>
-        <button class="search-btn btn btn-primary text-white" @click="search(specialtySearched)">Cerca</button>
-      </div>
+    <div class="container pt-4">
+      <h1 class="adv-search-title text-light pt-5 mb-4">Ricerca avanzata</h1>
+      <div class="container input-group mb-5">
+        <div class="row w-100">
+          <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-2">
+            <select v-model="specialtySearched" class="form-select" aria-label="Selezione Specializzazione">
+              <option selected>Seleziona la Specializzazione</option>
+              <option v-for="(specialty, index) in specialties" :key="index" :value="specialty.specialty_slug">
+                {{ specialty.specialty_name }}</option>
+            </select>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-2">
+            <select v-model="minAvgRating" class="form-select col-12" name="min-avg-rating"
+              aria-label="Selezione voto medio minimo">
+              <option value="0" selected>Media voti recensioni</option>
+              <option value="1">1+</option>
+              <option value="2">2+</option>
+              <option value="3">3+</option>
+              <option value="4">4+</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-2">
+            <select v-model="minReviewCount" class="form-select me-4 col-12" name="min-avg-rating"
+              aria-label="Selezione numero minimo recensioni">
+              <option value="0" selected>Numero minimo recensioni</option>
+              <option value="1">1+</option>
+              <option value="5">5+</option>
+              <option value="10">10+</option>
+            </select>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+            <button class="search-btn btn btn-primary text-white mb-2" @click="search(specialtySearched)">Cerca</button>
+          </div>
+        </div>
+
+        </div>
       <Doctors :doctorsToShow="resultDoctors" />
     </div>
 
@@ -110,6 +124,10 @@ export default {
   
   <style lang="scss" scoped>
 
+  select {
+    border-radius: 0;
+  }
+
   .back {
     background-image: url('/images/bg-blue.png'),
     linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5));
@@ -130,5 +148,19 @@ export default {
     padding-left: 1rem;
     background-color: black;
     border: 1px solid white;
+    border-radius: 0;
+    width: 100%;
+  }
+
+  .container {
+    margin: 0;
+    padding: 0;
+    margin: auto;
+  }
+
+    .row {
+    margin: 0;
+    padding: 0;
+    margin: auto;
   }
   </style>

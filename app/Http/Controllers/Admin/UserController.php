@@ -148,8 +148,8 @@ class UserController extends Controller
         $user->delete();
         return redirect()->route('login');
     }
-    
-    
+
+
     private function generateUserSlugFromName($name, $surname) {
         $base_slug = Str::slug($name . '_' . $surname, '-');   
         $slug = $base_slug;

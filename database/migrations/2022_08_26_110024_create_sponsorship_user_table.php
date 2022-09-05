@@ -27,7 +27,7 @@ class CreateSponsorshipUserTable extends Migration
             $table->datetime('date_start');
             $table->datetime('date_end');
 
-            $table->primary(['user_id', 'sponsorship_id']);
+            $table->primary(['user_id', 'sponsorship_id','date_start']);
         });
     }
 
