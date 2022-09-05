@@ -79,7 +79,7 @@ class User extends Authenticatable
      * The accessors to append to the model's array form.
           * @var array
      */
-    protected $appends = ['avg_rating','review_count','is_sponsored'];
+    protected $appends = ['is_sponsored'];
 
 
     public static function generateUserSlugFromName($name, $surname) {
