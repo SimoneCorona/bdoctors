@@ -44,14 +44,6 @@ class User extends Authenticatable
     public function reviews() {
         return $this->hasMany('App\Review');
     }
-
-    public function getAvgRatingAttribute() {
-        return floatval($this->reviews()->avg('rating'));
-    }
-     
-    public function getReviewCountAttribute() {
-        return $this->reviews()->count();
-    }
      
     public function getIsSponsoredAttribute() {
         return $this->sponsorships()->whereRaw('(now() between date_start and date_end)')->get()->isNotEmpty();
@@ -79,7 +71,7 @@ class User extends Authenticatable
      * The accessors to append to the model's array form.
           * @var array
      */
-    protected $appends = ['avg_rating','review_count','is_sponsored'];
+    protected $appends = ['is_sponsored'];
 
 
     public static function generateUserSlugFromName($name, $surname) {

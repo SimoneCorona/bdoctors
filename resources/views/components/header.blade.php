@@ -74,10 +74,12 @@
     height: 40px;
   }
 
-  .mybtn{
-    text-transform: uppercase;
-    letter-spacing: 0.4em;
-  }
+
+ .mybtn{
+   text-transform: uppercase;
+   letter-spacing: 0.4em;
+ }
+
 
 </style>
 

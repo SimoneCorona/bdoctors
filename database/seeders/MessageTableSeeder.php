@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use App\Message;
 use App\User;
 use Illuminate\Database\Seeder;

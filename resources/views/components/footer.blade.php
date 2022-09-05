@@ -56,11 +56,13 @@
 
 <style>
 
+
+
     #footer h4 {
-    font-weight: 700;
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    padding-left: .5rem;
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      padding-left: .5rem;
     }
     #footer li { 
       margin-top: .8rem; 
