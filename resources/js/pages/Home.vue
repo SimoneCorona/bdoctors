@@ -17,8 +17,6 @@
       <h2 class="mb-5"><span class="first-letter">M</span>edici in evidenza</h2>
       <div class="row">
         <div class="card" v-for="user in sponsorships.user_sponsorships" :key="user.id">
-          <div class="mydiv">
-            span
           </div>
         </div>
       </div>
@@ -50,17 +48,18 @@ export default {
     },
     methods: {
       getSpecialties() {
-             axios.get('/api/specialties')
-             .then((resp) => {
-                this.specialties = resp.data.results;
-            })
-        },
-            getSponsorships() {
-             axios.get('/api/sponsorships')
-             .then((resp) => {
-                this.sponsorships.sponsorship_user = resp.data.results;
-            })
-        },
+        axios.get('/api/specialties')
+        .then((resp) => {
+          this.specialties = resp.data.results;
+        })
+      },
+
+      getSponsorships() {
+        axios.get('/api/sponsorships')
+        .then((resp) => {
+          this.sponsorships.sponsorship_user = resp.data.results;
+        })
+      },
     }
 }
 </script>
