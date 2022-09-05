@@ -96,7 +96,7 @@
                 </div>
                 <div class="d-flex align-items-center justify-content-end">
                   <span v-show="message_sent" class="text-success me-2">Messaggio inviato! &#10004;</span>
-                  <button :disabled="message_sent" class="btn btn-primary" @click="postMessage()">
+                   <button :disabled="message_sent" class="btn btn-primary" @click="postMessage()"> <!-- :disabled="message_sent" -->
                     Invia
                   </button>
                 </div>

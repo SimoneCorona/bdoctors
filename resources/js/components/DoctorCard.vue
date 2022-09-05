@@ -19,6 +19,7 @@
                 <router-link class="text-light text-uppercase" :to="{ name: 'single-user', params: { slug: user.slug } }">Vedi info dottore</router-link>
             </div>
         </div>
+        
     </div>
 </template>
 
