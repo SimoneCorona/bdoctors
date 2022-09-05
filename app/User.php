@@ -52,6 +52,10 @@ class User extends Authenticatable
     public function getReviewCountAttribute() {
         return $this->reviews()->count();
     }
+     
+    public function getIsSponsoredAttribute() {
+        return $this->sponsorships();
+    }
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -75,7 +79,7 @@ class User extends Authenticatable
      * The accessors to append to the model's array form.
           * @var array
      */
-    protected $appends = ['avg_rating','review_count'];
+    protected $appends = ['avg_rating','review_count','is_sponsored'];
 
 
     public static function generateUserSlugFromName($name, $surname) {
