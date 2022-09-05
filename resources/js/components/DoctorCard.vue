@@ -3,7 +3,7 @@
         <div class="card ms_card p-3 mb-4">
             <h3 class="mb-2 text-center">{{ user.name }} {{ user.surname }}</h3>
             <img class="doctor-image rounded-circle mx-auto d-block mb-4"
-                :src="user.photo ? `/storage/${user.photo}` : '/img/img-not-found.png'" style="width: 230px" />
+                :src="user.photo ? `/storage/${user.photo}` : '/img/img-not-found.png'" style="width: 65%" />
             <div class="mb-3" v-for="specialty in user.specialties" :key="specialty.specialty_id">
                 <span class="rounded-pill bg-primary px-3 py-1 me-2 text-light">{{ specialty.specialty_name }}</span>
             </div>
@@ -31,7 +31,7 @@ export default {
 
 
 .ms_card {
-    height: 550px;
+    height: 480px;
     opacity: 85%;
     ;
 }

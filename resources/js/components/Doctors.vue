@@ -2,7 +2,7 @@
     <div>
         <h2 class="results-title mt-5 pt-4 mb-4 text-light">Risultati della ricerca</h2>
         
-        <div class="row row-cols-3">
+        <div class="row">
             <DoctorCard v-for="user in doctorsToShow" :key='user.id' :user="user"/>
         </div>
     </div>
