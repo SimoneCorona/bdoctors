@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2 class="my-4">Risultati della ricerca:</h2>
+        <h2 class="results-title mt-5 pt-4 mb-4 text-light">Risultati della ricerca</h2>
         
         <div class="row">
             <DoctorCard v-for="user in doctorsToShow" :key='user.id' :user="user"/>
@@ -38,5 +38,9 @@ export default {
 </script>
 
 <style>
-
+    .results-title {
+        font-size: 1.3rem;
+        text-transform: uppercase;
+        letter-spacing: .8rem;
+    }
 </style>
