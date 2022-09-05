@@ -49,6 +49,12 @@
                                 <strong>Le mie statistiche</strong>
                             </a>
                         </li>
+                        <li class="nav-item list-unstyled mb-2">
+                            <a class="nav-link active" href="#sponsorship">
+                                <i class="fa-solid fa-circle-dollar-to-slot me-2"></i>
+                                <strong>Sponsorizzazione</strong>
+                            </a>
+                        </li>
                     </div>
                 </div>
             </div>
@@ -125,8 +131,40 @@
         </div>
 
         {{-- Wrapper statistic --}}
-        <div id="stats" class="border-top pt-2 border-dark">
+        <div id="stats" class="border-top py-2 border-dark">
             Le mie statistiche
+        </div>
+
+        {{--Wrapper sponsorship--}}
+        <div id="sponsorship" class="border-top pt-2 border-dark">
+            <div class="row">
+                <h4 class="pt-2 mt-1 mb-2">Sponsorizza il tuo profilo!</h4>
+                <h6 class="mb-4">Sponsorizza il tuo profilo scegliendo fra questi piani, avrai più possibilità di essere visitato!</h6>
+                <div class="col" style="width: 70%;">
+                    <div class="card text-center py-3 px-5">
+                        <h5>Piano "Bronzo"</h5>
+                        <h6>Costo: 2,99 €</h6>
+                        <p>Durata: 24h (1gg)</p>
+                        <button class="btn btn-dark text-light">Scegli</button>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card text-center py-3 px-5">
+                        <h5>Piano "Argento"</h5>
+                        <h6>Costo: 5,99 €</h6>
+                        <p>Durata: 72h (3gg)</p>
+                        <button class="btn btn-dark text-light">Scegli</button>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card text-center py-3 px-5">
+                        <h5>Piano "Oro"</h5>
+                        <h6>Costo: 9.99 €</h6>
+                        <p>Durata: 144h (6gg)</p>
+                        <button class="btn btn-dark text-light">Scegli</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 @endsection
