@@ -34,7 +34,7 @@ class User extends Authenticatable
     }
 
     public function sponsorships() {
-        return $this->belongsToMany('App\Sponsorship');
+        return $this->belongsToMany('App\Sponsorship')->withPivot('date_start','date_end');
     }
 
     public function messages() {
@@ -54,7 +54,7 @@ class User extends Authenticatable
     }
      
     public function getIsSponsoredAttribute() {
-        return $this->sponsorships();
+        return $this->sponsorships()->whereRaw('(now() between date_start and date_end)')->get()->isNotEmpty();
     }
     /**
      * The attributes that should be hidden for arrays.
