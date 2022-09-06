@@ -157,7 +157,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function sponsor(Request $request)
+    public function sponsor()
     {
         $user = Auth::user();
         $gateway = new \Braintree\Gateway([
