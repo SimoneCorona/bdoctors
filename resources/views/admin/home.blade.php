@@ -32,7 +32,7 @@
                             </a>
                         </li>
                         <li class="nav-item list-unstyled mb-2">
-                            <a class="nav-link active" href="#messages">
+                            <a class="nav-link active" href="{{ route('admin.messages.index') }}">
                                 <i class="fa-solid fa-comments me-2"></i>
                                 <strong>Messaggi</strong>
                             </a>
