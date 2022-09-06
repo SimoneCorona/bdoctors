@@ -13,27 +13,6 @@
       </div>
     </div>
 
-    <!-- <div class="sponsorship container mt-5">
-      <h2 class="mb-5"><span class="first-letter">M</span>edici in evidenza</h2>
-      <div class="slider container-fluid">
-        <div class="row d-flex align-items-center h-100">
-          <div class="col-3">
-            <div class="prev small-circle">
-              <img src="img/img-not-found.png" alt="">
-            </div>
-          </div>
-          <div class="col-6 d-flex justify-content-center">
-            
-          </div>
-          <div class="col-3 d-flex justify-content-end">
-            <div class="next small-circle">
-              <img src="img/img-not-found.png" alt="">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
-
     <!-- INIZIO SLIDER CONTAINER -->
     <div class="sponsorship container overflow-hidden mt-5">
       <!-- TITOLO SLIDER -->
@@ -43,8 +22,8 @@
         <div class="row d-flex align-items-center">
           <!-- BOTTONE PREV -->
           <div class="col-3">
-            <div class="small-circle prev">
-              <img src="img/img-not-found.png" alt="">
+            <div class="small-circle prev" @click="showPrev">
+              <img :src="sponsored_users[prev].photo ? sponsored_users[prev].photo : 'img/img-not-found.png'" alt=""> alt="">
             </div>
           </div>
           <!-- / BOTTONE PREV -->
@@ -54,13 +33,28 @@
               <div class="mycard__inner">
                 <!-- FRONTE -->
                 <div class="mycard__front">
-                  <img src="img/img-not-found.png" alt="">
+                  <div class="sponsored-doctor ">
+                    <div class="sponsored-doctor__img">
+                      <img :src="sponsored_users[counter].photo ? sponsored_users[counter].photo : 'img/img-not-found.png'" alt="">
+                    </div>
+                    <div class="sponsored-doctor__info">
+                      <h4 class="name">
+                        {{ sponsored_users[counter].name }} {{ sponsored_users[counter].surname }}
+                      </h4>
+                      <h5 class="specialty" v-for="(specialty, index) in sponsored_users[counter].specialties" :key="index">
+                        {{ specialty.specialty_name }}
+                      </h5>
+                    </div>
+                  </div>
                 </div>
                 <!-- RETRO -->
-                <div class="mycard__back">
-                  <h2>
-                    Sono il retro
-                  </h2>
+                <div class="mycard__back d-flex flex-column">
+                  <h3 class="number">
+                    {{ sponsored_users[counter].phone_number }}
+                  </h3>
+                  <h4 class="email">
+                    {{ sponsored_users[counter].email }}
+                  </h4>
                 </div>
               </div>
             </div>
@@ -69,8 +63,8 @@
 
           <!-- BOTTONE NEXT -->
           <div class="col-3">
-            <div class="small-circle next">
-              <img src="img/img-not-found.png" alt="">
+            <div class="small-circle next" @click="showNext">
+              <img :src="sponsored_users[next].photo ? sponsored_users[next].photo : 'img/img-not-found.png'" alt=""> alt="">
             </div>
           </div>
           <!-- / BOTTONE NEXT -->
@@ -79,29 +73,15 @@
     </div>
     <!-- FINE SLIDER CONTAINER -->
 
-
-    <!-- <div class="mycard">
-      <div class="mycard__inner">
-        <div class="mycard__front">
-          <img src="img/img-not-found.png" alt="">
-        </div>
-        <div class="mycard__back">
-          <h2>
-            Sono il retro
-          </h2>
-        </div>
-      </div>
-    </div> -->
-
-
-    <!-- medici prove -->
-    <div class="medici-prove container">
+    <!-- MEDICI IN EVIDENZA -->
+    <!-- <div class="medici-prove container">
       <ul>
         <li v-for="(doc, index) in sponsored_users" :key="index">
           {{ doc.name }} {{ doc.surname }}
         </li>
       </ul>
-    </div>
+    </div> -->
+    <!-- / MEDICI IN EVIDENZA -->
   </div>
 </template>
 
@@ -122,11 +102,36 @@ export default {
         selectedSpecialty: '',
         sponsorships: [],
         sponsored_users: [],
+        counter: '',
+        prev: '',
+        next: '',
       }
     },
     created() {
         this.getSpecialties();
         this.getSponsorships();
+        this.counter = 0;
+        this.prev = -1;
+        this.next = 1;
+        setInterval(()=> {
+          if (this.counter >= this.sponsored_users.length - 1) {
+            this.counter = 0;
+          } else {
+            this.counter++;
+          }
+
+          if (this.prev >= this.sponsored_users.length - 1) {
+            this.prev = 0;
+          } else {
+            this.prev++;
+          }
+
+          if (this.next >= this.sponsored_users.length - 1) {
+            this.next = 0;
+          } else {
+            this.next++;
+          }
+        }, 5000)
     },
     methods: {
       getSpecialties() {
@@ -142,6 +147,46 @@ export default {
           this.sponsored_users = resp.data.results.data;
         })
       },
+
+      showPrev() {
+        if (this.counter === 0) {
+          this.counter = this.sponsored_users.length - 1;
+        } else {
+          this.counter--;
+        }
+
+        if (this.prev === 0) {
+          this.prev = this.sponsored_users.length - 1;
+        } else {
+          this.prev--;
+        }
+
+        if (this.next === 0) {
+          this.next = this.sponsored_users.length - 1;
+        } else {
+          this.next--;
+        }
+      },
+
+      showNext() {
+        if (this.counter >= this.sponsored_users.length - 1) {
+          this.counter = 0;
+        } else {
+          this.counter++;
+        }
+
+        if (this.prev >= this.sponsored_users.length - 1) {
+          this.prev = 0;
+        } else {
+          this.prev++;
+        }
+
+        if (this.next >= this.sponsored_users.length - 1) {
+          this.next = 0;
+        } else {
+          this.next++;
+        }
+      }
     }
 }
 </script>
@@ -175,32 +220,6 @@ export default {
           margin-left: .5rem;
         }
       }
-
-      // .slider {
-      //   width: 100%;
-      //   height: 500px;
-      //   border-right: 3px solid black;
-      //   border-left: 3px solid black;
-      //   margin-bottom: 4rem;
-
-      //   .row {
-      //     div {
-      //       overflow: hidden;
-      //       height: 100%;
-      //       padding: 0;
-      //       display:flex;
-      //       align-items: center;
-
-      //       .prev {
-      //         translate: -50%;
-      //       }
-
-      //       .next {
-      //         translate: 50%;
-      //       }
-      //     }
-      //   }
-      // }
     }
 
     .mybtn {
@@ -253,7 +272,7 @@ export default {
       border-radius: 50%;
       outline: 5px solid black;
       outline-offset: 15px;
-      perspective: 1000px;
+      perspective: 300px;
       
       &:hover .mycard__inner {
         transform: rotateY(180deg);
@@ -263,10 +282,10 @@ export default {
         width: 100%;
         height: 100%;
         position: relative;
-        background-color: rgba($color: #000000, $alpha: .5);
+        background-color: rgba($color: #000000, $alpha: .3);
         color: white;
         transform-style: preserve-3d;
-        transition: transform .8s;
+        transition: transform 1s;
         border-radius: 50%;
 
         img {
@@ -284,15 +303,55 @@ export default {
         border-radius: 50%;
       }
 
-      &__front {
-
-      }
-
       &__back {
         transform: rotateY(180deg);
         display: flex;
         justify-content: center;
         align-items: center;
+
+        .number {
+          display: inline-block;
+          padding: 0 5rem .5rem;
+          border-bottom: 3px solid black;
+          font-size: 2vw;
+        }
+
+        .email {
+          font-size: 2vw;
+        }
       }
     }
+
+    .sponsored-doctor {
+      position: relative;
+      width: 100%;
+      height: 100%;
+
+      &__img {
+        position: absolute;
+        }
+
+        &__info {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          background-color: rgba($color: #000000, $alpha: .2);
+
+          .name {
+            display: inline-block;
+            padding: 0 5rem .5rem;
+            border-bottom: 4px solid black;
+            font-size: 3.5vw;
+          }
+
+          .specialty {
+            font-size: 2.5vw;
+          }
+        }
+      }
 </style>
