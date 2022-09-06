@@ -44,7 +44,7 @@
                             </a>
                         </li>
                         <li class="nav-item list-unstyled mb-2">
-                            <a class="nav-link active" href="#stats">
+                            <a class="nav-link active" href="{{ route('admin.chart.index') }}">
                                 <i class="fa-solid fa-ranking-star me-2"></i>
                                 <strong>Le mie statistiche</strong>
                             </a>
