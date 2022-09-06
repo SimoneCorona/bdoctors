@@ -31,6 +31,7 @@ Route::middleware('auth')
         Route::get('/profile/edit','UserController@edit')->name('users.edit');
         Route::put('/profile/update','UserController@update')->name('users.update');
         Route::delete('/profile/destroy','UserController@destroy')->name('users.destroy');
+        Route::get('messages', 'MessageController@index')->name('messages.index');
         
     });
 
