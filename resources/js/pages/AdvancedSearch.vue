@@ -42,24 +42,22 @@
         </div>
       <Doctors :doctorsToShow="resultDoctors" />
       <nav aria-label="Page navigation example">
-  <ul class="pagination">
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-        <span class="sr-only">Previous</span>
-      </a>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item">
-      <a @click="search(currentPage + 1)" class="page-link" href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-        <span class="sr-only">Next</span>
-      </a>
-    </li>
-  </ul>
-</nav>
+        <ul class="pagination d-flex justify-content-center">
+          <li class="page-item">
+            <button @click="search(specialtySearched, currentPage - 1)" :class="{ disabled: currentPage === 1 }" class="page-link bg-dark text-light m-2" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+              <span class="sr-only">Previous</span>
+            </button>
+          </li>
+          <li v-for="(page,index) in lastPage" :key="index" class="page-item"><input class="btn-check" type="radio" id="numPage"> <a id="numPage" class="page-link text-dark m-2" href="#" @click="search(specialtySearched,page)">{{ page  }}</a></li> 
+          <li class="page-item">
+            <button @click="search(specialtySearched, currentPage + 1)" class="page-link text-dark m-2" :class="{ disabled: currentPage === lastPage }"    aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+              <span class="sr-only">Next</span>
+            </button>
+          </li>
+        </ul>
+      </nav>
     </div>
 
   </div>
@@ -84,7 +82,9 @@ export default {
       minReviewCount: 0,
       specialties: [],
       resultDoctors: [],
-      currentPage: 1
+      currentPage: 1,
+      lastPage: 0
+      
     }
   },
   created() {
@@ -110,6 +110,7 @@ export default {
         .then((resp) => {
           this.resultDoctors = resp.data.results.data;
           this.currentPage = resp.data.results.current_page;
+          this.lastPage = resp.data.results.last_page;
         })
 
     },
@@ -118,7 +119,7 @@ export default {
         .then((resp) => {
           this.specialties = resp.data.results;
         })
-    },
+    }
   },
 
 }
