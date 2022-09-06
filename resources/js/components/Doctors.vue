@@ -1,8 +1,8 @@
 <template>
     <div>
-        <h2 class="results-title mt-5 pt-4 mb-4 text-light">Risultati della ricerca</h2>
+        <h2 class="results-title mt-5 pt-4 mb-4 text-light text-center">Risultati della ricerca</h2>
         
-        <div class="row">
+        <div class="row d-flex justify-content-center">
             <DoctorCard v-for="user in doctorsToShow" :key='user.id' :user="user"/>
         </div>
     </div>
