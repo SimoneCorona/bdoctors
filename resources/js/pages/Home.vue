@@ -253,7 +253,7 @@ export default {
       border-radius: 50%;
       outline: 5px solid black;
       outline-offset: 15px;
-      perspective: 1000px;
+      perspective: 300px;
       
       &:hover .mycard__inner {
         transform: rotateY(180deg);
@@ -266,7 +266,7 @@ export default {
         background-color: rgba($color: #000000, $alpha: .5);
         color: white;
         transform-style: preserve-3d;
-        transition: transform .8s;
+        transition: transform 1s;
         border-radius: 50%;
 
         img {
@@ -282,10 +282,6 @@ export default {
         backface-visibility: hidden;
         overflow: hidden;
         border-radius: 50%;
-      }
-
-      &__front {
-
       }
 
       &__back {
