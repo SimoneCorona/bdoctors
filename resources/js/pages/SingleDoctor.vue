@@ -96,7 +96,7 @@
                 </div>
                 <div class="d-flex align-items-center justify-content-end">
                   <span v-show="message_sent" class="text-success me-2">Messaggio inviato! &#10004;</span>
-                   <button :disabled="message_sent" class="btn btn-primary" @click="postMessage()"> <!-- :disabled="message_sent" -->
+                  <button :disabled="message_sent"  class="btn btn-primary" @click="postMessage()"> 
                     Invia
                   </button>
                 </div>
@@ -298,12 +298,8 @@ export default {
   },
   computed: {
     starsInReviews() {
-      return Math.round(this.user.avg_rating);
-      console.log(this.starsInReviews());
+      return Math.round(this.user.avg_rating)
     },
   },
 };
 </script>
-
-<style scoped lang="scss">
-</style>
