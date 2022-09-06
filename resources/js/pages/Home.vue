@@ -110,29 +110,11 @@ export default {
     created() {
         this.getSpecialties();
         this.getSponsorships();
-        this.counter = 0;
         this.prev = -1;
+        this.counter = 0;
         this.next = 1;
         
-        setInterval(()=> {
-          if (this.counter >= this.sponsored_users.length - 1) {
-            this.counter = 0;
-          } else {
-            this.counter++;
-          }
-
-          if (this.prev >= this.sponsored_users.length - 1) {
-            this.prev = 0;
-          } else {
-            this.prev++;
-          }
-
-          if (this.next >= this.sponsored_users.length - 1) {
-            this.next = 0;
-          } else {
-            this.next++;
-          }
-        }, 5000)
+        setInterval(this.showNext, 5000);
     },
     methods: {
       getSpecialties() {
