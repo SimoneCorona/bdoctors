@@ -30,7 +30,7 @@
           <div class="col-6 d-flex justify-content-center">
             <!-- CARD CHE SI GIRA -->
             <div class="mycard">
-              <div class="mycard__inner">
+              <div class="mycard__inner" @mouseover="pause" @mouseleave="start">
                 <!-- FRONTE -->
                 <div class="mycard__front">
                   <div class="sponsored-doctor ">
@@ -192,6 +192,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    .test {
+      background-color: cadetblue;
+    }
+
     .jumbotron {
       height: 60vh;
       background: linear-gradient(to top, #ffffff88, #00000088),  url('/images/jumbo.webp');
@@ -311,7 +315,7 @@ export default {
 
         .number {
           display: inline-block;
-          padding: 0 5rem .5rem;
+          padding: 0 10rem .5rem;
           border-bottom: 3px solid black;
           font-size: 2vw;
         }
@@ -344,7 +348,7 @@ export default {
 
           .name {
             display: inline-block;
-            padding: 0 5rem .5rem;
+            padding: 0 10rem .5rem;
             border-bottom: 4px solid black;
             font-size: 3.5vw;
           }
