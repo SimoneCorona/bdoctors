@@ -60,20 +60,35 @@
       </nav>
     </div>
 
+  <nav aria-label="Page navigation example d-flex">
+  <ul class="pagination justify-content-center">
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">Previous</span>
+      </a>
+    </li>
+    
+    <li class="page-item">
+      <a @click="search(currentPage + 1)" class="page-link" href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+      </a>
+    </li>
+  </ul>
+</nav>
   </div>
 
 </template>
   
   <script>
 import Doctors from '../components/Doctors.vue';
-//import Banner from '../components/Banner.vue';
 import axios from "axios";
 
 export default {
   name: "AdvancedSearch",
   components: {
     Doctors,
-    //Banner,
   },
   data() {
     return {
@@ -91,7 +106,7 @@ export default {
     this.getSpecialties();
   },
   mounted() {
-    this.search(this.$route.params.specialty, this.currentPage);
+    this.search(this.$route.params.specialty, this.currentPage, this.currentPage);
   },
   methods: {
     search(selectedSpecialty, numberPage) {
@@ -134,7 +149,7 @@ export default {
   .back {
     background-image: url('/images/bg-blue.png'),
     linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5));
-    background-blend-mode: overlay;;
+    background-blend-mode: overlay;
     background-repeat: no-repeat;
     background-size: cover;
   }
