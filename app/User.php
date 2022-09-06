@@ -42,7 +42,7 @@ class User extends Authenticatable
     }
 
     public function reviews() {
-        return $this->hasMany('App\Review');
+        return $this->hasMany('App\Review')->orderByDesc('created_at');
     }
      
     public function getIsSponsoredAttribute() {

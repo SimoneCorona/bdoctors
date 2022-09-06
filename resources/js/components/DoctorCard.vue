@@ -1,6 +1,6 @@
 <template>
     <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-5 pb-5">
-        <div class="card ms_card p-3 mb-4 pt-0 h-100">
+        <div class="card ms_card p-3 mb-4 pt-0 h-100 ">
             <div class="card-top">
                 <img class="doctor-image rounded-circle mx-auto d-block mb-4"
                     :src="user.photo ? `/storage/${user.photo}` : '/img/img-not-found.png'" style="width: 65%" />
