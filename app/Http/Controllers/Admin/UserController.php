@@ -8,12 +8,14 @@ use App\Sponsorship;
 use App\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Stringable;
 
 class UserController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -49,9 +51,9 @@ class UserController extends Controller
         $data = $request->all();
         $user = new User();
         $user->fill($data);
-        $user->slug = $this->generateUserSlugFromName($user->name,$user->surname);
+        $user->slug = $this->generateUserSlugFromName($user->name, $user->surname);
         $user->save();
-        if(isset($data['specialties'])) {
+        if (isset($data['specialties'])) {
             $user->specialties()->sync($data['specialties']);
         }
         return redirect()->route('admin.profile', ['user' => $user->id]);
@@ -118,11 +120,11 @@ class UserController extends Controller
             $image_path = Storage::put('profile_pics', $data['photo']);
             //  Salviamo il relativo path nel database
             $data['photo'] = $image_path;
-        }    
-        $user->slug = $this->generateUserSlugFromName($user->name,$user->surname);
+        }
+        $user->slug = $this->generateUserSlugFromName($user->name, $user->surname);
         $user->update($data);
         // dd($user);
-        if(isset($data['specialties'])) {
+        if (isset($data['specialties'])) {
             $user->specialties()->sync($data['specialties']);
         } else {
             $user->specialties()->sync([]);
@@ -149,9 +151,125 @@ class UserController extends Controller
         return redirect()->route('login');
     }
 
+    /**
+     * Display the sponsorship selection page.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function sponsor(Request $request)
+    {
+        $user = Auth::user();
+        $gateway = new \Braintree\Gateway([
+            'environment' => env('BRAINTREE_ENVIRONMENT'),
+            'merchantId' => env("BRAINTREE_MERCHANT_ID"),
+            'publicKey' => env("BRAINTREE_PUBLIC_KEY"),
+            'privateKey' => env("BRAINTREE_PRIVATE_KEY")
+        ]);
+        $clientToken = $gateway->clientToken()->generate();
+        return view('admin.users.sponsor', compact('user', 'clientToken'));
+    }
 
-    private function generateUserSlugFromName($name, $surname) {
-        $base_slug = Str::slug($name . '_' . $surname, '-');   
+    public function pay(Request $request)
+    {
+        $logged_user = Auth::user();
+        $user = User::with(['sponsorships'])->where('id', '=', $logged_user->id)->first();
+
+        // $final_sponsorship = $user->sponsorships()
+        //     ->wherePivot('date_end', '>', now())
+        //     ->orderByDesc('pivot_date_end')
+        //     ->first();
+
+        // dd($final_sponsorship === true);
+
+        // dd($final_sponsorship[0]->pivot->date_end);
+        // $final_sponsorship_end = Carbon::parse($final_sponsorship->pivot->date_end);
+        // dd($final_sponsorship_end);
+        // dd($final_sponsorship->isNotEmpty());
+        // dd(now(),$final_sponsorship_end);
+        // $dati['tier'] = 'oro'; // TEST, DELETE LATER
+
+        // $sponsorship = Sponsorship::where('name', '=', $dati['tier'])->first();
+        // dd($sponsorship);
+        // $user->sponsorships()->attach($sponsorship->id, ['date_start' => $final_sponsorship_end->copy()->addSecond(), 'date_end' => $final_sponsorship_end->copy()->addHours($sponsorship->duration_h)]);
+        // $user->sponsorships()->attach($sponsorship->id,['date_start' => now(), 'date_end' => now()->addHours($sponsorship->duration_h)]);
+        // return;
+
+
+        $dati = $request->all();
+        switch ($dati['tier']) {
+            case 'bronzo':
+                $amount = 2.99;
+                break;
+            case 'argento':
+                $amount = 6.99;
+                break;
+            case 'oro':
+                $amount = 9.99;
+                break;
+
+            default:
+                $error = 'Piano non valido';
+                return view('admin.users.payment-error', compact('error'));
+                break;
+        }
+
+        // return dd($dati);
+        $gateway = new \Braintree\Gateway([
+            'environment' => env('BRAINTREE_ENVIRONMENT'),
+            'merchantId' => env("BRAINTREE_MERCHANT_ID"),
+            'publicKey' => env("BRAINTREE_PUBLIC_KEY"),
+            'privateKey' => env("BRAINTREE_PRIVATE_KEY")
+        ]);
+
+        $result = $gateway->transaction()->sale([
+            'amount' => $amount,
+            // 'amount' => '2000.99',
+            'paymentMethodNonce' => $dati['payment_method_nonce'],
+            'deviceData' => $dati['device_data'],
+            'options' => [
+                'submitForSettlement' => True
+            ]
+        ]);
+
+        if (!$result->success) {
+            $error = $result->message;
+            return view('admin.users.payment-error', compact('error'));
+        } else {
+            $sponsorship = Sponsorship::where('name', '=', $dati['tier'])->first();
+
+            $final_sponsorship = $user->sponsorships()
+                ->wherePivot('date_end', '>', now())
+                ->orderByDesc('pivot_date_end')
+                ->first();
+
+            if ($final_sponsorship) {
+                // se c'è almeno una sponsorizzazione attiva da qui al futuro, prendiamo la sua data finale
+                // e creaiamo una nuova sponsorship a partire da quella
+                $final_sponsorship_end = Carbon::parse($final_sponsorship->pivot->date_end);
+                $new_sponsorship_end = $final_sponsorship_end->copy()->addHours($sponsorship->duration_h);
+                $user->sponsorships()
+                    ->attach($sponsorship->id, ['date_start' => $final_sponsorship_end->copy()->addSecond(), 'date_end' => $new_sponsorship_end]);
+                $sponsorship_end_msg = $new_sponsorship_end->format('d/m/Y H:i:s');
+                return view('admin.users.payment-success',compact('sponsorship_end_msg'));
+            } else {
+                // se non c'è una sponsorizzazione attiva a partire da ora,
+                // cheriamo una nuova sponsorship a partire da ora.
+                $new_sponsorship_end = now()->addHours($sponsorship->duration_h);
+                $user->sponsorships()
+                    ->attach($sponsorship->id, ['date_start' => now(), 'date_end' => $new_sponsorship_end]);
+                $sponsorship_end_msg = $new_sponsorship_end->format('d/m/Y H:i:s');
+                return view('admin.users.payment-success',compact('sponsorship_end_msg'));
+            }
+            // $user->sponsorships()->attach($sponsorship->id, ['date_start' => now(), 'date_end' => now()->addHours($sponsorship->duration_h)]);
+            // dd($sponsorship);
+        }
+        // dd($result->success, $result->message, $result);
+    }
+
+    private function generateUserSlugFromName($name, $surname)
+    {
+        $base_slug = Str::slug($name . '_' . $surname, '-');
         $slug = $base_slug;
         $count = 1;
         $user_found = User::where('slug', '=', $slug)->first();
@@ -163,10 +281,11 @@ class UserController extends Controller
         return $slug;
     }
 
-    private function getValidate(){
+    private function getValidate()
+    {
         return [
             'name' => 'required|string|max:255',
-            'surname'=> 'required|string|max:255',
+            'surname' => 'required|string|max:255',
             'photo' => 'image|max:512',
             'specialties' => 'required|exists:specialties,id',
             'cv' => 'nullable|string|max:5000',
@@ -175,5 +294,4 @@ class UserController extends Controller
             'phone_number' => 'string|max:255',
         ];
     }
-}    
-
+}
