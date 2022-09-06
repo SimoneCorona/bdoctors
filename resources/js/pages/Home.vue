@@ -30,7 +30,7 @@
           <div class="col-6 d-flex justify-content-center">
             <!-- CARD CHE SI GIRA -->
             <div class="mycard">
-              <div class="mycard__inner" @mouseover="pause" @mouseleave="start">
+              <div class="mycard__inner">
                 <!-- FRONTE -->
                 <div class="mycard__front">
                   <div class="sponsored-doctor ">
