@@ -1,7 +1,6 @@
 <template>
     <!-- INIZIO SLIDER CONTAINER -->
     <div class="sponsorship container overflow-hidden mt-5 text-center">
-
       <!-- TITOLO SLIDER -->
       <h2 class="mb-5 pb-5"><span class="first-letter">M</span>edici in evidenza</h2>
       <!-- INIZIO SLIDER -->
@@ -9,8 +8,9 @@
         <div class="row d-flex align-items-center">
           <!-- BOTTONE PREV -->
           <div class="col-3">
-            <div class="small-circle prev" @click="showPrev">
-              <img src="img/img-not-found.png" alt="">
+            <div class="small-circle prev" @click="showPrev" v-if="sponsored_users[prev]">
+              <img :src="sponsored_users[prev].photo ? sponsored_users[prev].photo : 'img/img-not-found.png'" alt="">
+
             </div>
           </div>
           <!-- / BOTTONE PREV -->
@@ -30,7 +30,7 @@
                         <!-- Karolina Tymoszuk -->
                       </h4>
                       <span v-if="sponsored_users[counter]">
-                        <h5 class="specialty" v-for="(specialty, index) in sponsored_users[counter].specialties" :key="index">
+                        <h5 class="specialty px-3" v-for="(specialty, index) in sponsored_users[counter].specialties" :key="index">
                         {{ specialty.specialty_name }}
                         </h5>
                       </span>
@@ -53,8 +53,8 @@
 
           <!-- BOTTONE NEXT -->
           <div class="col-3">
-            <div class="small-circle next" @click="showNext">
-              <img src="img/img-not-found.png" alt="">
+            <div class="small-circle next" @click="showNext" v-if="sponsored_users[next]">
+              <img :src="sponsored_users[next].photo ? sponsored_users[next].photo : 'img/img-not-found.png'" alt="">
             </div>
           </div>
           <!-- / BOTTONE NEXT -->
@@ -77,9 +77,11 @@ export default {
     },
     created() {
     this.getSponsorships();
-      this.counter = 0;
-      this.prev = -1;
-      this.next = 1;
+      this.counter = 1;
+      this.prev = 0;
+      this.next = 2;
+
+      setInterval(this.showNext, 5000);
     },
     methods: {
       getSponsorships() {
