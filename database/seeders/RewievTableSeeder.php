@@ -6,6 +6,8 @@ use App\Review;
 use App\User;
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class RewievTableSeeder extends Seeder
 {
@@ -24,11 +26,13 @@ class RewievTableSeeder extends Seeder
             $review->text_review = $faker->text();
             $review->rating = $faker->numberBetween(1, 5);
             $review->save();
+            DB::update('update reviews set created_at = ? where id = ?',
+            [$faker->dateTimeBetween('-6 months', 'now'),$review->id]);
         }
 
         //generiamo recensioni per l'utente di test
 
-        for ($i=0; $i < 10 ; $i++) { 
+        for ($i=0; $i < 50 ; $i++) { 
             
             $review = new Review();
             $review->author = $faker->name();
@@ -36,6 +40,8 @@ class RewievTableSeeder extends Seeder
             $review->text_review = $faker->text();
             $review->rating = $faker->numberBetween(1, 5);
             $review->save();
+            DB::update('update reviews set created_at = ? where id = ?',
+            [$faker->dateTimeBetween('-6 months', 'now'),$review->id]);
         }
     }
     // public function run()
