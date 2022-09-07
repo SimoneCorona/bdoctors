@@ -5,7 +5,7 @@
 {{-- {{dd($user)}} --}}
 
 @section('content')
-    <div>
+    <div class="container">
         <div class="user d-flex my-4 pt-2 py-4">
             <div class="user-avatar me-5">
                 @if ($user->photo)
