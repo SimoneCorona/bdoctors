@@ -37,7 +37,7 @@
                                 </a>
                             </li>
                             <li class="nav-item list-unstyled mb-2">
-                                <a class="nav-link active" href="#reviews">
+                                <a class="nav-link active" href="{{ route('admin.reviews.index') }}">
                                     <i class="fa-solid fa-comments me-2"></i>
                                     <strong>Recensioni</strong>
                                 </a>
