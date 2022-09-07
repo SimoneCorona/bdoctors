@@ -6,7 +6,7 @@
         <div class="row w-100">
           <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-2">
             <select v-model="specialtySearched" class="form-select" aria-label="Selezione Specializzazione">
-              <option disabled selected>Seleziona la Specializzazione</option>
+              <option selected>Seleziona la Specializzazione</option>
               <option v-for="(specialty, index) in specialties" :key="index" :value="specialty.specialty_slug">
                 {{ specialty.specialty_name }}</option>
             </select>
@@ -58,7 +58,7 @@
           </li>
         </ul>
       </nav>
-      <div v-else class="text-center text-light doctorNull p-3">Nessun medico trovato</div>
+      <div v-if="resultDoctors.length === 0" class="text-center text-light doctorNull p-3">Nessun medico trovato</div>
     </div>
   </div>
 
