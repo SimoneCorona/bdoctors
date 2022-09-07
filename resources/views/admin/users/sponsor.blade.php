@@ -4,7 +4,7 @@
 
 @section('content')
     <script src="https://js.braintreegateway.com/web/dropin/1.33.4/js/dropin.min.js"></script>
-    <div id="sponsorship" class="border-top pt-2 border-dark">
+    <div class="container" id="sponsorship" class="border-top pt-2 border-dark">
         <form id="payment-form" action="/admin/pay" method="post">
             @csrf
             <div class="row">
