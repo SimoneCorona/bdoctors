@@ -1,5 +1,5 @@
 <template>
-  <div class="test container-fluid">
+  <div class="test container-fluid pb-5">
     <!-- <h1 class="text-center">BDoctors</h1> -->
     <div class="jumbotron row row-cols-2 justify-content-center">
       <div class="col align-self-center mt-5 pt-5">
@@ -13,7 +13,11 @@
       </div>
     </div>
 
-    <!-- <SponsoredSlider /> -->
+    <!-- <p>{{ sponsored_users }}</p> -->
+
+    <SponsoredSlider />
+
+
 
     <!-- MEDICI IN EVIDENZA -->
     <!-- <div class="medici-prove container">
@@ -28,35 +32,27 @@
 </template>
 
 <script>
+import axios from 'axios';
 // import Doctors from '../components/Doctors.vue';
 // import Banner from '../components/Banner.vue';
-// import DoctorCard from '../components/SponsoredSlider.vue';
-import axios from "axios";
+import SponsoredSlider from '../components/SponsoredSlider.vue';
 
 export default {
     name: "Home",
     components: { 
         // Doctors, 
         // Banner,
-        // SponsoredSlider,
+        SponsoredSlider,
     },
     data(){
       return {
         specialties : '',
         selectedSpecialty: '',
-        sponsorships: [],
-        sponsored_users: [],
-        counter: '',
-        prev: '',
-        next: '',
       }
     },
     created() {
         this.getSpecialties();
-        this.getSponsorships();
-        this.counter = 0;
-        this.prev = -1;
-        this.next = 1;
+
         // setInterval(()=> {
         //   if (this.counter >= this.sponsored_users.length - 1) {
         //     this.counter = 0;
@@ -72,22 +68,13 @@ export default {
           this.specialties = resp.data.results;
         })
       },
-
-      getSponsorships() {
-        axios.get('/api/sponsored-users')
-        .then((resp) => {
-          this.sponsored_users = resp.data.results.data;
-        })
-      },
-
-
     }
 }
 </script>
 
 <style lang="scss" scoped>
     .test {
-      background-color: cadetblue;
+      background-color: rgb(210, 225, 226);
     }
     .jumbotron {
       height: 60vh;

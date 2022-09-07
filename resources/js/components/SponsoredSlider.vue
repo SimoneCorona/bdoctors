@@ -1,6 +1,7 @@
 <template>
     <!-- INIZIO SLIDER CONTAINER -->
-    <div class="sponsorship container overflow-hidden mt-5">
+    <div class="sponsorship container overflow-hidden mt-5 text-center">
+
       <!-- TITOLO SLIDER -->
       <h2 class="mb-5 pb-5"><span class="first-letter">M</span>edici in evidenza</h2>
       <!-- INIZIO SLIDER -->
@@ -9,7 +10,7 @@
           <!-- BOTTONE PREV -->
           <div class="col-3">
             <div class="small-circle prev" @click="showPrev">
-              <img :src="sponsored_users[prev].photo ? sponsored_users[prev].photo : 'img/img-not-found.png'" alt=""> alt="">
+              <img src="img/img-not-found.png" alt="">
             </div>
           </div>
           <!-- / BOTTONE PREV -->
@@ -20,25 +21,28 @@
                 <!-- FRONTE -->
                 <div class="mycard__front">
                   <div class="sponsored-doctor ">
-                    <div class="sponsored-doctor__img">
+                    <div class="sponsored-doctor__img" v-if="sponsored_users[counter]">
                       <img :src="sponsored_users[counter].photo ? sponsored_users[counter].photo : 'img/img-not-found.png'" alt="">
                     </div>
                     <div class="sponsored-doctor__info">
-                      <h4 class="name">
+                      <h4 v-if="sponsored_users[counter]" class="name">
                         {{ sponsored_users[counter].name }} {{ sponsored_users[counter].surname }}
+                        <!-- Karolina Tymoszuk -->
                       </h4>
-                      <h5 class="specialty" v-for="(specialty, index) in sponsored_users[counter].specialties" :key="index">
+                      <span v-if="sponsored_users[counter]">
+                        <h5 class="specialty" v-for="(specialty, index) in sponsored_users[counter].specialties" :key="index">
                         {{ specialty.specialty_name }}
-                      </h5>
+                        </h5>
+                      </span>
                     </div>
                   </div>
                 </div>
                 <!-- RETRO -->
                 <div class="mycard__back d-flex flex-column">
-                  <h3 class="number">
+                  <h3 class="number" v-if="sponsored_users[counter]">
                     {{ sponsored_users[counter].phone_number }}
                   </h3>
-                  <h4 class="email">
+                  <h4 class="email" v-if="sponsored_users[counter]">
                     {{ sponsored_users[counter].email }}
                   </h4>
                 </div>
@@ -50,7 +54,7 @@
           <!-- BOTTONE NEXT -->
           <div class="col-3">
             <div class="small-circle next" @click="showNext">
-              <img :src="sponsored_users[next].photo ? sponsored_users[next].photo : 'img/img-not-found.png'" alt=""> alt="">
+              <img src="img/img-not-found.png" alt="">
             </div>
           </div>
           <!-- / BOTTONE NEXT -->
@@ -62,9 +66,30 @@
 
 <script>
 export default {
-    name: 'DoctorCard',
+    name: 'SponsoredSlider',
+    data() {
+      return {
+        sponsored_users: [],
+        counter: '',
+        prev: '',
+        next: '',
+      }
+    },
+    created() {
+    this.getSponsorships();
+      this.counter = 0;
+      this.prev = -1;
+      this.next = 1;
+    },
     methods: {
-            showPrev() {
+      getSponsorships() {
+        axios.get('/api/sponsored-users')
+        .then((resp) => {
+          this.sponsored_users = resp.data.results.data;
+        })
+      },
+
+      showPrev() {
         if (this.counter === 0) {
           this.counter = this.sponsored_users.length - 1;
         } else {
@@ -104,6 +129,23 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
+    .sponsorship {
+      margin-bottom: 4rem;
+
+      h2 {
+        text-transform: uppercase;
+        letter-spacing: .4rem;
+
+        .first-letter {
+          background-color: black;
+          color: white;
+          padding-left: .45rem;
+          margin-right: .3rem;
+        }
+      }
+    }
+
     .small-circle {
       width: 20vw;
       max-width: 300px;
@@ -167,12 +209,12 @@ export default {
         align-items: center;
         .number {
           display: inline-block;
-          padding: 0 10rem .5rem;
+          padding: 0 4rem .5rem;
           border-bottom: 3px solid black;
-          font-size: 2vw;
+          font-size: 2rem;
         }
         .email {
-          font-size: 2vw;
+          font-size: 2rem;
         }
       }
     }
@@ -204,4 +246,12 @@ export default {
           }
         }
       }
+
+    .prev {
+      transform: translate(-55%);
+    }
+
+    .next {
+      transform: translate(55%);
+    }
 </style>
