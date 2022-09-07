@@ -20,7 +20,7 @@
                 <div class="mt-4">
                     <div class="p-0">
                         <li class="nav-item list-unstyled mb-2">
-                            <a class="nav-link active" href="{{ route('guest.home','doctor/'.$user->slug) }}">
+                            <a class="nav-link active" href="{{ route('guest.home', 'doctor/' . $user->slug) }}">
                                 <i class="fa-solid fa-address-card me-2"></i>
                                 <strong>Il tuo profilo pubblico</strong>
                             </a>
@@ -50,7 +50,7 @@
                             </a>
                         </li>
                         <li class="nav-item list-unstyled mb-2">
-                            <a class="nav-link active" href="{{route('admin.users.sponsor')}}">
+                            <a class="nav-link active" href="{{ route('admin.users.sponsor') }}">
                                 <i class="fa-solid fa-circle-dollar-to-slot me-2"></i>
                                 <strong>Sponsorizzazione</strong>
                             </a>
@@ -117,7 +117,8 @@
                                 {{ $message->text_message }}
                             </div>
                             <div class="p-0">
-                                <strong>Email: </strong><a href="{{'mailto:'.$message->email}}">{{ $message->email }}</a>
+                                <strong>Email: </strong><a
+                                    href="{{ 'mailto:' . $message->email }}">{{ $message->email }}</a>
                             </div>
                             <small>Inviato da <strong>{{ $message->author }}</strong></small><br>
                             <small>Scritto il {{ $message->created_at->format('d-m-Y') }} alle ore
@@ -125,17 +126,57 @@
                         </div>
                     </div>
                 @empty
-                <div>Nessun messaggio</div>
+                    <div>Nessun messaggio</div>
                 @endforelse
             </div>
         </div>
 
         {{-- Wrapper statistic --}}
         <div id="stats" class="border-top py-2 border-dark">
-            Le mie statistiche
+            <script src="{{ asset('chart.js/chart.js') }}"></script>
+            <h3>Le mie statistiche</h3>
+            <div>
+                <canvas id="myChart"></canvas>
+            </div>
+            <script>
+                // import Chart from 'chart.js/auto';
+                const review_stats = @json($review_stats);
+                const maxYearStats = 
+                const labels = [
+                    'January',
+                    'February',
+                    'March',
+                    'April',
+                    'May',
+                    'June',
+                ];
+
+                const data = {
+                    labels: labels,
+                    datasets: [{
+                        label: 'My First dataset',
+                        backgroundColor: 'rgb(255, 99, 132)',
+                        borderColor: 'rgb(255, 99, 132)',
+                        data: [0, 10, 5, 2, 20, 30, 45],
+                    }]
+                };
+
+                const config = {
+                    type: 'line',
+                    data: data,
+                    options: {}
+                };
+
+                const myChart = new Chart(
+                    document.getElementById('myChart'),
+                    config
+                );
+            </script>
         </div>
     </div>
 @endsection
+
+
 
 <style scoped>
     .user {
