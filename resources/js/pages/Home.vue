@@ -13,65 +13,7 @@
       </div>
     </div>
 
-    <!-- INIZIO SLIDER CONTAINER -->
-    <div class="sponsorship container overflow-hidden mt-5">
-      <!-- TITOLO SLIDER -->
-      <h2 class="mb-5 pb-5"><span class="first-letter">M</span>edici in evidenza</h2>
-      <!-- INIZIO SLIDER -->
-      <div class="container-fluid">
-        <div class="row d-flex align-items-center">
-          <!-- BOTTONE PREV -->
-          <div class="col-3">
-            <div class="small-circle prev" @click="showPrev">
-              <img :src="sponsored_users[prev].photo ? sponsored_users[prev].photo : 'img/img-not-found.png'" alt=""> alt="">
-            </div>
-          </div>
-          <!-- / BOTTONE PREV -->
-          <div class="col-6 d-flex justify-content-center">
-            <!-- CARD CHE SI GIRA -->
-            <div class="mycard">
-              <div class="mycard__inner">
-                <!-- FRONTE -->
-                <div class="mycard__front">
-                  <div class="sponsored-doctor ">
-                    <div class="sponsored-doctor__img">
-                      <img :src="sponsored_users[counter].photo ? sponsored_users[counter].photo : 'img/img-not-found.png'" alt="">
-                    </div>
-                    <div class="sponsored-doctor__info">
-                      <h4 class="name">
-                        {{ sponsored_users[counter].name }} {{ sponsored_users[counter].surname }}
-                      </h4>
-                      <h5 class="specialty" v-for="(specialty, index) in sponsored_users[counter].specialties" :key="index">
-                        {{ specialty.specialty_name }}
-                      </h5>
-                    </div>
-                  </div>
-                </div>
-                <!-- RETRO -->
-                <div class="mycard__back d-flex flex-column">
-                  <h3 class="number">
-                    {{ sponsored_users[counter].phone_number }}
-                  </h3>
-                  <h4 class="email">
-                    {{ sponsored_users[counter].email }}
-                  </h4>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- / CARD CHE SI GIRA -->
-
-          <!-- BOTTONE NEXT -->
-          <div class="col-3">
-            <div class="small-circle next" @click="showNext">
-              <img :src="sponsored_users[next].photo ? sponsored_users[next].photo : 'img/img-not-found.png'" alt=""> alt="">
-            </div>
-          </div>
-          <!-- / BOTTONE NEXT -->
-        </div>
-      </div>
-    </div>
-    <!-- FINE SLIDER CONTAINER -->
+    <!-- <SponsoredSlider /> -->
 
     <!-- MEDICI IN EVIDENZA -->
     <!-- <div class="medici-prove container">
@@ -88,6 +30,7 @@
 <script>
 // import Doctors from '../components/Doctors.vue';
 // import Banner from '../components/Banner.vue';
+// import DoctorCard from '../components/SponsoredSlider.vue';
 import axios from "axios";
 
 export default {
@@ -95,6 +38,7 @@ export default {
     components: { 
         // Doctors, 
         // Banner,
+        // SponsoredSlider,
     },
     data(){
       return {
@@ -110,11 +54,16 @@ export default {
     created() {
         this.getSpecialties();
         this.getSponsorships();
-        this.prev = -1;
         this.counter = 0;
+        this.prev = -1;
         this.next = 1;
-        
-        setInterval(this.showNext, 5000);
+        // setInterval(()=> {
+        //   if (this.counter >= this.sponsored_users.length - 1) {
+        //     this.counter = 0;
+        //   } else {
+        //     this.counter++;
+        //   }
+        // }, 5000)
     },
     methods: {
       getSpecialties() {
@@ -137,13 +86,11 @@ export default {
         } else {
           this.counter--;
         }
-
         if (this.prev === 0) {
           this.prev = this.sponsored_users.length - 1;
         } else {
           this.prev--;
         }
-
         if (this.next === 0) {
           this.next = this.sponsored_users.length - 1;
         } else {
@@ -157,19 +104,17 @@ export default {
         } else {
           this.counter++;
         }
-
         if (this.prev >= this.sponsored_users.length - 1) {
           this.prev = 0;
         } else {
           this.prev++;
         }
-
         if (this.next >= this.sponsored_users.length - 1) {
           this.next = 0;
         } else {
           this.next++;
         }
-      }
+      },
     }
 }
 </script>
@@ -178,7 +123,6 @@ export default {
     .test {
       background-color: cadetblue;
     }
-
     .jumbotron {
       height: 60vh;
       background: linear-gradient(to top, #ffffff88, #00000088),  url('/images/jumbo.webp');
@@ -186,18 +130,15 @@ export default {
       background-size: cover;
       background-position: center;
     }
-
     .sponsorship {
       padding-top: 50px;
       padding-bottom: 70px;
       border-right: 3px solid black;
       border-left: 3px solid black;
-
       h2 {
         text-transform: uppercase;
         letter-spacing: .5rem;
         text-align: center;
-
         .first-letter {
           display: inline-block;
           color: white;
@@ -208,18 +149,15 @@ export default {
         }
       }
     }
-
     .mybtn {
       background-color: #000000;
       text-decoration: none;
       display: flex;
       align-items: center;
     }
-
     select {
       border-radius: 0;
     }
-
     .small-circle {
       width: 20vw;
       max-width: 300px;
@@ -230,25 +168,15 @@ export default {
       border-radius: 50%;
       overflow: hidden;
       cursor: pointer;
-
       img {
         width: 100%;
         object-fit: cover;
         transition: .4s;
       }
-
       img:hover {
         transform: scale(110%);
         transition: .4s;
       }
-    }
-
-    .next {
-      translate: 55%;
-    }
-    
-    .prev {
-      translate: -55%;
     }
 
     .mycard {
@@ -264,7 +192,6 @@ export default {
       &:hover .mycard__inner {
         transform: rotateY(180deg);
       }
-
       &__inner {
         width: 100%;
         height: 100%;
@@ -274,13 +201,11 @@ export default {
         transform-style: preserve-3d;
         transition: transform 1s;
         border-radius: 50%;
-
         img {
           width: 100%;
           border-radius: 50%;
         }
       }
-
       &__front, &__back {
         width: 100%;
         height: 100%;
@@ -289,35 +214,29 @@ export default {
         overflow: hidden;
         border-radius: 50%;
       }
-
       &__back {
         transform: rotateY(180deg);
         display: flex;
         justify-content: center;
         align-items: center;
-
         .number {
           display: inline-block;
           padding: 0 10rem .5rem;
           border-bottom: 3px solid black;
           font-size: 2vw;
         }
-
         .email {
           font-size: 2vw;
         }
       }
     }
-
     .sponsored-doctor {
       position: relative;
       width: 100%;
       height: 100%;
-
       &__img {
         position: absolute;
         }
-
         &__info {
           width: 100%;
           height: 100%;
@@ -328,14 +247,12 @@ export default {
           align-items: center;
           text-align: center;
           background-color: rgba($color: #000000, $alpha: .2);
-
           .name {
             display: inline-block;
             padding: 0 10rem .5rem;
             border-bottom: 4px solid black;
             font-size: 3.5vw;
           }
-
           .specialty {
             font-size: 2.5vw;
           }
