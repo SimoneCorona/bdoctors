@@ -6,6 +6,7 @@ use App\Message;
 use App\User;
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
+use Illuminate\Support\Facades\DB;
 
 class MessageTableSeeder extends Seeder
 {
@@ -25,10 +26,12 @@ class MessageTableSeeder extends Seeder
             $message->text_message = $faker->text();
             $message->email = $faker->email();
             $message->save();
+            DB::update('update messages set created_at = ? where id = ?',
+            [$faker->dateTimeBetween('-6 months', 'now'),$message->id]);
         }
 
         // generiamo messaggi per l'utente di test
-        for ($i=0; $i < 10 ; $i++) { 
+        for ($i=0; $i < 30 ; $i++) { 
             
             $message = new Message();
             $message->author = $faker->name();
@@ -36,6 +39,8 @@ class MessageTableSeeder extends Seeder
             $message->text_message = $faker->text();
             $message->email = $faker->email();
             $message->save();
+            DB::update('update messages set created_at = ? where id = ?',
+            [$faker->dateTimeBetween('-6 months', 'now'),$message->id]);
         }
     }
     // public function run()
