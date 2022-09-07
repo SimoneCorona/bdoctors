@@ -1,8 +1,10 @@
 <template>
     <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-5 pb-5">
-        <div class="card ms_card p-3 mb-4 pt-0 h-100 ">
+        <p>{{user.active_sponsorship}}</p>
+        <div class="card ms_card p-3 mb-4 pt-0 h-100" :class="{sponsored: user.active_sponsorship}">
             <div class="card-top">
                 <img class="doctor-image rounded-circle mx-auto d-block mb-4"
+                    :class="{sponsored_img: user.active_sponsorship}"
                     :src="user.photo ? `/storage/${user.photo}` : '/img/img-not-found.png'" style="width: 65%" />
                 <p class="stars text-center"><i class="fas fa-star" :class="n <= starsInReviews ? 'text-warning' : 'text-muted'" v-for="n in 5" :key="n"></i></p>
                 <h3 class="text-center">{{ user.name }} {{ user.surname }}</h3>
@@ -41,7 +43,7 @@ export default {
 <style lang="scss" scoped>
 
 .ms_card {
-    background-color: rgba($color: #000000, $alpha: 0.5);
+    background-color: rgba($color: #000000, $alpha: 0.4);
     border-radius: 0;
 
     .card-top {
@@ -51,6 +53,16 @@ export default {
             outline: 1px solid white;
             outline-offset: 10px;
             margin-top: 2rem;
+        }
+
+        .sponsored_img {
+            outline: 3px solid white;
+            outline-offset: 10px;
+
+        }
+
+        .sponsored_specialty {
+            font-weight: 800;
         }
 
         .stars {
@@ -91,6 +103,11 @@ export default {
         line-height: 2rem;
         text-align: end;
     }
+}
+
+.sponsored {
+    outline: 1px solid white;
+    background-color: rgba($color: #000000, $alpha: 0.3);
 }
 
 </style>
