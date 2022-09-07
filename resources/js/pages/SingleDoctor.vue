@@ -96,7 +96,7 @@
                 </div>
                 <div class="d-flex align-items-center justify-content-end">
                   <span v-show="message_sent" class="text-success me-2">Messaggio inviato! &#10004;</span>
-                   <button :disabled="message_sent" class="btn btn-primary" @click="postMessage()"> <!-- :disabled="message_sent" -->
+                  <button  class="btn btn-primary" @click="postMessage()"> <!-- :disabled="message_sent" -->
                     Invia
                   </button>
                 </div>
@@ -159,7 +159,7 @@
       </div>
       <div class="d-flex align-items-center justify-content-end">
         <span v-show="review_sent" class="text-success me-2">Recensione inviata! &#10004;</span>
-        <button :disabled="review_sent" class="btn btn-primary" @click="postReview()">
+        <button class="btn btn-primary" @click="postReview()">
           Invia
         </button>
       </div>
@@ -246,20 +246,21 @@ export default {
           text_review: this.review_text,
         })
         .then((resp) => {
+          this.rating = 0;
+          this.review_text = "";
+          this.review_author = "";
           if (resp.data.success) {
             this.review_sent = true;
             this.getSingleDoctor();
           } else {
-            // console.log(typeof(resp.data))
-            // console.log(resp.data.response);
             for (const key in resp.data.response) {
               this.errors.review.push(key);
-              // console.log(key);
             }
           }
         });
     },
     postMessage() {
+
       this.errors.message = [];
       if (this.message_author === "") {
         this.errors.message.push("author");
@@ -281,6 +282,9 @@ export default {
           text_message: this.message_text,
         })
         .then((resp) => {
+          this.message_author = "";
+          this.message_email = "";
+          this.message_text = "";
           if (resp.data.success) {
             this.message_sent = true;
             this.getSingleDoctor();
@@ -298,12 +302,8 @@ export default {
   },
   computed: {
     starsInReviews() {
-      return Math.round(this.user.avg_rating);
-      console.log(this.starsInReviews());
+      return Math.round(this.user.avg_rating)
     },
   },
 };
 </script>
-
-<style scoped lang="scss">
-</style>
