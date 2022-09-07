@@ -87,49 +87,52 @@
                 {{-- Wrapper Reviews --}}
                 <div id="reviews" class="col-12 col-lg-6 reviews my-3 pe-5 border-end border-dark">
                     <h3 class="mb-3">Le tue recensioni:</h3>
-                    @forelse ($user->reviews->sortByDesc('created_at') as $review)
-                        <div class="review mb-4">
-                            <div>
-                                @for ($i = 1; $i <= 5; $i++)
-                                    @if ($i <= $review->rating)
-                                        <i class="fa-solid fa-star text-warning"></i>
-                                    @elseif($i > $review->rating)
-                                        <i class="fa-solid fa-star text-muted"></i>
-                                    @endif
-                                @endfor
-                                <p class='my-2'>
-                                    {{ strlen($review->text_review) < 10 ? $review->text_review : substr($review->text_review, 0, 50) . "..."  }}
-                                </p>
-                                <small>Inviata da <strong>{{ $review->author }}</strong></small><br>
-                                <small>Scritta il {{ $review->created_at->format('d-m-Y') }} alle ore
-                                    {{ $review->created_at->format('g:i') }} </small>
-                            </div>
+                    
+                    @if (count($user->reviews) > 0)
+                    @for ($h = 0; $h < min($user->reviews->sortByDesc('created-at')->count(),2); $h++)
+                    <div class="review mb-4">
+                        <div>
+                            @for ($i = 1; $i <= 5; $i++)
+                                @if ($i <= $user->reviews->sortByDesc('created_at')[$h]->rating)
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                @elseif($i > $user->reviews->sortByDesc('created_at')[$h]->rating)
+                                    <i class="fa-solid fa-star text-muted"></i>
+                                @endif
+                            @endfor
+                            <p class='my-2'>
+                                {{ strlen($user->reviews->sortByDesc('created_at')[$h]->text_review) < 10 ? $user->reviews->sortByDesc('created_at')[$h]->text_review : substr($user->reviews->sortByDesc('created_at')[$h]->text_review, 0, 50) . "..."  }}
+                            </p>
+                            <small>Inviata da <strong>{{ $user->reviews->sortByDesc('created_at')[$h]->author }}</strong></small><br>
+                            <small>Scritta il {{ $user->reviews->sortByDesc('created_at')[$h]->created_at->format('d-m-Y') }} alle ore
+                                {{ $user->reviews->sortByDesc('created_at')[$h]->created_at->format('g:i') }} </small>
                         </div>
-                    @empty
-                        <div>Nessuna recensione</div>
-                    @endforelse
+                    </div>
+                    @endfor
+                    @else
+                    <div>Nessuna recensione</div>
+                    @endif
+                    
                 </div>
                 {{-- Wrapper messages --}}
-                <div id="messages" class="messages col-12 col-md-8 col-lg-6  my-3  ">
+                <div id="messages" class="messages col-12 col-lg-6  my-3 pe-5 ">
                     <h3 class="mb-3">I tuoi messaggi:</h3>
-                    @forelse ($user->messages->sortByDesc('created_at') as $message)
-                        <div class="message mb-4">
-                            <div class="mb-1">
-                                <div class="p-0 my-2">
-                                    {{ strlen($message->text_message) < 10 ? $message->text_message : substr($message->text_message, 0, 50) . "..."  }}
-                                </div>
-                                <div class="p-0">
-                                    <strong>Email: </strong><a
-                                        href="{{ 'mailto:' . $message->email }}">{{ $message->email }}</a>
-                                </div>
-                                <small>Inviato da <strong>{{ $message->author }}</strong></small><br>
-                                <small>Scritto il {{ $message->created_at->format('d-m-Y') }} alle ore
-                                    {{ $message->created_at->format('g:i') }} </small>
+
+                    @if (count($user->messages) > 0)
+                    @for ($m = 0; $m < min($user->messages->sortByDesc('created-at')->count(),2); $m++)
+                    <div class="review mb-4">
+                        <div class=" ">
+                            <div class="p-0 my-2">
+                                {{ strlen($user->messages->sortByDesc('created_at')[$m]->text_message) < 10 ? $user->messages->sortByDesc('created_at')[$m]->text_message : substr($user->messages->sortByDesc('created_at')[$m]->text_message, 0, 50) . "..."  }}
                             </div>
+                            <small>Inviata da <strong>{{ $user->messages->sortByDesc('created_at')[$m]->author }}</strong></small><br>
+                            <small>Scritta il {{ $user->messages->sortByDesc('created_at')[$m]->created_at->format('d-m-Y') }} alle ore
+                                {{ $user->messages->sortByDesc('created_at')[$h]->created_at->format('g:i') }} </small>
                         </div>
-                    @empty
-                        <div>Nessun messaggio</div>
-                    @endforelse
+                    </div>
+                    @endfor
+                    @else
+                    <div>Nessuna recensione</div>
+                    @endif
                 </div>
             </div>
         </div>
