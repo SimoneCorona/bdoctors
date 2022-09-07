@@ -5,7 +5,7 @@
       <div class="col align-self-center mt-5 pt-5">
         <div class="input-group">
           <select v-model="selectedSpecialty" class="form-select" aria-label="Cerca per specializzazione">
-            <option selected value="0"></option>
+            <option disabled selected value="0"></option>
             <option v-for="(specialty, index) in specialties" :key="index" :value="specialty.specialty_slug">{{ specialty.specialty_name }}</option>
           </select>
           <router-link class="mybtn text-light ps-3 pe-2" :to="{name: 'advanced-search', params: {specialty: selectedSpecialty }}"><b>cerca</b></router-link> 
