@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Message;
 use App\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -25,30 +26,29 @@ class HomeController extends Controller
 
         // otteniamo tutte le review create a partire dall'anno attuale
         $user_reviews = Review::where('user_id', '=', $user->id)->where('created_at','>',$current_year)->get();
+        // otteniamo anche tutti i messaggi
+        $user_messages = Message::where('user_id', '=', $user->id)->where('created_at','>',$current_year)->get();
         // dd($user_reviews);
-
         //creaimo una struttura che conterrà una serie di collection annidate contenenti i voti divisi per mese
         $review_counter = collect([]);
-        $review_counter[$current_year_string] = collect(array('review_count' => 0, 'ratings' => collect([]), 'months' => collect([])));
+        $review_counter[($current_year_string)] = collect(array('review_count' => 0, 'ratings' => collect([]), 'months' => collect([])));
+        // creiamo una struttura analoga per i messaggi
+        $message_counter = collect([]);
+        $message_counter[$current_year_string] = collect(array('message_count' => 0, 'months' => collect([])));
+
         for ($m=1; $m <= 12 ; $m++) { 
             $month_string = str_pad(strval($m), 2, '0', STR_PAD_LEFT);
             $year_month_string = $current_year_string.'-'.$month_string;
             $review_counter[$current_year_string]['months'][$year_month_string] = collect(array('review_count' => 0, 'ratings' => collect([])));
+            $message_counter[$current_year_string]['months'][$year_month_string] = collect(array('message_count' => 0));
         }
         // dd($review_counter);
+        // dd($message_counter);
 
         // inseriamo i dati di ciascuna review dentro la struttura nel posto giusto
         foreach ($user_reviews as $key => $value) {
             $year_label = $value->created_at->format('Y');
             $year_month_label = $value->created_at->format('Y-m');
-            // dd(gettype($year_label));
-            // echo $value->created_at->format('Y-m').'<br>';
-            // if (!$review_counter->keys()->contains($year_label)) {
-            //     $review_counter[$year_label] = collect(array('review_count' => 0, 'ratings' => collect([]), 'months' => collect([])));
-            // }
-            // if (!$review_counter[$year_label]['months']->keys()->contains($year_month_label)) {
-            //     $review_counter[$year_label]['months'][$year_month_label] = collect(array('review_count' => 0, 'ratings' => collect([])));
-            // }
             $review_counter[$year_label]['review_count'] += 1;
             $review_counter[$year_label]['ratings']->push($value->rating);
             $review_counter[$year_label]['months'][$year_month_label]['review_count'] += 1;
@@ -73,11 +73,22 @@ class HomeController extends Controller
             }
             $review_stats[$year]['months'] = $review_stats[$year]['months']->sortKeys();
         }
+
+        // dd($message_counter);
+        //inseriamo i dati di ciascun messaggio dentro la struttura nel posto giusto
+        foreach ($user_messages as $key => $value) {
+            $year_label = $value->created_at->format('Y');
+            $year_month_label = $value->created_at->format('Y-m');
+            $message_counter[$year_label]['message_count'] += 1;
+            $message_counter[$year_label]['months'][$year_month_label]['message_count'] += 1;
+        }
+        
+        
         // $review_counter['2022'] = $review_counter['2022']->sortKeys();
         // dd($review_counter,$review_counter['2022']['2022-08']['ratings']->avg());
         // dd($review_counter);
         // dd($review_stats);
-        return view('admin.home', compact('user','review_stats'));
+        return view('admin.home', compact('user','review_stats','message_counter'));
     }
 
     /**
