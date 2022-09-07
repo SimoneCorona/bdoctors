@@ -138,41 +138,52 @@
         </div>
 
         {{-- Wrapper statistic --}}
-        <div id="stats" class="border-top py-2 border-dark">
+        <div id="stats" class="container border-top border-dark">
             <script src="{{ asset('chart.js/chart.js') }}"></script>
             <h3>Le mie statistiche</h3>
-            <div>
-                <canvas id="myChart"></canvas>
+            <div class="row justify-content-center">
+                <div class="col-8">
+                    <h4>Recensioni mensili</h4>
+                    <canvas id="review-chart"></canvas>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-8">
+                    <h4 class="mt-3">Messaggi mensili</h4>
+                    <canvas id="message-chart"></canvas>
+                </div>
             </div>
             <script>
                 // import Chart from 'chart.js/auto';
-                const review_stats = @json($review_stats);
-                const labels = [];
+                const reviewStats = @json($review_stats);
+                const messageStats = @json($message_counter);
+                const reviewLabels = [];
+                const messageLabels = [];
                 const monthlyAvgs = [];
                 const monthlyReviewCount = [];
-                const maxYearStats = Object.keys(review_stats).reduce(function (a, b) {
+                const monthlyMessageCount = [];
+                const maxYearReviewStats = Object.keys(reviewStats).reduce(function (a, b) {
                     return Math.max(a, b);
                 }, -Infinity).toString();
-                for (const key in review_stats[maxYearStats]['months']) {
-                    // console.log(review_stats[maxYearStats].months, key)
-                    labels.push(key);
-                    monthlyAvgs.push(review_stats[maxYearStats]['months'][key]['review_avg']);
-                    monthlyReviewCount.push(review_stats[maxYearStats]['months'][key]['review_count']);
+                const maxYearMessageStats = Object.keys(messageStats).reduce(function (a, b) {
+                    return Math.max(a, b);
+                }, -Infinity).toString();
+
+                for (const key in reviewStats[maxYearReviewStats]['months']) {
+                    reviewLabels.push(key);
+                    monthlyAvgs.push(reviewStats[maxYearReviewStats]['months'][key]['review_avg']);
+                    monthlyReviewCount.push(reviewStats[maxYearReviewStats]['months'][key]['review_count']);
                     
                 }
-                
 
-                const labelsX = [
-                    'January',
-                    'February',
-                    'March',
-                    'April',
-                    'May',
-                    'June',
-                ];
+                for (const key in messageStats[maxYearMessageStats]['months']) {
+                    messageLabels.push(key);
+                    monthlyMessageCount.push(messageStats[maxYearMessageStats]['months'][key]['review_count']);
+                    
+                }
 
-                const data = {
-                    labels: labels,
+                const reviewData = {
+                    labels: reviewLabels,
                     datasets: [{
                         label: 'Media voti',
                         backgroundColor: 'rgb(255, 99, 132)',
@@ -189,9 +200,9 @@
                 ]
                 };
 
-                const config = {
+                const reviewConfig = {
                     type: 'bar',
-                    data: data,
+                    data: reviewData,
                     options: {scales: {
                         'left-y-axis': {
                             type: 'linear',
@@ -204,10 +215,34 @@
                     }}
                 };
 
-                const myChart = new Chart(
-                    document.getElementById('myChart'),
-                    config
+                const messageData = {
+                    labels: messageLabels,
+                    datasets: [{
+                        label: 'Numero messaggi',
+                        backgroundColor: 'rgb(104, 212, 82)',
+                        borderColor: 'rgb(104, 212, 82)',
+                        data: monthlyReviewCount,
+                    },
+                ]
+                };
+
+                const messageConfig = {
+                    type: 'bar',
+                    data: messageData,
+                    options: {}
+                };
+
+                const reviewChart = new Chart(
+                    document.getElementById('review-chart'),
+                    reviewConfig
                 );
+
+                const messageChart = new Chart(
+                    document.getElementById('message-chart'),
+                    messageConfig
+                );
+
+
             </script>
         </div>
     </div>
