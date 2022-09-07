@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container d-flex flex-column align-items-center">
+    <div class="container d-flex flex-column ">
       <h3 class="mb-3">I tuoi messaggi:</h3>
       @forelse ($messages->sortByDesc('created_at') as $message)
           <div class="message mb-4">
