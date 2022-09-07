@@ -3,20 +3,18 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use App\Message;
-use App\User;
+use App\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class MessageController extends Controller
+class ReviewController extends Controller
 {
     public function index() {
         $user = Auth::user();
-        $messages = Message::where('user_id', '=', $user->id)->simplepaginate(5);
+        $reviews = Review::where('user_id', '=', $user->id)->simplepaginate(5);
         
         // return view('admin.home', compact('user'));
 
-        return view('admin.messages.index', compact('user', 'messages'));
+        return view('admin.reviews.index', compact('user', 'reviews'));
     }
-   
 }
