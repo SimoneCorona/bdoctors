@@ -16,39 +16,41 @@
           <!-- / BOTTONE PREV -->
           <div class="col-6 d-flex justify-content-center">
             <!-- CARD CHE SI GIRA -->
-            <div class="mycard">
-              <div class="mycard__inner">
-                <!-- FRONTE -->
-                <div class="mycard__front">
-                  <div class="sponsored-doctor ">
-                    <div class="sponsored-doctor__img" v-if="sponsored_users[counter]">
-                      <img :src="sponsored_users[counter].photo ? sponsored_users[counter].photo : 'img/img-not-found.png'" alt="">
-                    </div>
-                    <div class="sponsored-doctor__info">
-                      <h4 v-if="sponsored_users[counter]" class="name">
-                        {{ sponsored_users[counter].name }} {{ sponsored_users[counter].surname }}
-                        <!-- Karolina Tymoszuk -->
-                      </h4>
-                      <span v-if="sponsored_users[counter]">
-                        <h5 class="specialty px-3" v-for="(specialty, index) in sponsored_users[counter].specialties" :key="index">
-                        {{ specialty.specialty_name }}
-                        </h5>
-                      </span>
+            <router-link :to="{ name: 'single-user', params: { slug: sponsored_users[counter].slug } }">
+              <div class="mycard">
+                <div class="mycard__inner">
+                  <!-- FRONTE -->
+                  <div class="mycard__front">
+                    <div class="sponsored-doctor ">
+                      <div class="sponsored-doctor__img" v-if="sponsored_users[counter]">
+                        <img :src="sponsored_users[counter].photo ? sponsored_users[counter].photo : 'img/img-not-found.png'" alt="">
+                      </div>
+                      <div class="sponsored-doctor__info">
+                        <h4 v-if="sponsored_users[counter]" class="name">
+                          {{ sponsored_users[counter].name }} {{ sponsored_users[counter].surname }}
+                        </h4>
+                        <span v-if="sponsored_users[counter]">
+                          <h5 class="specialty px-3" v-for="(specialty, index) in sponsored_users[counter].specialties" :key="index">
+                          {{ specialty.specialty_name }}
+                          </h5>
+                        </span>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <!-- RETRO -->
-                <div class="mycard__back d-flex flex-column">
-                  <h3 class="number" v-if="sponsored_users[counter]">
-                    {{ sponsored_users[counter].phone_number }}
-                  </h3>
-                  <h4 class="email" v-if="sponsored_users[counter]">
-                    {{ sponsored_users[counter].email }}
-                  </h4>
+                  <!-- RETRO -->
+                  <div class="mycard__back d-flex flex-column">
+                    <h3 class="number" v-if="sponsored_users[counter]">
+                      {{ sponsored_users[counter].phone_number }}
+                    </h3>
+                    <h4 class="email" v-if="sponsored_users[counter]">
+                      {{ sponsored_users[counter].email }}
+                    </h4>
+                  </div>
                 </div>
               </div>
-            </div>
+              </router-link>
           </div>
+          
           <!-- / CARD CHE SI GIRA -->
 
           <!-- BOTTONE NEXT -->
@@ -80,7 +82,6 @@ export default {
       this.counter = 1;
       this.prev = 0;
       this.next = 2;
-
       setInterval(this.showNext, 5000);
     },
     methods: {
@@ -90,7 +91,6 @@ export default {
           this.sponsored_users = resp.data.results.data;
         })
       },
-
       showPrev() {
         if (this.counter === 0) {
           this.counter = this.sponsored_users.length - 1;
@@ -108,7 +108,6 @@ export default {
           this.next--;
         }
       },
-
       showNext() {
         if (this.counter >= this.sponsored_users.length - 1) {
           this.counter = 0;
@@ -131,14 +130,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
     .sponsorship {
       margin-bottom: 4rem;
-
       h2 {
         text-transform: uppercase;
         letter-spacing: .4rem;
-
         .first-letter {
           background-color: black;
           color: white;
@@ -147,7 +143,6 @@ export default {
         }
       }
     }
-
     .small-circle {
       width: 20vw;
       max-width: 300px;
@@ -168,7 +163,6 @@ export default {
         transition: .4s;
       }
     }
-
     .mycard {
       width: 30vw;
       max-width: 460px;
@@ -248,12 +242,11 @@ export default {
           }
         }
       }
-
     .prev {
       transform: translate(-55%);
     }
-
     .next {
       transform: translate(55%);
     }
 </style>
+
