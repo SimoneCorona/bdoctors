@@ -138,11 +138,82 @@
         </div>
 
         {{-- Wrapper statistic --}}
-        <div id="stats" class="border-top py-2 border-dark container">
-            Le mie statistiche
+        <div id="stats" class="border-top py-2 border-dark">
+            <script src="{{ asset('chart.js/chart.js') }}"></script>
+            <h3>Le mie statistiche</h3>
+            <div>
+                <canvas id="myChart"></canvas>
+            </div>
+            <script>
+                // import Chart from 'chart.js/auto';
+                const review_stats = @json($review_stats);
+                const labels = [];
+                const monthlyAvgs = [];
+                const monthlyReviewCount = [];
+                const maxYearStats = Object.keys(review_stats).reduce(function (a, b) {
+                    return Math.max(a, b);
+                }, -Infinity).toString();
+                for (const key in review_stats[maxYearStats]['months']) {
+                    // console.log(review_stats[maxYearStats].months, key)
+                    labels.push(key);
+                    monthlyAvgs.push(review_stats[maxYearStats]['months'][key]['review_avg']);
+                    monthlyReviewCount.push(review_stats[maxYearStats]['months'][key]['review_count']);
+                    
+                }
+                
+
+                const labelsX = [
+                    'January',
+                    'February',
+                    'March',
+                    'April',
+                    'May',
+                    'June',
+                ];
+
+                const data = {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Media voti',
+                        backgroundColor: 'rgb(255, 99, 132)',
+                        borderColor: 'rgb(255, 99, 132)',
+                        data: monthlyAvgs,
+                        yAxisID: 'left-y-axis'
+                    },{
+                        label: 'Numero recensioni',
+                        backgroundColor: 'rgb(84, 136, 233)',
+                        borderColor: 'rgb(84, 136, 233)',
+                        data: monthlyReviewCount,
+                        yAxisID: 'right-y-axis'
+                    },
+                ]
+                };
+
+                const config = {
+                    type: 'bar',
+                    data: data,
+                    options: {scales: {
+                        'left-y-axis': {
+                            type: 'linear',
+                            position: 'left'
+                        },
+                        'right-y-axis': {
+                            type: 'linear',
+                            position: 'right'
+                        }
+                    }}
+                };
+
+                const myChart = new Chart(
+                    document.getElementById('myChart'),
+                    config
+                );
+            </script>
         </div>
     </div>
 @endsection
+
+
 
 <style scoped>
 
