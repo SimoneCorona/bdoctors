@@ -11,8 +11,8 @@
                 <h4 class="pt-2 mt-1 mb-2">Sponsorizza il tuo profilo!</h4>
                 <h6 class="mb-4">Sponsorizza il tuo profilo scegliendo fra questi piani, avrai più possibilità di essere
                     visitato!</h6>
-                <div class="col">
-                    <div class="card text-center py-3 px-5">
+                <div class="col-sm-12 col-md-4 col-4">
+                    <div class="card text-center py-3 px-5 mb-3">
                         <h5>Piano "Bronzo"</h5>
                         <h6>Costo: 2,99 €</h6>
                         <p>Durata: 24h (1gg)</p>
@@ -21,8 +21,8 @@
                         <label class="btn btn-outline-dark" for="bronz0">Scegli</label>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="card text-center py-3 px-5">
+                <div class="col-sm-12 col-md-4 col-4 ">
+                    <div class="card text-center py-3 px-5 mb-3">
                         <h5>Piano "Argento"</h5>
                         <h6>Costo: 5,99 €</h6>
                         <p>Durata: 72h (3gg)</p>
@@ -31,8 +31,8 @@
                         <label class="btn btn-outline-dark" for="argento">Scegli</label>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="card text-center py-3 px-5">
+                <div class="col-sm-12 col-md-4 col-4 mb-3">
+                    <div class="card text-center py-3 px-5" style="height: 100%">
                         <h5>Piano "Oro"</h5>
                         <h6>Costo: 9.99 €</h6>
                         <p>Durata: 144h (6gg)</p>
@@ -41,8 +41,8 @@
                         <label class="btn btn-outline-dark" for="oro">Scegli</label>
                     </div>
                 </div>
-                <div class="row mt-3 justify-content-center">
-                    <div class="col-12 col-md-8 col-lg-6">
+                <div class="mt-3 p-0">
+                    <div class="col-12">
                         <div id="dropin-container"></div>
                     </div>
                 </div>
