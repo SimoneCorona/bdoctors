@@ -45,9 +45,9 @@ class User extends Authenticatable
         return $this->hasMany('App\Review')->orderByDesc('created_at');
     }
      
-    public function getIsSponsoredAttribute() {
-        return $this->sponsorships()->whereRaw('(now() between date_start and date_end)')->get()->isNotEmpty();
-    }
+    // public function getIsSponsoredAttribute() {
+    //     return $this->sponsorships()->whereRaw('(now() between date_start and date_end)')->get()->isNotEmpty();
+    // }
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -71,7 +71,7 @@ class User extends Authenticatable
      * The accessors to append to the model's array form.
           * @var array
      */
-    protected $appends = ['is_sponsored'];
+    // protected $appends = ['is_sponsored'];
 
 
     public static function generateUserSlugFromName($name, $surname) {

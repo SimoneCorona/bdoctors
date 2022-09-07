@@ -39,9 +39,9 @@
           </div>
         </div>
 
-        </div>
+      </div>
       <Doctors :doctorsToShow="resultDoctors" />
-      <nav aria-label="Page navigation example">
+      <nav v-if="lastPage > 1"  aria-label="Page navigation example">
         <ul class="pagination d-flex justify-content-center">
           <li class="page-item">
             <button @click="search(specialtySearched, currentPage - 1)" :class="{ disabled: currentPage === 1 }" class="page-link bg-dark text-light m-2" aria-label="Previous">
@@ -58,6 +58,7 @@
           </li>
         </ul>
       </nav>
+      <div v-else class="text-center text-light doctorNull p-3">Nessun medico trovato</div>
     </div>
   </div>
 
@@ -162,5 +163,9 @@ export default {
     margin: 0;
     padding: 0;
     margin: auto;
+  }
+
+  .doctorNull{
+    background-color: rgba($color: #000000, $alpha: 0.5);
   }
   </style>

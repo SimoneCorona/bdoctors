@@ -69,9 +69,14 @@ class UserController extends Controller
         $query = User::query();
         // ci aggiungiamo l'eager loading delle relationships
         $query->with(['specialties']);
-        // se lo specialty slug è truthy
         $query->withCount('reviews');
+        $query->withCount(['sponsorships as active_sponsorship' => function (Builder $sponsorship) {
+            $sponsorship
+            ->where('date_start', '<', now())
+            ->where('date_end', '>', now());
+        }]);
         $query->withAvg('reviews','rating');
+        // se lo specialty slug è truthy
         if ($specialty_slug) {
             //aggiungiamo una query alla relationship
             $query->whereHas('specialties', function (Builder $query) use($specialty_slug) {
@@ -88,7 +93,7 @@ class UserController extends Controller
             $query->having('reviews_avg_rating','>=',$request->avg_rating);
         }
         // eseguiamo la query e paginiamo.
-        $doctors = $query->paginate(3);
+        $doctors = $query->orderByDesc('active_sponsorship')->paginate(3);
         // dd($doctors);
         
         // se la collection risultante è popolata, mandiamo la response di successo
