@@ -58,7 +58,7 @@
           </li>
         </ul>
       </nav>
-      <div v-else class="text-center text-light doctorNull p-3">Nessun medico trovato</div>
+      <div v-if="resultDoctors.length === 0" class="text-center text-light doctorNull p-3">Nessun medico trovato</div>
     </div>
   </div>
 

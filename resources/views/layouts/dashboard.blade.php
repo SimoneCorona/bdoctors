@@ -20,6 +20,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
+    <x-header />
 {{-- <x-header link1="Login" href1="/login" link2="Register" href2="/register" link3="Il mio profilo" href3="/admin/profile" />  --}}
     {{-- <nav class="navbar navbar-expand-md navbar-dark bg-dark flex-md-nowrap p-0">
         <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">BDoctors</a>
@@ -105,7 +106,7 @@
                 </div>
             </nav> --}}
 
-            <main role="main" class="mx-5">
+            <main role="main">
                 @yield('content')
             </main>
         <x-footer />

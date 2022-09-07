@@ -96,7 +96,7 @@
                 </div>
                 <div class="d-flex align-items-center justify-content-end">
                   <span v-show="message_sent" class="text-success me-2">Messaggio inviato! &#10004;</span>
-                  <button  class="btn btn-primary" @click="postMessage()"> <!-- :disabled="message_sent" -->
+                  <button  class="btn btn-primary text-light" @click="postMessage()"> <!-- :disabled="message_sent" -->
                     Invia
                   </button>
                 </div>
@@ -159,7 +159,7 @@
       </div>
       <div class="d-flex align-items-center justify-content-end">
         <span v-show="review_sent" class="text-success me-2">Recensione inviata! &#10004;</span>
-        <button class="btn btn-primary" @click="postReview()">
+        <button class="btn btn-primary text-light" @click="postReview()">
           Invia
         </button>
       </div>

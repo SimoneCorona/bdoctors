@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container d-flex flex-column align-items-center">
       <h3 class="mb-3">I tuoi messaggi:</h3>
       @forelse ($messages->sortByDesc('created_at') as $message)
           <div class="message mb-4">
@@ -18,12 +18,14 @@
               </div>
           </div>
       @empty
-      <div>Nessun messaggio</div>
+      <div class="messageNull">Nessun messaggio</div>
       @endforelse
       {{ $messages->links() }}
       
     </div>
+    <x-footer />
 @endsection
+
 
 
 
@@ -31,5 +33,9 @@
     .message {
         border: solid;
         padding: 1rem;
+    }
+
+    .messageNull{
+        min-height: 50vh;
     }
 </style>
