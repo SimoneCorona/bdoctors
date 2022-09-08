@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('content')
-    <div class="admin text-dark m-5">
+    <div class="admin text-dark">
         <div class="user container">
             <div class="row">
                 <div class="avatar-c py-5 col-12 col-sm-5 col-xl-3 pb-5 d-flex justify-content-center bg-transp">
