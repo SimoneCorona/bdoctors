@@ -167,15 +167,15 @@
             <script src="{{ asset('chart.js/chart.js') }}"></script>
             <h3>Le mie statistiche</h3>
             <div class="row justify-content-center">
-                <div class="col-8">
+                <div class="col-12 col-lg-8">
                     <h4>Recensioni mensili</h4>
-                    <canvas id="review-chart"></canvas>
+                    <canvas class="bg-light p-3 rounded-2 mb-3" id="review-chart"></canvas>
                 </div>
             </div>
             <div class="row justify-content-center">
-                <div class="col-8">
+                <div class="col-12 col-lg-8">
                     <h4 class="mt-3">Messaggi mensili</h4>
-                    <canvas id="message-chart"></canvas>
+                    <canvas class="bg-light p-3 rounded-2 mb-3" id="message-chart"></canvas>
                 </div>
             </div>
             <script>
@@ -187,23 +187,20 @@
                 const monthlyAvgs = [];
                 const monthlyReviewCount = [];
                 const monthlyMessageCount = [];
-                const maxYearReviewStats = Object.keys(reviewStats).reduce(function (a, b) {
-                    return Math.max(a, b);
-                }, -Infinity).toString();
-                const maxYearMessageStats = Object.keys(messageStats).reduce(function (a, b) {
-                    return Math.max(a, b);
-                }, -Infinity).toString();
 
-                for (const key in reviewStats[maxYearReviewStats]['months']) {
-                    reviewLabels.push(key);
-                    monthlyAvgs.push(reviewStats[maxYearReviewStats]['months'][key]['review_avg']);
-                    monthlyReviewCount.push(reviewStats[maxYearReviewStats]['months'][key]['review_count']);
-                    
+                for (const yearKey in reviewStats) {
+                    for (const key in reviewStats[yearKey]['months']) {
+                        reviewLabels.push(key);
+                        monthlyAvgs.push(reviewStats[yearKey]['months'][key]['review_avg']);
+                        monthlyReviewCount.push(reviewStats[yearKey]['months'][key]['review_count']);
+                    }
                 }
 
-                for (const key in messageStats[maxYearMessageStats]['months']) {
-                    messageLabels.push(key);
-                    monthlyMessageCount.push(messageStats[maxYearMessageStats]['months'][key]['review_count']);
+                for (const yearKey in messageStats) {
+                    for (const key in messageStats[yearKey]['months']) {
+                        messageLabels.push(key);
+                        monthlyMessageCount.push(messageStats[yearKey]['months'][key]['review_count']);
+                    }
                     
                 }
 
@@ -230,10 +227,19 @@
                     data: reviewData,
                     options: {scales: {
                         'left-y-axis': {
+                            title: {
+                                display: true,
+                                text: 'Media voti',
+                            },
                             type: 'linear',
-                            position: 'left'
+                            position: 'left',
+                            max:5,
                         },
                         'right-y-axis': {
+                            title: {
+                                display: true,
+                                text: 'Numero recensioni',
+                            },
                             type: 'linear',
                             position: 'right'
                         }
