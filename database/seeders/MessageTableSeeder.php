@@ -34,7 +34,7 @@ class MessageTableSeeder extends Seeder
             $message = new Message();
             $message->author = $faker->name();
             $message->user_id = $faker->numberBetween(1, 100);
-            $message->text_message = $array_messages[500 % count($array_messages)];
+            $message->text_message = $array_messages[$i % count($array_messages)];
             $message->email = $faker->email();
             $message->save();
             DB::update('update messages set created_at = ? where id = ?',
@@ -47,7 +47,7 @@ class MessageTableSeeder extends Seeder
             $message = new Message();
             $message->author = $faker->name();
             $message->user_id = User::where('email','=','test@example.com')->first()->id;
-            $message->text_message = $faker->text();
+            $message->text_message = $array_messages[$i % count($array_messages)];
             $message->email = $faker->email();
             $message->save();
             DB::update('update messages set created_at = ? where id = ?',

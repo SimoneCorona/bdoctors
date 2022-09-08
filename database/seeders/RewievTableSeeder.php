@@ -35,7 +35,7 @@ class RewievTableSeeder extends Seeder
             $review = new Review();
             $review->author = $faker->name();
             $review->user_id = $faker->numberBetween(1, 100);
-            $review->text_review = $array_reviews[500 % count($array_reviews)];
+            $review->text_review = $array_reviews[$i % count($array_reviews)];
             $review->rating = $faker->numberBetween(1, 5);
             $review->save();
             DB::update('update reviews set created_at = ? where id = ?',
@@ -49,7 +49,7 @@ class RewievTableSeeder extends Seeder
             $review = new Review();
             $review->author = $faker->name();
             $review->user_id = User::where('email','=','test@example.com')->first()->id;
-            $review->text_review = $array_reviews[50 % count($array_reviews)];
+            $review->text_review = $array_reviews[$i % count($array_reviews)];
             $review->rating = $faker->numberBetween(1, 5);
             $review->save();
             DB::update('update reviews set created_at = ? where id = ?',
