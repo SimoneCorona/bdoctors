@@ -452,7 +452,6 @@ export default {
         });
     },
     postMessage() {
-
       this.errors.message = [];
       if (this.message_author === "") {
         this.errors.message.push("author");
@@ -490,11 +489,11 @@ export default {
     validEmail: function (email) {
       const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       return re.test(email);
-    }
+    },
   },
   computed: {
     starsInReviews() {
-      return Math.round(this.user.avg_rating)
+      return Math.round(this.user.avg_rating);
     },
   },
 };
