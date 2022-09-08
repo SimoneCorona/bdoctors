@@ -23,6 +23,7 @@ Route::get('/users/{slug}', 'Api\UserController@show')->name('api.users.show');
 Route::get('/specialties', 'Api\SpecialtyController@index')->name('api.specialties.index');
 Route::get('/sponsorships', 'Api\SponsorshipController@index')->name('api.sponsorships.index');
 Route::get('/search/{slug}', 'Api\UserController@search')->name('api.users.search');
+Route::get('/users/{slug}/reviews', 'Api\ReviewController@index')->name('api.users.reviews.show');
 
 Route::post("/review", 'Api\ReviewController@store')->name('api.reviews.store');
 Route::post("/message", 'Api\messageController@store')->name('api.messages.store');
