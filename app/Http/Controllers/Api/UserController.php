@@ -93,7 +93,7 @@ class UserController extends Controller
             $query->having('reviews_avg_rating','>=',$request->avg_rating);
         }
         // eseguiamo la query e paginiamo.
-        $doctors = $query->orderByDesc('active_sponsorship')->paginate(3);
+        $doctors = $query->orderByDesc('active_sponsorship')->paginate(12);
         // dd($doctors);
         
         // se la collection risultante è popolata, mandiamo la response di successo
