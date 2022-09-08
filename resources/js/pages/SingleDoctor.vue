@@ -3,15 +3,15 @@
     <div class="container pt-5">
         <div class="row p-4 info-base">
             <!-- Contenitore: foto info di base -->
-            <div class="col-sm-12 col-md-12 col-lg-6">
+            <div class="col-sm-12 col-md-12">
                 <div class="container-fluid">
-                    <div class="row d-flex">
+                    <div class="avatar-c row d-flex">
                         <!-- Avatar -->
-                        <div class="col-sm-12 col-lg-6 mt-5 pe-5 align-self-center">
+                        <div class="avatar col-xs-12 col-sm-6 mt-4 align-self-start">
                             <img class="doctor-image rounded-circle mb-5 w-100" :src="user.photo ? `${user.photo}`: '/img/img-not-found.png'" />
                         </div>
                         <!-- Info di base -->
-                        <div class="col-sm-12 col-md-6 mt-3">
+                        <div class="info-c col-sm-12 col-md-6 mt-3">
                             <h1>{{ user.name }} {{ user.surname }}</h1>
                             <p><i class="fas fa-star" :class="n <= starsInReviews ? 'text-warning' : 'text-light'" v-for="n in 5" :key="n"></i></p>
                             <div v-for="specialty in user.specialties" :key="specialty.specialty_id">
@@ -26,12 +26,14 @@
                                 <p v-if="user.services">{{user.services}}</p>
                                 <p v-else>Nessuna prestazione segnala dal dottore</p>
                             </div>
+                            <!-- / Prestazioni -->
                         </div>
+                        <!-- / Info di base -->
                     </div>
                 </div>
             </div>
             <!-- CV utente (con scroll) -->
-            <div class="col-sm-12 col-lg-6 mt-3 ps-4">
+            <div class="col-sm-12col-md-12 mt-3 ps-4">
                 <h4 class="bd-word"><span>C</span>urriculum Vitae</h4>
                 <p class="me-5 mb-5" style="max-height: 40vh; overflow-y: auto">{{ user.cv ? user.cv : 'nessun cv' }}</p>
             </div>
@@ -184,6 +186,101 @@
 </template>
 
 <style scoped lang="scss">
+    @media only screen and (max-width: 576px) {
+      .avatar-c {
+        display: flex;
+        justify-content: center;
+  
+        .avatar {
+          padding: 0;
+          width: 250px;
+          height: 250px;
+          margin-bottom: 3rem;
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+      }
+
+      .info-c {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+  }
+
+  @media only screen and (max-width: 768px) {
+    .avatar-c {
+      
+      display: flex;
+      justify-content: center;
+
+      .avatar {
+        margin: auto;
+        padding: 0;
+        width: 300px;
+        height: 300px;
+        margin-bottom: 3rem;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .info-c {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+    }
+  }
+
+  @media only screen and (max-width: 1200px) {
+
+    .avatar-c {
+      display: flex;
+      justify-content: space-between;
+  
+        .avatar {
+          padding: 0;
+          width: 350px;
+          height: 350px;
+          margin-bottom: 3rem;
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+      }
+            .info-c {
+        margin-bottom: 3rem;
+      }
+  }
+
+  @media only screen and (min-width: 1201px) {
+            .avatar {
+          padding: 0;
+          width: 300px;
+          height: 300px;
+          margin-bottom: 3rem;
+          margin-right: 7rem;
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+            }
+  }
+
+
+  
+
   .input {
     border-radius: 0;
   }
@@ -209,6 +306,28 @@
     .container {
       .info-base {
         background-color: rgba(0,0,0,0.4);
+
+        // .avatar {
+        //   width: 20vw;
+        //   height: 100%;
+        //   padding: 20px;
+
+          // .avatar img {
+          //   aspect-ratio: 1 / 1;
+          //   width: 100%;
+          // }
+          
+
+        // .avatar img {
+        //   width: 100%;
+        //   height: 100%;
+        //   object-fit: cover;
+        //   }
+        // }
+
+        .info-c {
+          overflow: auto;
+        }
 
         .specialty-tag {
           background-color: rgba(0,0,0,0.5);
