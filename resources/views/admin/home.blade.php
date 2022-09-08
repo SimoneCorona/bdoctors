@@ -144,13 +144,13 @@
             <div class="row justify-content-center">
                 <div class="col-8">
                     <h4>Recensioni mensili</h4>
-                    <canvas id="review-chart"></canvas>
+                    <canvas class="bg-light" id="review-chart"></canvas>
                 </div>
             </div>
             <div class="row justify-content-center">
                 <div class="col-8">
                     <h4 class="mt-3">Messaggi mensili</h4>
-                    <canvas id="message-chart"></canvas>
+                    <canvas class="bg-light" id="message-chart"></canvas>
                 </div>
             </div>
             <script>
