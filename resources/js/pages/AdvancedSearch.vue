@@ -122,7 +122,7 @@
                 >
               </li>
               
-              <li role="presentation" class="page-item active">
+              <li role="presentation" class="page-item" v-if="currentPage - 2 > 0">
                 <button
                   role="menuitemradio"
                   type="button"
@@ -133,12 +133,10 @@
                   tabindex="0"
                   class="page-link"
                 >
-                  <font style="vertical-align: inherit"
-                    ><font style="vertical-align: inherit">1</font></font
-                  >
+                  {{currentPage - 2}}
                 </button>
               </li>
-              <li role="presentation" class="page-item">
+              <li role="presentation" class="page-item" v-if="currentPage - 1 > 0">
                 <button
                   role="menuitemradio"
                   type="button"
@@ -149,7 +147,7 @@
                   tabindex="-1"
                   class="page-link"
                 >
-                  2
+                  {{currentPage - 1}}
                 </button>
               </li>
               <li role="presentation" class="page-item">
@@ -161,13 +159,12 @@
                   aria-posinset="3"
                   aria-setsize="100"
                   tabindex="-1"
-                  class="page-link"
-                  
+                  class="page-link myActive"
                 >
-                  3
+                  {{currentPage}}
                 </button>
               </li>
-              <li role="presentation" class="page-item bv-d-xs-down-none">
+              <li role="presentation" class="page-item bv-d-xs-down-none" v-if="currentPage + 1 <= lastPage">
                 <button
                   role="menuitemradio"
                   type="button"
@@ -178,10 +175,10 @@
                   tabindex="-1"
                   class="page-link"
                 >
-                  4
+                  {{currentPage + 1}}
                 </button>
               </li>
-              <li role="presentation" class="page-item bv-d-xs-down-none">
+              <li role="presentation" class="page-item bv-d-xs-down-none" v-if="currentPage + 2 <= lastPage">
                 <button
                   role="menuitemradio"
                   type="button"
@@ -192,7 +189,7 @@
                   tabindex="-1"
                   class="page-link"
                 >
-                  5
+                  {{currentPage + 2}}
                 </button>
               </li>
               
@@ -264,7 +261,6 @@ export default {
   mounted() {
     this.search(
       this.$route.params.specialty,
-      this.currentPage,
       this.currentPage
     );
   },
