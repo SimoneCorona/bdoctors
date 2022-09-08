@@ -108,6 +108,9 @@
                         </div>
                     </div>
                     @endfor
+                    <div>
+                        <a href="{{ route('admin.reviews.index') }}">Tutte le recensioni</a>
+                    </div>
                     @else
                     <div>Nessuna recensione</div>
                     @endif
@@ -124,14 +127,17 @@
                             <div class="p-0 my-2">
                                 {{ strlen($user->messages->sortByDesc('created_at')[$m]->text_message) < 10 ? $user->messages->sortByDesc('created_at')[$m]->text_message : substr($user->messages->sortByDesc('created_at')[$m]->text_message, 0, 50) . "..."  }}
                             </div>
-                            <small>Inviata da <strong>{{ $user->messages->sortByDesc('created_at')[$m]->author }}</strong></small><br>
+                            <small>Inviato da <strong>{{ $user->messages->sortByDesc('created_at')[$m]->author }}</strong></small><br>
                             <small>Scritta il {{ $user->messages->sortByDesc('created_at')[$m]->created_at->format('d-m-Y') }} alle ore
                                 {{ $user->messages->sortByDesc('created_at')[$h]->created_at->format('g:i') }} </small>
                         </div>
                     </div>
                     @endfor
+                    <div>
+                        <a href="{{ route('admin.messages.index') }}">Tutti i messaggi</a>
+                    </div>
                     @else
-                    <div>Nessuna recensione</div>
+                    <div>Nessun messaggio</div>
                     @endif
                 </div>
             </div>
