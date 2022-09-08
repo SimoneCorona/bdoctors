@@ -65,43 +65,22 @@
         {{ totalDoctor }} Dottori
       </div>
       <Doctors :doctorsToShow="resultDoctors" />
-      <!-- <nav v-if="lastPage > 1"  aria-label="Page navigation example">
-        <ul class="pagination d-flex justify-content-center">
-          <li class="page-item">
-            <button @click="search(specialtySearched, currentPage - 1)" :class="{ disabled: currentPage === 1 }" class="page-link bg-dark text-light m-2" aria-label="Previous">
-              <span aria-hidden="true">&laquo;</span>
-              <span class="sr-only">Previous</span>
-            </button>
-          </li>
-          <li v-for="(page,index) in lastPage" :key="index" class="page-item" :class="{myActive: currentPage === page}"><input class="btn-check" type="radio" id="numPage"> <a id="numPage" class="page-link text-dark m-2" href="#" @click="search(specialtySearched,page)">{{ page  }}</a></li> 
-          <li class="page-item">
-            <button @click="search(specialtySearched, currentPage + 1)" class="page-link text-dark m-2" :class="{ disabled: currentPage === lastPage }"    aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
-              <span class="sr-only">Next</span>
-            </button>
-          </li>
-        </ul>
-      </nav> -->
       <div v-if="lastPage > 1">
         <nav>
           <div class="pagination justify-content-center">
 
             <ul
               role="menubar"
-              aria-disabled="false"
-              aria-label="Impaginazione"
-              class="pagination b-pagination"
+              class="pagination"
             >
               
               <li
                 role="presentation"
                 class="page-item"
-                aria-hidden="true"
               >
                 <span
                   role="menuitem"
-                  aria-label="Go to previous page"
-                  class="page-link"
+                  class="page-link text-dark"
                   :class="{ disabled: currentPage === 1 }"
                   @click="search(specialtySearched, currentPage === 1)"
                   >Prima pagina</span
@@ -110,12 +89,10 @@
               <li
                 role="presentation"
                 class="page-item "
-                aria-hidden="true"
               >
                 <span
                   role="menuitem"
-                  aria-label="Go to previous page"
-                  class="page-link"
+                  class="page-link mx-3 text-dark"
                   :class="{ disabled: currentPage === 1 }"
                   @click="search(specialtySearched, currentPage - 1)"
                   >‹</span
@@ -126,12 +103,8 @@
                 <button
                   role="menuitemradio"
                   type="button"
-                  aria-label="Vai a pagina 1"
-                  aria-checked="true"
-                  aria-posinset="1"
-                  aria-setsize="100"
-                  tabindex="0"
-                  class="page-link"
+                  
+                  class="page-link mx-3 text-dark"
                 >
                   {{currentPage - 2}}
                 </button>
@@ -140,12 +113,7 @@
                 <button
                   role="menuitemradio"
                   type="button"
-                  aria-label="Go to page 2"
-                  aria-checked="false"
-                  aria-posinset="2"
-                  aria-setsize="100"
-                  tabindex="-1"
-                  class="page-link"
+                  class="page-link mx-3 text-dark"
                 >
                   {{currentPage - 1}}
                 </button>
@@ -154,12 +122,7 @@
                 <button
                   role="menuitemradio"
                   type="button"
-                  aria-label="Go to page 3"
-                  aria-checked="false"
-                  aria-posinset="3"
-                  aria-setsize="100"
-                  tabindex="-1"
-                  class="page-link myActive"
+                  class="page-link myActive mx-3 text-dark"
                 >
                   {{currentPage}}
                 </button>
@@ -168,12 +131,7 @@
                 <button
                   role="menuitemradio"
                   type="button"
-                  aria-label="Go to page 4"
-                  aria-checked="false"
-                  aria-posinset="4"
-                  aria-setsize="100"
-                  tabindex="-1"
-                  class="page-link"
+                  class="page-link mx-3 text-dark"
                 >
                   {{currentPage + 1}}
                 </button>
@@ -182,12 +140,7 @@
                 <button
                   role="menuitemradio"
                   type="button"
-                  aria-label="Go to page 5"
-                  aria-checked="false"
-                  aria-posinset="5"
-                  aria-setsize="100"
-                  tabindex="-1"
-                  class="page-link"
+                  class="page-link mx-3 text-dark"
                 >
                   {{currentPage + 2}}
                 </button>
@@ -197,9 +150,7 @@
                 <button
                   role="menuitem"
                   type="button"
-                  tabindex="-1"
-                  aria-label="Go to next page"
-                  class="page-link"
+                  class="page-link mx-3 text-dark"
                   :class="{ disabled: currentPage === lastPage }"
                   @click="search(specialtySearched, currentPage + 1)"
                 >
@@ -210,9 +161,7 @@
                 <button
                   role="menuitem"
                   type="button"
-                  tabindex="-1"
-                  aria-label="Go to last page"
-                  class="page-link"
+                  class="page-link text-dark"
                   :class="{ disabled: currentPage === lastPage }"
                   @click="search(specialtySearched, currentPage = lastPage)"
                 >
@@ -297,7 +246,7 @@ select {
 }
 
 .myActive {
-  background-color: black !important;
+  border: 5px solid black;
 }
 
 .back {
