@@ -9,7 +9,7 @@
           <!-- BOTTONE PREV -->
           <div class="col-3">
             <div class="small-circle prev" @click="showPrev" v-if="sponsored_users[prev]">
-              <img :src="sponsored_users[prev].photo ? sponsored_users[prev].photo : 'img/img-not-found.png'" alt="">
+              <img :src="sponsored_users[prev].photo ? `/storage/${sponsored_users[prev].photo}` : 'img/img-not-found.png'" alt="">
 
             </div>
           </div>
@@ -23,7 +23,7 @@
                   <div class="mycard__front">
                     <div class="sponsored-doctor ">
                       <div class="sponsored-doctor__img" v-if="sponsored_users[counter]">
-                        <img :src="sponsored_users[counter].photo ? sponsored_users[counter].photo : 'img/img-not-found.png'" alt="">
+                        <img :src="sponsored_users[counter].photo ? `/storage/${sponsored_users[counter].photo}` : 'img/img-not-found.png'" alt="">
                       </div>
                       <div class="sponsored-doctor__info">
                         <h4 v-if="sponsored_users[counter]" class="name">
@@ -56,7 +56,7 @@
           <!-- BOTTONE NEXT -->
           <div class="col-3">
             <div class="small-circle next" @click="showNext" v-if="sponsored_users[next]">
-              <img :src="sponsored_users[next].photo ? sponsored_users[next].photo : 'img/img-not-found.png'" alt="">
+              <img :src="sponsored_users[next].photo ? `/storage/${sponsored_users[next].photo}` : 'img/img-not-found.png'" alt="">
             </div>
           </div>
           <!-- / BOTTONE NEXT -->
