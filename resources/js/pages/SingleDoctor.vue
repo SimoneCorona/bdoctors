@@ -3,15 +3,15 @@
     <div class="container pt-5">
         <div class="row p-4 info-base">
             <!-- Contenitore: foto info di base -->
-            <div class="col-sm-12 col-md-12 col-lg-6">
+            <div class="col-sm-12 col-md-12">
                 <div class="container-fluid">
-                    <div class="row d-flex">
+                    <div class="avatar-c row d-flex">
                         <!-- Avatar -->
-                        <div class="col-sm-12 col-lg-6 mt-5 pe-5 align-self-center">
+                        <div class="avatar col-xs-12 col-sm-6 mt-4 align-self-start">
                             <img class="doctor-image rounded-circle mb-5 w-100" :src="user.photo ? `${user.photo}`: '/img/img-not-found.png'" />
                         </div>
                         <!-- Info di base -->
-                        <div class="col-sm-12 col-md-6 mt-3">
+                        <div class="info-c col-sm-12 col-md-6 mt-3">
                             <h1>{{ user.name }} {{ user.surname }}</h1>
                             <p><i class="fas fa-star" :class="n <= starsInReviews ? 'text-warning' : 'text-light'" v-for="n in 5" :key="n"></i></p>
                             <div v-for="specialty in user.specialties" :key="specialty.specialty_id">
@@ -26,12 +26,14 @@
                                 <p v-if="user.services">{{user.services}}</p>
                                 <p v-else>Nessuna prestazione segnala dal dottore</p>
                             </div>
+                            <!-- / Prestazioni -->
                         </div>
+                        <!-- / Info di base -->
                     </div>
                 </div>
             </div>
             <!-- CV utente (con scroll) -->
-            <div class="col-sm-12 col-lg-6 mt-3 ps-4">
+            <div class="col-sm-12col-md-12 mt-3 ps-4">
                 <h4 class="bd-word"><span>C</span>urriculum Vitae</h4>
                 <p class="me-5 mb-5" style="max-height: 40vh; overflow-y: auto">{{ user.cv ? user.cv : 'nessun cv' }}</p>
             </div>
@@ -170,20 +172,117 @@
         <!-- Tutte le recensioni -->
         <div class="all-revs row my-5 pt-5 px-3">
             <h4 class="bd-word pt-4 pb-3 mb-5"><span>T</span>utte le recensioni</h4>
-            <div v-if="user.reviews && user.reviews.length > 0">
+            <SingleDoctorReviews />
+
+            <!-- <div v-if="user.reviews && user.reviews.length > 0">
                 <div class="review mb-5 px-4 pt-3 border border-1" v-for="review in user.reviews" :key="review.id">
                     <p>{{ review.text_review }}</p>
                     <i class="fas fa-star" :class="n <= review.rating  ? 'text-warning' : 'text-light'" v-for="n in 5" :key="n"></i>
                     <p class="mt-3">{{ review.author }}</p>
                 </div>
             </div>
-            <p v-else>Nessuna recensione!</p>
+            <p v-else>Nessuna recensione!</p> -->
+          </div>
         </div>
-    </div>
   </div>
 </template>
 
 <style scoped lang="scss">
+    @media only screen and (max-width: 576px) {
+      .avatar-c {
+        display: flex;
+        justify-content: center;
+  
+        .avatar {
+          padding: 0;
+          width: 250px;
+          height: 250px;
+          margin-bottom: 3rem;
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+      }
+
+      .info-c {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+  }
+
+  @media only screen and (max-width: 768px) {
+    .avatar-c {
+      
+      display: flex;
+      justify-content: center;
+
+      .avatar {
+        margin: auto;
+        padding: 0;
+        width: 300px;
+        height: 300px;
+        margin-bottom: 3rem;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .info-c {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+    }
+  }
+
+  @media only screen and (max-width: 1200px) {
+
+    .avatar-c {
+      display: flex;
+      justify-content: space-between;
+  
+        .avatar {
+          padding: 0;
+          width: 350px;
+          height: 350px;
+          margin-bottom: 3rem;
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+      }
+            .info-c {
+        margin-bottom: 3rem;
+      }
+  }
+
+  @media only screen and (min-width: 1201px) {
+            .avatar {
+          padding: 0;
+          width: 300px;
+          height: 300px;
+          margin-bottom: 3rem;
+          margin-right: 7rem;
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+            }
+  }
+
+
+  
+
   .input {
     border-radius: 0;
   }
@@ -209,6 +308,28 @@
     .container {
       .info-base {
         background-color: rgba(0,0,0,0.4);
+
+        // .avatar {
+        //   width: 20vw;
+        //   height: 100%;
+        //   padding: 20px;
+
+          // .avatar img {
+          //   aspect-ratio: 1 / 1;
+          //   width: 100%;
+          // }
+          
+
+        // .avatar img {
+        //   width: 100%;
+        //   height: 100%;
+        //   object-fit: cover;
+        //   }
+        // }
+
+        .info-c {
+          overflow: auto;
+        }
 
         .specialty-tag {
           background-color: rgba(0,0,0,0.5);
@@ -257,126 +378,133 @@
 
 <script>
 import { computed } from "vue";
+import SingleDoctorReviews from "../components/SingleDoctorReviews.vue";
 export default {
-  name: "SingleDoctor",
-  data() {
-    return {
-      user: [],
-      rating: 0,
-      clicked_rating: 0,
-      review_author: "",
-      review_text: "",
-      review_sent: false,
-      message_author: "",
-      message_email: "",
-      message_text: "",
-      message_sent: false,
-      errors: {
-        review: [],
-        message: [],
-      },
-    };
-  },
-  created() {
-    this.getSingleDoctor();
-  },
-  methods: {
-    getSingleDoctor() {
-      const slug = this.$route.params.slug;
-      axios.get(`/api/users/${slug}`).then((resp) => {
-        if (resp.data.success) {
-          this.user = resp.data.results;
-        } else {
-          this.$router.push({ name: "not-found" });
-        }
-      });
+    name: "SingleDoctor",
+    components: { 
+      SingleDoctorReviews 
     },
-    colorStarOnHover(rating) {
-      this.rating = rating;
+    data() {
+        return {
+            user: [],
+            rating: 0,
+            clicked_rating: 0,
+            review_author: "",
+            review_text: "",
+            review_sent: false,
+            message_author: "",
+            message_email: "",
+            message_text: "",
+            message_sent: false,
+            errors: {
+                review: [],
+                message: [],
+            },
+        };
     },
-    showClickedStar() {
-      this.rating = this.clicked_rating;
+    created() {
+        this.getSingleDoctor();
     },
-    clickRating() {
-      this.clicked_rating = this.rating;
-    },
-    postReview() {
-      this.errors.review = [];
-      if (this.review_author === "") {
-        this.errors.review.push("author");
-      }
-      if (this.clicked_rating === 0) {
-        this.errors.review.push("rating");
-      }
-      if (this.errors.review.length > 0) {
-        return;
-      }
-      axios
-        .post("/api/review", {
-          user_id: this.user.id,
-          author: this.review_author,
-          rating: this.clicked_rating,
-          text_review: this.review_text,
-        })
-        .then((resp) => {
-          this.rating = 0;
-          this.review_text = "";
-          this.review_author = "";
-          if (resp.data.success) {
-            this.review_sent = true;
-            this.getSingleDoctor();
-          } else {
-            for (const key in resp.data.response) {
-              this.errors.review.push(key);
+    methods: {
+        getSingleDoctor() {
+            const slug = this.$route.params.slug;
+            axios.get(`/api/users/${slug}`).then((resp) => {
+                if (resp.data.success) {
+                    this.user = resp.data.results;
+                }
+                else {
+                    this.$router.push({ name: "not-found" });
+                }
+            });
+        },
+        colorStarOnHover(rating) {
+            this.rating = rating;
+        },
+        showClickedStar() {
+            this.rating = this.clicked_rating;
+        },
+        clickRating() {
+            this.clicked_rating = this.rating;
+        },
+        postReview() {
+            this.errors.review = [];
+            if (this.review_author === "") {
+                this.errors.review.push("author");
             }
-          }
-        });
-    },
-    postMessage() {
-
-      this.errors.message = [];
-      if (this.message_author === "") {
-        this.errors.message.push("author");
-      }
-      if (!this.validEmail(this.message_email)) {
-        this.errors.message.push("email");
-      }
-      if (this.message_text.length < 10) {
-        this.errors.message.push("text_message");
-      }
-      if (this.errors.message.length > 0) {
-        return;
-      }
-      axios
-        .post("/api/message", {
-          user_id: this.user.id,
-          author: this.message_author,
-          email: this.message_email,
-          text_message: this.message_text,
-        })
-        .then((resp) => {
-          this.message_author = "";
-          this.message_email = "";
-          this.message_text = "";
-          if (resp.data.success) {
-            this.message_sent = true;
-            this.getSingleDoctor();
-          } else {
-            for (const key in resp.data.response) {
-              this.errors.message.push(key);
+            if (this.clicked_rating === 0) {
+                this.errors.review.push("rating");
             }
-          }
-        });
+            if (this.errors.review.length > 0) {
+                return;
+            }
+            axios
+                .post("/api/review", {
+                user_id: this.user.id,
+                author: this.review_author,
+                rating: this.clicked_rating,
+                text_review: this.review_text,
+            })
+                .then((resp) => {
+                this.rating = 0;
+                this.review_text = "";
+                this.review_author = "";
+                if (resp.data.success) {
+                    this.review_sent = true;
+                    this.getSingleDoctor();
+                }
+                else {
+                    for (const key in resp.data.response) {
+                        this.errors.review.push(key);
+                    }
+                }
+            });
+        },
+        postMessage() {
+            this.errors.message = [];
+            if (this.message_author === "") {
+                this.errors.message.push("author");
+            }
+            if (!this.validEmail(this.message_email)) {
+                this.errors.message.push("email");
+            }
+            if (this.message_text.length < 10) {
+                this.errors.message.push("text_message");
+            }
+            if (this.errors.message.length > 0) {
+                return;
+            }
+            axios
+                .post("/api/message", {
+                user_id: this.user.id,
+                author: this.message_author,
+                email: this.message_email,
+                text_message: this.message_text,
+            })
+                .then((resp) => {
+                this.message_author = "";
+                this.message_email = "";
+                this.message_text = "";
+                if (resp.data.success) {
+                    this.message_sent = true;
+                    this.getSingleDoctor();
+                }
+                else {
+                    for (const key in resp.data.response) {
+                        this.errors.message.push(key);
+                    }
+                }
+            });
+        },
+        validEmail: function (email) {
+            const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(email);
+        },
     },
-    validEmail: function (email) {
-      const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      return re.test(email);
-    }
-  },
-  computed: {
-    starsInReviews() {
-      return Math.round(this.user.avg_rating)
+    computed: {
+        starsInReviews() {
+            return Math.round(this.user.avg_rating);
+        },
     },
-  },
+    
 };
 </script>

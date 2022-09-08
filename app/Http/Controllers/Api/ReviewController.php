@@ -10,6 +10,26 @@ use Illuminate\Support\Facades\Validator;
 
 class ReviewController extends Controller
 {
+    public function index($user_slug){
+        $reviews = Review::with('user')->whereHas('user', function ($query) use ($user_slug)
+        {
+            $query->where('slug', '=', $user_slug);
+        
+        })->paginate(15);
+        // dd($reviews);
+        if ($reviews) {
+            return response()->json([
+                'success' => true,
+                'results' => $reviews
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'results' => 'Nessuna recensione'
+            ]);
+        }
+    }
+
     public function store(Request $request)
     {
         $data = $request->all();
@@ -36,6 +56,8 @@ class ReviewController extends Controller
             ]);
         }
     }
+
+
     
     
 }
