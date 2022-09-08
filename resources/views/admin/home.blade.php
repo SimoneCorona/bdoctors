@@ -63,7 +63,7 @@
                                 </a>
                             </li>
                             <li class="nav-item list-unstyled mb-2">
-                                <a class="nav-link active d-flex" href="{{ route('admin.home') }}">
+                                <a class="nav-link active d-flex" href="{{ route('admin.users.edit') }}">
                                     <strong>Modifica profilo</strong>
                                     <span class="menu-icon">
                                         <i class="fa-regular fa-pen-to-square"></i>
