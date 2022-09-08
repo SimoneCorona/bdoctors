@@ -31,6 +31,7 @@ Route::middleware('auth')
         Route::put('/profile/update','UserController@update')->name('users.update');
         Route::delete('/profile/destroy','UserController@destroy')->name('users.destroy');
         Route::get('messages', 'MessageController@index')->name('messages.index');
+        Route::get('reviews', 'reviewController@index')->name('reviews.index');
         Route::get('/sponsor','UserController@sponsor')->name('users.sponsor');
         Route::post('/pay','UserController@pay')->name('users.pay');
         
