@@ -202,6 +202,7 @@
             :key="n"
           ></i>
           <p>{{ review.text_review.length > 10 ?  review.text_review.substr(0,50) + '...' : review.text_review }}</p>
+          <small>Scritta il {{ review.created_at.substr(0,10) }} alle ore {{ review.created_at.substr(11,5) }} </small>
         </div>
       </div>
       <p v-else>Nessuna recensione!</p>
