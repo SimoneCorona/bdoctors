@@ -174,7 +174,7 @@
         <div v-if="user.reviews" class="all-revs row my-5 pt-5 px-3">
           <div  v-if="user.reviews.length > 0">
             <h4 class="bd-word pt-4 pb-3 mb-5"><span>T</span>utte le recensioni</h4>
-            <SingleDoctorReviews />
+            <SingleDoctorReviews ref="doctorReviews" />
           </div>
 
           <div v-else>
@@ -455,6 +455,7 @@ export default {
                 if (resp.data.success) {
                     this.review_sent = true;
                     this.getSingleDoctor();
+                    this.$refs.doctorReviews.getReviews()
                 }
                 else {
                     for (const key in resp.data.response) {
