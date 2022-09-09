@@ -61,12 +61,8 @@
           </div>
         </div>
       </div>
-      <div v-if="totalDoctor === 1" class="text-light text-uppercase text-end me-2">
-        <p>Abbiamo trovato {{ totalDoctor }} dottore</p>
-      </div>
-      <div v-if="totalDoctor > 1" class="text-light text-uppercase text-end me-2">
-        <p>Abbiamo trovato {{ totalDoctor }} dottori</p>
-      </div>
+      
+       <p v-if="totalDoctor > 1" class="text-light text-uppercase text-end ">medici trovati: {{ totalDoctor }}</p>
       <Doctors :doctorsToShow="resultDoctors" />
       <div v-if="lastPage > 1">
         <nav>
