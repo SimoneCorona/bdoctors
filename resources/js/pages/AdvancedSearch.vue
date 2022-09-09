@@ -83,22 +83,24 @@
               >
                 <span
                   role="menuitem"
-                  class="page-link text-dark"
+                  class="btn mybtn text-light m-2"
                   :class="{ disabled: currentPage === 1 }"
                   @click="search(specialtySearched, currentPage === 1)"
-                  >Prima pagina</span
+                  >Prima </span
                 >
               </li>
               <li
                 role="presentation"
-                class="page-item "
+                class="page-item"
               >
                 <span
                   role="menuitem"
-                  class="page-link mx-3 text-dark"
+                  class="btn mybtn text-light m-2"
                   :class="{ disabled: currentPage === 1 }"
                   @click="search(specialtySearched, currentPage - 1)"
-                  >‹</span
+                  >
+                  <i class="fa-solid fa-chevron-left"></i>
+                  </span
                 >
               </li>
               
@@ -106,8 +108,7 @@
                 <button
                   role="menuitemradio"
                   type="button"
-                  
-                  class="page-link mx-3 text-dark"
+                  class="btn mybtn text-light m-2"
                 >
                   {{currentPage - 2}}
                 </button>
@@ -116,7 +117,7 @@
                 <button
                   role="menuitemradio"
                   type="button"
-                  class="page-link mx-3 text-dark"
+                  class="btn mybtn text-light m-2"
                 >
                   {{currentPage - 1}}
                 </button>
@@ -125,7 +126,7 @@
                 <button
                   role="menuitemradio"
                   type="button"
-                  class="page-link myActive mx-3 text-dark"
+                  class="btn mybtn bg-dark text-light m-2"
                 >
                   {{currentPage}}
                 </button>
@@ -134,7 +135,7 @@
                 <button
                   role="menuitemradio"
                   type="button"
-                  class="page-link mx-3 text-dark"
+                  class="btn mybtn text-light m-2"
                 >
                   {{currentPage + 1}}
                 </button>
@@ -143,7 +144,7 @@
                 <button
                   role="menuitemradio"
                   type="button"
-                  class="page-link mx-3 text-dark"
+                  class="btn mybtn text-light m-2"
                 >
                   {{currentPage + 2}}
                 </button>
@@ -153,22 +154,22 @@
                 <button
                   role="menuitem"
                   type="button"
-                  class="page-link mx-3 text-dark"
+                  class="btn mybtn text-light m-2"
                   :class="{ disabled: currentPage === lastPage }"
                   @click="search(specialtySearched, currentPage + 1)"
                 >
-                  ›
+                  <i class="fa-solid fa-chevron-right"></i>
                 </button>
               </li>
               <li role="presentation" class="page-item">
                 <button
                   role="menuitem"
                   type="button"
-                  class="page-link text-dark"
+                  class="btn mybtn text-light m-2"
                   :class="{ disabled: currentPage === lastPage }"
                   @click="search(specialtySearched, currentPage = lastPage)"
                 >
-                  Ultima pagina
+                  Ultima
                 </button>
               </li>
             </ul>
@@ -243,14 +244,18 @@ export default {
 };
 </script>
   
-  <style lang="scss" scoped>
+<style lang="scss" scoped>
 select {
   border-radius: 0;
 }
 
-.myActive {
-  border: 5px solid black;
+.mybtn {
+  margin-top: 1rem;
+  border: 1px solid white;
+  padding-left: 1rem;
+  border-radius: 0;
 }
+
 
 .back {
   background-image: url("/images/bg-blue.png"),
