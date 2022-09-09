@@ -403,10 +403,6 @@
         overflow: auto;
     }
 
-    #reviews {
-
-    }
-
     /* Sezione messaggi e recensioni ricevute */
     /* .message,
     .review {
