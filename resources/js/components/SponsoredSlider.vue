@@ -196,6 +196,7 @@ export default {
         position: absolute;
         backface-visibility: hidden;
         overflow: hidden;
+        transform: rotateX(0deg);
         border-radius: 50%;
       }
       &__back {
