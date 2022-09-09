@@ -72,14 +72,13 @@ export default {
     data() {
       return {
         sponsored_users: [],
-        counter: '',
+        counter: 1,
         prev: '',
         next: '',
       }
     },
     created() {
     this.getSponsorships();
-      this.counter = 1;
       this.prev = 0;
       this.next = 2;
       setInterval(this.showNext, 5000);
