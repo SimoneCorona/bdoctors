@@ -7,11 +7,11 @@
                 <div class="container-fluid">
                     <div class="avatar-c row d-flex">
                         <!-- Avatar -->
-                        <div class="avatar col-xs-12 col-sm-6 mt-4 align-self-start">
+                        <div class="avatar col-xs-12 col-sm-6 col-md-12 col-lg-6 mt-4 align-self-start">
                             <img class="doctor-image rounded-circle mb-5 w-100" :src="user.photo ? `${user.photo}`: '/img/img-not-found.png'" />
                         </div>
                         <!-- Info di base -->
-                        <div class="info-c col-sm-12 col-md-6 mt-3">
+                        <div class="info-c col-sm-12 col-md-12 offset-lg-2 col-lg-4 mt-3">
                             <h1>{{ user.name }} {{ user.surname }}</h1>
                             <p><i class="fas fa-star" :class="n <= starsInReviews ? 'text-warning' : 'text-light'" v-for="n in 5" :key="n"></i></p>
                             <div v-for="specialty in user.specialties" :key="specialty.specialty_id">
@@ -212,7 +212,7 @@
       }
   }
 
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 991px) {
     .avatar-c {
       
       display: flex;
