@@ -68,7 +68,7 @@
 </div>
 @endsection
 
-<style scoped>
+<style>
 
     /* Reset */
     * {
