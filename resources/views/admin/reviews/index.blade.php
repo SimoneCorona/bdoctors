@@ -3,7 +3,7 @@
 @section('content')
     <div class="reviews-c">
         <div class="container">
-            <h3 class="mb-3"><span>L</span>e mie recensioni</h3>
+            <h3 class="bd-word mb-5"><span class="bd-letter">L</span>e mie recensioni</h3>
             @forelse ($reviews->sortByDesc('created_at') as $review)
                 <div class="review mb-4">
                     <div>
@@ -58,8 +58,8 @@
     }
 
     .review {
-        border: solid;
-        padding: 1rem;
+        background-color: rgba(255, 255, 255, 0.4);
+        padding: 2rem 3rem;
     }
 
     .reviewNull {
