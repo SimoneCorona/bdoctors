@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('content')
-    <div class="admin text-dark m-5">
+    <div class="admin text-dark">
         <div class="user container">
             <div class="row">
                 <div class="avatar-c py-5 col-12 col-sm-5 col-xl-3 pb-5 d-flex justify-content-center bg-transp">
@@ -63,7 +63,7 @@
                                 </a>
                             </li>
                             <li class="nav-item list-unstyled mb-2">
-                                <a class="nav-link active d-flex" href="{{ route('admin.home') }}">
+                                <a class="nav-link active d-flex" href="{{ route('admin.users.edit') }}">
                                     <strong>Modifica profilo</strong>
                                     <span class="menu-icon">
                                         <i class="fa-regular fa-pen-to-square"></i>
@@ -149,7 +149,7 @@
                         <a class="link-btn" href="{{ route('admin.reviews.index') }}">Tutte le recensioni</a>
                     </div>
                     @else
-                    <div>Nessuna recensione</div>
+                    <div class="text-center">Nessuna recensione</div>
                     @endif
                     
                 </div>
@@ -174,7 +174,7 @@
                         <a class="link-btn" href="{{ route('admin.messages.index') }}">Tutti i messaggi</a>
                     </div>
                     @else
-                    <div>Nessun messaggio</div>
+                    <div class="text-center">Nessun messaggio</div>
                     @endif
                 </div>
             </div>
@@ -186,13 +186,13 @@
             <h3 class="bd-word text-center mb-5">Le mie statistiche</h3>
             <div class="row justify-content-center">
                 <div class="col-12 col-lg-8">
-                    <h4>Recensioni mensili</h4>
+                    <h4 class="bd-word mt-5">Recensioni mensili</h4>
                     <canvas class="bg-light p-3 rounded-2 mb-3" id="review-chart"></canvas>
                 </div>
             </div>
             <div class="row justify-content-center">
                 <div class="col-12 col-lg-8">
-                    <h4 class="mt-3">Messaggi mensili</h4>
+                    <h4 class=" bd-word mt-5">Messaggi mensili</h4>
                     <canvas class="bg-light p-3 rounded-2 mb-3" id="message-chart"></canvas>
                 </div>
             </div>

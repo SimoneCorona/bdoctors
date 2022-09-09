@@ -1,0 +1,6 @@
+*
+!fake_profiles/
+!fake_profiles/*
+!fake_profiles/male/*
+!fake_profiles/female/*
+!.gitignore
