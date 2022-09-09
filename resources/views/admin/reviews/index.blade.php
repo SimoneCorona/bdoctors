@@ -47,20 +47,12 @@
               </nav>
               @endif
         </div>
-    
-        <x-footer />
     </div>
+    <x-footer />
 @endsection
 
-<style lang="scss" scoped>
-.pagination .mybtn {
-          /* margin-top: 1rem;
-          height: 2.5rem;
-          line-height: 2.5rem; */
-          border: 1px solid white;
-          padding-left: 1rem;
-          border-radius: 0;
-        }
+
+<style>
 .bd-word {
         text-transform: uppercase;
         letter-spacing: .4rem;
