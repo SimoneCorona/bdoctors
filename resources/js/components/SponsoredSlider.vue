@@ -207,10 +207,10 @@ export default {
           display: inline-block;
           padding: 0 4rem .5rem;
           border-bottom: 3px solid black;
-          font-size: 2rem;
+          font-size: 2vw;
         }
         .email {
-          font-size: 2rem;
+          font-size: 1.5vw;
         }
       }
     }
@@ -237,10 +237,10 @@ export default {
             display: inline-block;
             padding: 0 10rem .5rem;
             border-bottom: 4px solid black;
-            font-size: 3.5vw;
+            font-size: 2.5vw;
           }
           .specialty {
-            font-size: 2.5vw;
+            font-size: 2vw;
           }
         }
       }
