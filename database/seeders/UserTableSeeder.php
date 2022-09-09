@@ -139,7 +139,7 @@ class UserTableSeeder extends Seeder
             $user->password = $faker->password();
             $user->photo = $i % 2 ? $male_pics_array[$i % count($male_pics_array)] : $female_pics_array[$i % count($female_pics_array)];
             $user->save();
-            $user->specialties()->attach($faker->numberBetween(1, 54));
+            $user->specialties()->attach($faker->numberBetween(1, 29));
             if (substr( $user['name'], 0, 1 ) === "G") {
                 $user->sponsorships()->attach([1 => ['date_start'=>now(), 'date_end'=>now()->addDays(10)]]);
             }
