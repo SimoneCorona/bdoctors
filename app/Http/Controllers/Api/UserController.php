@@ -44,7 +44,9 @@ class UserController extends Controller
     }
 
     public function show($slug){
-        $user = User::where('slug', '=', $slug)->with(['specialties', 'reviews', 'sponsorships'])->first();
+        $user = User::where('slug', '=', $slug)->with(['specialties', 'reviews', 'sponsorships'])
+        ->withAvg('reviews','rating')
+        ->first();
         if ($user) {
             if($user->photo) {
                 $user->photo = url('storage/' . $user->photo);

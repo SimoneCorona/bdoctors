@@ -506,7 +506,7 @@ export default {
     },
     computed: {
         starsInReviews() {
-            return Math.round(this.user.avg_rating);
+            return Math.round(this.user.reviews_avg_rating);
         },
     },
     
