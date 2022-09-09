@@ -47,8 +47,8 @@
     }
 
     .messages-c {
-        background-image: url('/images/bg-admin.jpg'),
-        linear-gradient(rgba(255, 255, 255, 0.3),rgba(255, 255, 255, 0.3));
+        background-image: url('/images/bg-admin.png'),
+        linear-gradient(rgba(255, 255, 255, 0.1),rgba(255, 255, 255, 0.1));
         background-size: 100%;
         background-blend-mode: overlay;
         padding-top: 3.6rem;
@@ -56,7 +56,7 @@
     }
 
     .message {
-        background-color: rgba(255, 255, 255, 0.4);
+        background-color: rgba(255, 255, 255, 0.5);
         padding: 2rem 3rem;
     }
 
