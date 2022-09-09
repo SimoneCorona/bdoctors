@@ -149,7 +149,7 @@
                         <a class="link-btn" href="{{ route('admin.reviews.index') }}">Tutte le recensioni</a>
                     </div>
                     @else
-                    <div>Nessuna recensione</div>
+                    <div class="text-center">Nessuna recensione</div>
                     @endif
                     
                 </div>
@@ -174,7 +174,7 @@
                         <a class="link-btn" href="{{ route('admin.messages.index') }}">Tutti i messaggi</a>
                     </div>
                     @else
-                    <div>Nessun messaggio</div>
+                    <div class="text-center">Nessun messaggio</div>
                     @endif
                 </div>
             </div>
@@ -186,13 +186,13 @@
             <h3 class="bd-word text-center mb-5">Le mie statistiche</h3>
             <div class="row justify-content-center">
                 <div class="col-12 col-lg-8">
-                    <h4>Recensioni mensili</h4>
+                    <h4 class="bd-word mt-5">Recensioni mensili</h4>
                     <canvas class="bg-light p-3 rounded-2 mb-3" id="review-chart"></canvas>
                 </div>
             </div>
             <div class="row justify-content-center">
                 <div class="col-12 col-lg-8">
-                    <h4 class="mt-3">Messaggi mensili</h4>
+                    <h4 class=" bd-word mt-5">Messaggi mensili</h4>
                     <canvas class="bg-light p-3 rounded-2 mb-3" id="message-chart"></canvas>
                 </div>
             </div>

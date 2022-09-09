@@ -9,14 +9,14 @@
        <nav v-if="lastPage > 1"  aria-label="Page navigation example">
         <ul class="pagination d-flex justify-content-center">
           <li class="page-item" :class="{ disabled: currentPage === 1 }">
-            <button @click="getReviews(currentPage - 1)" :class="{ 'text-dark': currentPage !== 1 }" class="page-link m-2" aria-label="Previous">
+            <button @click="getReviews(currentPage - 1)" :class="{ 'text-dark': currentPage !== 1 }" class="page-link bg-transparent text-white m-2" aria-label="Previous">
               <span aria-hidden="true">Pagina precedente</span>
               <span class="sr-only">Pagina precedente</span>
             </button>
           </li>
-          <li class="page-item"><input class="btn-check" type="radio" id="numPage"> <a id="numPage" class="page-link text-dark m-2" href="#" @click="search(reviews ,page)">Pagina {{ currentPage  }}</a></li> 
+          <li class="page-item"><input class="btn-check" type="radio" id="numPage"> <a id="numPage" class="bg-transparent text-white page-link text-dark m-2" href="#" @click="search(reviews ,page)">Pagina {{ currentPage  }}</a></li> 
           <li class="page-item" :class="{ disabled: currentPage === lastPage }" >
-            <button @click="getReviews(currentPage + 1)" class="page-link m-2" :class="{ 'text-dark': currentPage !== lastPage }"    aria-label="Next">
+            <button @click="getReviews(currentPage + 1)" class="bg-transparent text-white page-link m-2" :class="{ 'text-dark': currentPage !== lastPage }"    aria-label="Next">
               <span aria-hidden="true">Pagina successiva</span>
               <span class="sr-only">Pagina successiva</span>
             </button>
