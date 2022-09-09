@@ -21,7 +21,28 @@
             @empty
             <div class="messageNull">Nessun messaggio</div>
             @endforelse
-            {{ $messages->links() }}
+
+            @if ($messages->hasPages())
+            <nav aria-label="Page navigation example">
+                <ul class="pagination d-flex justify-content-center">
+                  <li class="page-item {{$messages->onFirstPage() ? 'disabled' : '' }}" >
+                    <a class="btn mybtn text-light m-2 {{$messages->onFirstPage() ? 'disabled' : '' }}" 
+                        href="{{ route('admin.messages.index', ['page' => $messages->currentPage() - 1]) }}"
+                        aria-label="Previous">
+                      <i class="fa-solid fa-chevron-left"></i>
+                    </a>
+                  </li>
+                  <li class="page-item"> <button id="numPage" class="btn mybtn text-light m-2" >Pagina {{ $messages->currentPage() }}</button></li> 
+                  <li class="page-item {{ !$messages->hasMorePages() ? 'disabled' : '' }}"  >
+                    <a class="btn mybtn text-light m-2 {{ !$messages->hasMorePages() ? 'disabled' : '' }}"
+                        href="{{ route('admin.messages.index', ['page' => $messages->currentPage() + 1]) }}"
+                        aria-label="Next">
+                      <i class="fa-solid fa-chevron-right"></i>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+              @endif
           </div>
     </div>
     <x-footer />
@@ -32,6 +53,14 @@
 
 <style>
 
+.pagination .mybtn {
+          /* margin-top: 1rem;
+          height: 2.5rem;
+          line-height: 2.5rem; */
+          border: 1px solid white;
+          padding-left: 1rem;
+          border-radius: 0;
+        }
 .bd-word {
         text-transform: uppercase;
         letter-spacing: .4rem;

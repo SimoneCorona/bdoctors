@@ -25,14 +25,34 @@
             @empty
                 <div>Nessuna recensione</div>
             @endforelse
-            {{ $reviews->links() }}
+            @if ($reviews->hasPages())
+            <nav aria-label="Page navigation example">
+                <ul class="pagination d-flex justify-content-center">
+                  <li class="page-item {{$reviews->onFirstPage() ? 'disabled' : '' }}" >
+                    <a class="btn mybtn text-light m-2 {{$reviews->onFirstPage() ? 'disabled' : '' }}" 
+                        href="{{ route('admin.reviews.index', ['page' => $reviews->currentPage() - 1]) }}"
+                        aria-label="Previous">
+                      <i class="fa-solid fa-chevron-left"></i>
+                    </a>
+                  </li>
+                  <li class="page-item"> <button id="numPage" class="btn mybtn text-light m-2" >Pagina {{ $reviews->currentPage() }}</button></li> 
+                  <li class="page-item {{ !$reviews->hasMorePages() ? 'disabled' : '' }}"  >
+                    <a class="btn mybtn text-light m-2 {{ !$reviews->hasMorePages() ? 'disabled' : '' }}"
+                        href="{{ route('admin.reviews.index', ['page' => $reviews->currentPage() + 1]) }}"
+                        aria-label="Next">
+                      <i class="fa-solid fa-chevron-right"></i>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+              @endif
         </div>
     </div>
     <x-footer />
 @endsection
 
-<style>
 
+<style>
 .bd-word {
         text-transform: uppercase;
         letter-spacing: .4rem;
