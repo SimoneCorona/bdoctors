@@ -2,7 +2,7 @@
   <header class="position-fixed  fixed-top">
     <nav class=" border-bottom header-vl navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
-        <a class="navbar-brand" href="/">
+        <a class="navbar-brand " href="/">
           <img src="{{ asset('images/logo.png')}}" alt="">
         </a>
           <div class="p-0 flex-grow-1" id="navbarSupportedContent">
@@ -26,7 +26,7 @@
                   </div>
                 </div>
                 <div class="logout d-none">
-                  <a class="nav-link mybtn" href="{{ route('logout') }}"
+                  <a class="nav-link mybtn bg-light" href="{{ route('logout') }}"
                       onclick="event.preventDefault();
                       document.getElementById('logout-form').submit();">
                 
@@ -78,6 +78,7 @@
  .mybtn{
    text-transform: uppercase;
    letter-spacing: 0.4em;
+   margin: 0;
  }
 
 
