@@ -74,14 +74,20 @@ export default {
 
 <style lang="scss" scoped>
     .test {
-      background-color: rgb(210, 225, 226);
+        background-image: url("/images/bg-blue.png"),
+          linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3));
+        background-blend-mode: overlay;
+        background-repeat: no-repeat;
+        background-size: cover;
     }
+
     .jumbotron {
       height: 60vh;
       background: linear-gradient(to top, #ffffff88, #00000088),  url('/images/jumbo.webp');
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center;
+      border-bottom:5px solid black;
     }
     .sponsorship {
       padding-top: 50px;

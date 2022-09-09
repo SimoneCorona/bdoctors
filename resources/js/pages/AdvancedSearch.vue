@@ -61,8 +61,11 @@
           </div>
         </div>
       </div>
-      <div v-if="totalDoctor > 0" class="text-light text-end">
-        {{ totalDoctor }} Dottori
+      <div v-if="totalDoctor === 1" class="text-light text-uppercase text-end me-2">
+        <p>Abbiamo trovato {{ totalDoctor }} dottore</p>
+      </div>
+      <div v-if="totalDoctor > 1" class="text-light text-uppercase text-end me-2">
+        <p>Abbiamo trovato {{ totalDoctor }} dottori</p>
       </div>
       <Doctors :doctorsToShow="resultDoctors" />
       <div v-if="lastPage > 1">
@@ -176,7 +179,7 @@
 
       <div
         v-if="resultDoctors.length === 0"
-        class="text-center text-light doctorNull p-3"
+        class="doctorNull text-center text-uppercase text-light p-3"
       >
         Nessun medico trovato
       </div>
@@ -292,5 +295,10 @@ select {
 
 .doctorNull {
   background-color: rgba($color: #000000, $alpha: 0.5);
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
 }
 </style>
