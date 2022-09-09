@@ -27,12 +27,11 @@
             @endforelse
             {{ $reviews->links() }}
         </div>
-    
-        <x-footer />
     </div>
+    <x-footer />
 @endsection
 
-<style lang="scss" scoped>
+<style>
 
 .bd-word {
         text-transform: uppercase;

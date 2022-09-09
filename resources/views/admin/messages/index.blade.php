@@ -23,8 +23,8 @@
             @endforelse
             {{ $messages->links() }}
           </div>
-          <x-footer />
     </div>
+    <x-footer />
 @endsection
 
 
