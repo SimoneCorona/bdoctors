@@ -10,7 +10,7 @@
               class="form-select"
               aria-label="Selezione Specializzazione"
             >
-              <option selected>Seleziona la Specializzazione</option>
+              <option value="" selected>Seleziona la Specializzazione</option>
               <option
                 v-for="(specialty, index) in specialties"
                 :key="index"
@@ -54,6 +54,7 @@
           <div class="col-12 col-md-6 col-lg-4 col-xl-3">
             <button
               class="search-btn btn btn-primary text-white mb-2"
+              :class="{disabled: specialtySearched === ''}"
               @click="search(specialtySearched)"
             >
               Cerca

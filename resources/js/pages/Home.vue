@@ -8,7 +8,9 @@
             <option disabled selected value="0"></option>
             <option v-for="(specialty, index) in specialties" :key="index" :value="specialty.specialty_slug">{{ specialty.specialty_name }}</option>
           </select>
-          <router-link class="style-btn btn text-uppercase bg-dark text-light text-center px-3 pe" :to="{name: 'advanced-search', params: {specialty: selectedSpecialty }}"><b>Cerca</b></router-link> 
+          <router-link class="style-btn btn text-uppercase bg-dark text-light text-center px-3 pe"
+          :to="{name: 'advanced-search', params: {specialty: selectedSpecialty }}"
+          :class="{disabled: selectedSpecialty === ''}"><b>Cerca</b></router-link> 
         </div>
       </div>
     </div>
