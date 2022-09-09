@@ -4,10 +4,10 @@
       <!-- TITOLO SLIDER -->
       <h2 class="my-4 pb-4 text-white"><span class="first-letter">M</span>edici in evidenza</h2>
       <!-- INIZIO SLIDER -->
-      <div class="row">
-        <div class="col-12 d-flex align-items-center">
+      <div class="container-fluid">
+        <div class="row d-flex align-items-center justify-content-center">
           <!-- BOTTONE PREV -->
-          <div class="col-3">
+          <div class="col-3 d-flex align-items-center justify-content-center">
             <div class="small-circle" @click="showPrev" v-if="sponsored_users[prev]">
               <img :src="sponsored_users[prev].photo ? `/storage/${sponsored_users[prev].photo}` : 'img/img-not-found.png'" alt="">
 
@@ -54,7 +54,7 @@
           <!-- / CARD CHE SI GIRA -->
 
           <!-- BOTTONE NEXT -->
-          <div class="col-3">
+          <div class="col-3 d-flex align-items-center justify-content-center">
             <div class="small-circle d-flex flex-end" @click="showNext" v-if="sponsored_users[next]">
               <img :src="sponsored_users[next].photo ? `/storage/${sponsored_users[next].photo}` : 'img/img-not-found.png'" alt="">
             </div>
