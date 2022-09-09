@@ -15,7 +15,7 @@ class ReviewController extends Controller
         {
             $query->where('slug', '=', $user_slug);
         
-        })->paginate(15);
+        })->orderBy('created_at', 'desc')->paginate(15);
         // dd($reviews);
         if ($reviews) {
             return response()->json([

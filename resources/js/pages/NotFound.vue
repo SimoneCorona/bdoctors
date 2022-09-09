@@ -1,5 +1,5 @@
 <template>
-   <h1>Errore 404: Pagina non trovata!</h1>
+   <h1 class="text-center">Errore 404: Pagina non trovata!</h1>
 </template>
 
 <script>
@@ -11,5 +11,6 @@ export default {
 </script>
 
 <style>
+
 
 </style>

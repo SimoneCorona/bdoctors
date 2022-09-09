@@ -9,21 +9,21 @@
           <!-- BOTTONE PREV -->
           <div class="col-3">
             <div class="small-circle prev" @click="showPrev" v-if="sponsored_users[prev]">
-              <img :src="sponsored_users[prev].photo ? sponsored_users[prev].photo : 'img/img-not-found.png'" alt="">
+              <img :src="sponsored_users[prev].photo ? `/storage/${sponsored_users[prev].photo}` : 'img/img-not-found.png'" alt="">
 
             </div>
           </div>
           <!-- / BOTTONE PREV -->
-          <div class="col-6 d-flex justify-content-center">
+          <div v-if="sponsored_users[counter]" class="col-6 d-flex justify-content-center">
             <!-- CARD CHE SI GIRA -->
-            <router-link :to="{ name: 'single-user', params: { slug: sponsored_users[counter].slug } }">
               <div class="mycard">
+              <router-link :to="{ name: 'single-user', params: { slug: sponsored_users[counter].slug } }">
                 <div class="mycard__inner">
                   <!-- FRONTE -->
                   <div class="mycard__front">
                     <div class="sponsored-doctor ">
                       <div class="sponsored-doctor__img" v-if="sponsored_users[counter]">
-                        <img :src="sponsored_users[counter].photo ? sponsored_users[counter].photo : 'img/img-not-found.png'" alt="">
+                        <img :src="sponsored_users[counter].photo ? `/storage/${sponsored_users[counter].photo}` : 'img/img-not-found.png'" alt="">
                       </div>
                       <div class="sponsored-doctor__info">
                         <h4 v-if="sponsored_users[counter]" class="name">
@@ -47,8 +47,8 @@
                     </h4>
                   </div>
                 </div>
+                </router-link>
               </div>
-              </router-link>
           </div>
           
           <!-- / CARD CHE SI GIRA -->
@@ -56,7 +56,7 @@
           <!-- BOTTONE NEXT -->
           <div class="col-3">
             <div class="small-circle next" @click="showNext" v-if="sponsored_users[next]">
-              <img :src="sponsored_users[next].photo ? sponsored_users[next].photo : 'img/img-not-found.png'" alt="">
+              <img :src="sponsored_users[next].photo ? `/storage/${sponsored_users[next].photo}` : 'img/img-not-found.png'" alt="">
             </div>
           </div>
           <!-- / BOTTONE NEXT -->
@@ -72,14 +72,13 @@ export default {
     data() {
       return {
         sponsored_users: [],
-        counter: '',
+        counter: 1,
         prev: '',
         next: '',
       }
     },
     created() {
     this.getSponsorships();
-      this.counter = 1;
       this.prev = 0;
       this.next = 2;
       setInterval(this.showNext, 5000);
@@ -196,6 +195,7 @@ export default {
         position: absolute;
         backface-visibility: hidden;
         overflow: hidden;
+        transform: rotateX(0deg);
         border-radius: 50%;
       }
       &__back {
@@ -219,6 +219,8 @@ export default {
       width: 100%;
       height: 100%;
       &__img {
+        width: 100%;
+        height: 100%;
         position: absolute;
         }
         &__info {

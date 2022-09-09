@@ -8,7 +8,7 @@
             <option disabled selected value="0"></option>
             <option v-for="(specialty, index) in specialties" :key="index" :value="specialty.specialty_slug">{{ specialty.specialty_name }}</option>
           </select>
-          <router-link class="mybtn text-light ps-3 pe-2" :to="{name: 'advanced-search', params: {specialty: selectedSpecialty }}"><b>cerca</b></router-link> 
+          <router-link class="style-btn btn text-uppercase bg-dark text-light text-center px-3 pe" :to="{name: 'advanced-search', params: {specialty: selectedSpecialty }}"><b>Cerca</b></router-link> 
         </div>
       </div>
     </div>
@@ -74,14 +74,20 @@ export default {
 
 <style lang="scss" scoped>
     .test {
-      background-color: rgb(210, 225, 226);
+        background-image: url("/images/bg-blue.png"),
+          linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3));
+        background-blend-mode: overlay;
+        background-repeat: no-repeat;
+        background-size: cover;
     }
+
     .jumbotron {
       height: 60vh;
       background: linear-gradient(to top, #ffffff88, #00000088),  url('/images/jumbo.webp');
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center;
+      border-bottom:5px solid black;
     }
     .sponsorship {
       padding-top: 50px;
@@ -102,12 +108,11 @@ export default {
         }
       }
     }
-    .mybtn {
-      background-color: #000000;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
+
+    .style-btn {
+      letter-spacing: .3rem;
     }
+
     select {
       border-radius: 0;
     }
