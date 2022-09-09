@@ -52,7 +52,7 @@
     </div>
 @endsection
 
-<style lang="scss" scoped>
+<style>
 .pagination .mybtn {
           /* margin-top: 1rem;
           height: 2.5rem;
