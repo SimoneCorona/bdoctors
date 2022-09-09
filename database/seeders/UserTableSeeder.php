@@ -17,10 +17,58 @@ class UserTableSeeder extends Seeder
      */
     public function run(Faker $faker)
     {   
+        $male_pics_array = [
+            'profile_pics/fake_profiles/male/image001.jpg',
+            'profile_pics/fake_profiles/male/image002.jpg',
+            'profile_pics/fake_profiles/male/image003.jpg',
+            'profile_pics/fake_profiles/male/image004.jpg',
+            'profile_pics/fake_profiles/male/image005.jpg',
+            'profile_pics/fake_profiles/male/image006.jpg',
+            'profile_pics/fake_profiles/male/image007.jpg',
+            'profile_pics/fake_profiles/male/image008.jpg',
+            'profile_pics/fake_profiles/male/image009.jpg',
+            'profile_pics/fake_profiles/male/image010.jpg',
+            'profile_pics/fake_profiles/male/image011.jpg',
+            'profile_pics/fake_profiles/male/image012.jpg',
+            'profile_pics/fake_profiles/male/image013.jpg',
+            'profile_pics/fake_profiles/male/image014.jpg',
+            'profile_pics/fake_profiles/male/image015.jpg',
+            'profile_pics/fake_profiles/male/image016.jpg',
+            'profile_pics/fake_profiles/male/image017.jpg',
+            'profile_pics/fake_profiles/male/image018.jpg',
+            'profile_pics/fake_profiles/male/image019.jpg',
+            'profile_pics/fake_profiles/male/image020.jpg',
+            'profile_pics/fake_profiles/male/image021.jpg',
+            'profile_pics/fake_profiles/male/image022.jpg',
+        ];
+        $female_pics_array = [
+            'profile_pics/fake_profiles/female/image001.jpg',
+            'profile_pics/fake_profiles/female/image002.jpg',
+            'profile_pics/fake_profiles/female/image003.jpg',
+            'profile_pics/fake_profiles/female/image004.jpg',
+            'profile_pics/fake_profiles/female/image005.jpg',
+            'profile_pics/fake_profiles/female/image006.jpg',
+            'profile_pics/fake_profiles/female/image007.jpg',
+            'profile_pics/fake_profiles/female/image008.jpg',
+            'profile_pics/fake_profiles/female/image009.jpg',
+            'profile_pics/fake_profiles/female/image010.jpg',
+            'profile_pics/fake_profiles/female/image011.jpg',
+            'profile_pics/fake_profiles/female/image012.jpg',
+            'profile_pics/fake_profiles/female/image013.jpg',
+            'profile_pics/fake_profiles/female/image014.jpg',
+            'profile_pics/fake_profiles/female/image015.jpg',
+            'profile_pics/fake_profiles/female/image016.jpg',
+            'profile_pics/fake_profiles/female/image017.jpg',
+            'profile_pics/fake_profiles/female/image018.jpg',
+            'profile_pics/fake_profiles/female/image019.jpg',
+            'profile_pics/fake_profiles/female/image020.jpg',
+            'profile_pics/fake_profiles/female/image021.jpg',
+        ];
+
         for ($i=0; $i < 300 ; $i++) { 
             
             $user = new User();
-            $user->name = $faker->firstName();
+            $user->name = $i % 2 ? $faker->firstNameMale() : $faker->firstNameFemale();
             $user->surname = $faker->lastName();
             $user->email = $faker->email();
             $user->address = $faker->address();
@@ -28,6 +76,7 @@ class UserTableSeeder extends Seeder
             $user->cv = $faker->sentence();
             $user->phone_number = $faker->phoneNumber();
             $user->password = $faker->password();
+            $user->photo = $i % 2 ? $male_pics_array[$i % count($male_pics_array)] : $female_pics_array[$i % count($female_pics_array)];
             $user->save();
             $user->specialties()->attach($faker->numberBetween(1, 54));
             if (substr( $user['name'], 0, 1 ) === "G") {
