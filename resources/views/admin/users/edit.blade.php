@@ -3,9 +3,10 @@
 
 
 @section('content')
-    <div class="container">
+<div class="edit">
+    <div class="my-container bg-transp px-5">
 
-        <h1 class="mt-3">Modifica Profilo</h1>
+        <h2 class="text-uppercase pt-5">Modifica Profilo</h2>
 
         @if ($errors->any())
             <div>
@@ -21,7 +22,7 @@
             enctype="multipart/form-data">
             @method('PUT')
             @csrf
-            <div class="form-group my-3" id="name-formgroup">
+            <div class="form-group pt-2 my-3 text-uppercase" id="name-formgroup">
                 <label for="name">Nome *</label>
                 <input class="form-control" type="text" id="name" name="name" required
                     value="{{ old('name') ? old('name') : $user->name }}">
@@ -29,7 +30,7 @@
                     Inserisci il tuo nome
                 </div>
             </div>
-            <div class="form-group my-3" id="surname-formgroup">
+            <div class="form-group my-3 text-uppercase" id="surname-formgroup">
                 <label for="surname">Cognome *</label>
                 <input class="form-control" type="text" id="surname" name="surname" required
                     value="{{ old('surname') ? old('surname') : $user->surname }}">
@@ -37,12 +38,12 @@
                     Inserisci il tuo cognome
                 </div>
             </div>
-            <div class="form-group my-3">
+            <div class="form-group my-3 text-uppercase">
                 <label for="phone_number">Numero di telefono</label>
                 <input class="form-control" type="phone" id="phone_number" name="phone_number"
                     value="{{ old('phone_number') ? old('phone_number') : $user->phone_number }}">
             </div>
-            <div class="form-group my-3" id="address-formgroup">
+            <div class="form-group my-3 text-uppercase" id="address-formgroup">
                 <label for="address">Indirizzo *</label>
                 <input class="form-control" type="text" id="address" name="address" required
                     value="{{ old('address') ? old('address') : $user->address }}">
@@ -51,13 +52,13 @@
                 </div>
             </div>
 
-            <div class="form-group my-3">
+            <div class="form-group my-3 text-uppercase">
                 <label for="photo">Foto</label>
                 <input class="form-control" type="file" name="photo" id="photo">
             </div>
 
             <div class="form-group my-3" id="specialties-formgroup">
-                <h3>Specializzazione *</h3>
+                <p class="text-uppercase pt-4">Specializzazione *</p>
                 <div class="invalid-feedback">
                     Inserisci almeno una specializzazione.
                 </div>
@@ -77,28 +78,29 @@
                     </div>
                 </div>
 
-                <div class="form-group mb-3">
+                <div class="form-group mb-3 text-uppercase">
                     <label for="services">Prestazioni</label>
                     <textarea class="form-control" type="text" id="services" name="services"
                         value="{{ old('services') ? old('services') : $user->services }}" rows="5" placeholder="Prestazioni">{{ $user->services }}</textarea>
                 </div>
 
-                <div class="form-group mb-2">
+                <div class="form-group mb-2 text-uppercase">
                     <label for="cv">CV</label>
                     <textarea class="form-control" type="text" id="cv" name="cv"
                         value="{{ old('cv') ? old('cv') : $user->cv }}" rows="5" placeholder="Inserisci il tuo CV">{{ $user->cv }}</textarea>
                 </div>
 
         </form>
-        <div class="btns d-flex my-4 justify-content-end">
-            <button class="btn btn-primary me-3 text-light" type="submit">Salva</button>
+        <div class="btns d-flex my-4 pb-5 justify-content-end">
+            <button class="edit-btn save-btn btn-primary me-3 text-light text-uppercase" type="submit">Salva</button>
             <form class="mb-0" action="{{ route('admin.users.destroy') }}" method="POST">
                 @csrf
                 @method('DELETE')
-                <button class="btn btn-danger text-light">Elimina</button>
+                <button class="edit-btn destroy-btn text-light text-uppercase">Elimina</button>
             </form>
         </div>
     </div>
+</div>
 
     <script>
         let form = document.getElementById('user-edit-form');
@@ -106,23 +108,19 @@
         let surname = document.getElementById('surname-formgroup');
         let address = document.getElementById('address-formgroup');
         let specialties = document.getElementById('specialties-formgroup');
-
         function showError(input) {
             invalidMsg = input.querySelector('.invalid-feedback');
             invalidMsg.classList.add('d-block');
             input.scrollIntoView();
         }
-
         function removeError(input) {
             invalidMsg = input.querySelector('.invalid-feedback');
             invalidMsg.classList.remove('d-block');
         }
-
         function checkEmptyInputInFormGroup(formGroup) {
             innerInput = formGroup.querySelector('input');
             return innerInput.value === '';
         }
-
         function checkboxValidator(formGroup) {
             let checkboxArray = formGroup.querySelectorAll('.specialty-checkbox');
             let checkedSpecialties = [];
@@ -135,7 +133,6 @@
             let atLeastOneSpecialty = checkedSpecialties.length > 0;
             return atLeastOneSpecialty;
         }
-
         form.addEventListener("submit", function(e) {
             e
                 .preventDefault(); //when we click on submit, it just submits, but we don't want that, we want to hold for a while
@@ -144,7 +141,6 @@
             } else {
                 removeError(name);
             }
-
             if (checkEmptyInputInFormGroup(surname)) {
                 showError(surname);
             } else {
@@ -160,7 +156,6 @@
             } else {
                 removeError(specialties);
             }
-
             if (!checkEmptyInputInFormGroup(name) &&
                 !checkEmptyInputInFormGroup(surname) &&
                 !checkEmptyInputInFormGroup(address) &&
@@ -172,4 +167,38 @@
 @endsection
 
 <style>
+
+    .edit {
+        background-image: url('/images/bg-admin.png'),
+        linear-gradient(rgba(255, 255, 255, 0.1),rgba(255, 255, 255, 0.1));
+        background-size: 100%;
+        background-blend-mode: overlay;
+        padding: 0 4rem;
+    }
+
+    .my-container {
+        width: 70%;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .bg-transp {
+        background-color: rgba(255,255,255,0.6);
+    }
+
+    .edit-btn {
+        color: black;
+        border: 1px solid black;
+        padding: .3rem 1.3rem;
+    }
+
+    .save-btn {
+        background-color: rgb(0, 118, 139);
+
+    }
+
+    .destroy-btn {
+        background-color: rgb(216, 165, 117);
+
+    }
 </style>
