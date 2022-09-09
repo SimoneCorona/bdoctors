@@ -34,7 +34,7 @@ class RewievTableSeeder extends Seeder
             
             $review = new Review();
             $review->author = $faker->name();
-            $review->user_id = $faker->numberBetween(1, 100);
+            $review->user_id = $faker->numberBetween(1, 300);
             $review->text_review = $array_reviews[$i % count($array_reviews)];
             $review->rating = $faker->numberBetween(1, 5);
             $review->save();

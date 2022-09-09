@@ -341,15 +341,15 @@
     }
 
     .bg-transp {
-        background-color: rgba(255,255,255,0.4);
+        background-color: rgba(255,255,255,0.5);
     }
 
     .bg-fume {
         background-color: rgba(0, 0, 0, 0.3);
     }
     .admin {
-        background-image: url('/images/bg-admin.jpg'),
-        linear-gradient(rgba(255, 255, 255, 0.3),rgba(255, 255, 255, 0.3));
+        background-image: url('/images/bg-admin.png'),
+        linear-gradient(rgba(255, 255, 255, 0.1),rgba(255, 255, 255, 0.1));
         background-size: 100%;
         background-blend-mode: overlay;
         padding-top: 4rem;
@@ -358,7 +358,7 @@
     .menu-icon {
         display: inline-block;
         color: white;
-        background-color: rgba(0, 0, 0, 0.4);
+        background-color: rgba(0, 0, 0, 0.5);
         border: 1px solid black;
         width: 1.5rem;
         height: 1.5rem;

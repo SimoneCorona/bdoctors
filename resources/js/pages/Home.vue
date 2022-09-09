@@ -89,25 +89,6 @@ export default {
       background-position: center;
       border-bottom:5px solid black;
     }
-    .sponsorship {
-      padding-top: 50px;
-      padding-bottom: 70px;
-      border-right: 3px solid black;
-      border-left: 3px solid black;
-      h2 {
-        text-transform: uppercase;
-        letter-spacing: .5rem;
-        text-align: center;
-        .first-letter {
-          display: inline-block;
-          color: white;
-          background-color: black;
-          padding-left: .5rem;
-          margin-right: .3rem;
-          margin-left: .5rem;
-        }
-      }
-    }
 
     .style-btn {
       letter-spacing: .3rem;

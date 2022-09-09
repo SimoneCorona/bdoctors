@@ -33,7 +33,7 @@ class MessageTableSeeder extends Seeder
         for ($i=0; $i < 500 ; $i++) { 
             $message = new Message();
             $message->author = $faker->name();
-            $message->user_id = $faker->numberBetween(1, 100);
+            $message->user_id = $faker->numberBetween(1, 300);
             $message->text_message = $array_messages[$i % count($array_messages)];
             $message->email = $faker->email();
             $message->save();
