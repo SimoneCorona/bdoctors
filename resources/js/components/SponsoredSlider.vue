@@ -1,14 +1,14 @@
 <template>
     <!-- INIZIO SLIDER CONTAINER -->
-    <div class="sponsorship container overflow-hidden mt-5 text-center">
+    <div class="sponsorship container overflow-hidden my-3 pb-4 text-center">
       <!-- TITOLO SLIDER -->
-      <h2 class="mb-5 pb-5"><span class="first-letter">M</span>edici in evidenza</h2>
+      <h2 class="my-4 pb-4 text-white"><span class="first-letter">M</span>edici in evidenza</h2>
       <!-- INIZIO SLIDER -->
       <div class="container-fluid">
-        <div class="row d-flex align-items-center">
+        <div class="row d-flex align-items-center justify-content-center">
           <!-- BOTTONE PREV -->
-          <div class="col-3">
-            <div class="small-circle prev" @click="showPrev" v-if="sponsored_users[prev]">
+          <div class="col-3 d-flex align-items-center justify-content-center">
+            <div class="small-circle" @click="showPrev" v-if="sponsored_users[prev]">
               <img :src="sponsored_users[prev].photo ? `/storage/${sponsored_users[prev].photo}` : 'img/img-not-found.png'" alt="">
 
             </div>
@@ -54,8 +54,8 @@
           <!-- / CARD CHE SI GIRA -->
 
           <!-- BOTTONE NEXT -->
-          <div class="col-3">
-            <div class="small-circle next" @click="showNext" v-if="sponsored_users[next]">
+          <div class="col-3 d-flex align-items-center justify-content-center">
+            <div class="small-circle" @click="showNext" v-if="sponsored_users[next]">
               <img :src="sponsored_users[next].photo ? `/storage/${sponsored_users[next].photo}` : 'img/img-not-found.png'" alt="">
             </div>
           </div>
@@ -129,8 +129,28 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
     .sponsorship {
-      margin-bottom: 4rem;
+      border-right: 3px solid black;
+      border-left: 3px solid black;
+      h2 {
+        text-transform: uppercase;
+        letter-spacing: .5rem;
+        text-align: center;
+        .first-letter {
+          display: inline-block;
+          color: white;
+          background-color: black;
+          padding-left: .5rem;
+          margin-right: .3rem;
+          margin-left: .5rem;
+        }
+      }
+    }
+
+    .sponsorship {
+      max-width: 800;
+
       h2 {
         text-transform: uppercase;
         letter-spacing: .4rem;
@@ -143,10 +163,10 @@ export default {
       }
     }
     .small-circle {
-      width: 20vw;
-      max-width: 300px;
-      height: 20vw;
-      max-height: 300px;
+      width: 15vw;
+      max-width: 200px;
+      height: 15vw;
+      max-height: 200px;
       outline: 3px solid black;
       outline-offset: 10px;
       border-radius: 50%;
@@ -163,10 +183,10 @@ export default {
       }
     }
     .mycard {
-      width: 30vw;
-      max-width: 460px;
-      height: 30vw;
-      max-height: 450px;
+      width: 25vw;
+      max-width: 350px;
+      height: 25vw;
+      max-height: 350px;
       border-radius: 50%;
       outline: 5px solid black;
       outline-offset: 15px;
@@ -207,10 +227,10 @@ export default {
           display: inline-block;
           padding: 0 4rem .5rem;
           border-bottom: 3px solid black;
-          font-size: 2rem;
+          font-size: 2vw;
         }
         .email {
-          font-size: 2rem;
+          font-size: 1.5vw;
         }
       }
     }
@@ -237,18 +257,18 @@ export default {
             display: inline-block;
             padding: 0 10rem .5rem;
             border-bottom: 4px solid black;
-            font-size: 3.5vw;
+            font-size: 2.5vw;
           }
           .specialty {
-            font-size: 2.5vw;
+            font-size: 2vw;
           }
         }
       }
-    .prev {
-      transform: translate(-55%);
-    }
-    .next {
-      transform: translate(55%);
-    }
+    // .prev {
+    //   transform: translate(-55%);
+    // }
+    // .next {
+    //   transform: translate(55%);
+    // }
 </style>
 
