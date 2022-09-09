@@ -55,7 +55,7 @@
 
           <!-- BOTTONE NEXT -->
           <div class="col-3 d-flex align-items-center justify-content-center">
-            <div class="small-circle d-flex flex-end" @click="showNext" v-if="sponsored_users[next]">
+            <div class="small-circle" @click="showNext" v-if="sponsored_users[next]">
               <img :src="sponsored_users[next].photo ? `/storage/${sponsored_users[next].photo}` : 'img/img-not-found.png'" alt="">
             </div>
           </div>
