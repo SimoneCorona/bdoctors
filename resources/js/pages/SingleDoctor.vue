@@ -15,7 +15,8 @@
                             <h1>{{ user.name }} {{ user.surname }}</h1>
                             <p><i class="fas fa-star" :class="n <= starsInReviews ? 'text-warning' : 'text-light'" v-for="n in 5" :key="n"></i></p>
                             <div v-for="specialty in user.specialties" :key="specialty.specialty_id">
-                                <p class="badge specialty-tag px-2 mx-1 text-light">{{ specialty.specialty_name }}</p>
+                                <router-link :to="{name: 'advanced-search', params: {specialty: specialty.specialty_slug }}"><p class="badge specialty-tag px-2 mx-1 text-light">{{ specialty.specialty_name }}</p></router-link>
+                                <!-- :to="{ name: 'single-user', params: { slug: sponsored_users[counter].slug } } -->
                             </div>
                             <p><strong class="text-uppercase">Email</strong><br>{{ user.email }}</p>
                             <p v-if="user.phone_number"><strong class="text-uppercase">Numero di telefono</strong><br>{{ user.phone_number }}</p>
@@ -171,19 +172,17 @@
 
         <!-- Tutte le recensioni -->
         <div class="all-revs row my-5 pt-5 px-3">
+          <div  v-if="user.reviews.length > 0">
             <h4 class="bd-word pt-4 pb-3 mb-5"><span>T</span>utte le recensioni</h4>
             <SingleDoctorReviews />
-
-            <!-- <div v-if="user.reviews && user.reviews.length > 0">
-                <div class="review mb-5 px-4 pt-3 border border-1" v-for="review in user.reviews" :key="review.id">
-                    <p>{{ review.text_review }}</p>
-                    <i class="fas fa-star" :class="n <= review.rating  ? 'text-warning' : 'text-light'" v-for="n in 5" :key="n"></i>
-                    <p class="mt-3">{{ review.author }}</p>
-                </div>
-            </div>
-            <p v-else>Nessuna recensione!</p> -->
           </div>
+
+          <div v-else>
+            <h4 class="bd-word pt-4 pb-3 mb-5"><span>S</span>crivi per primo una recensione</h4>
+          </div>
+
         </div>
+      </div>
   </div>
 </template>
 
@@ -335,9 +334,14 @@
           background-color: rgba(0,0,0,0.5);
           border-radius: 0;
           font-size: .8rem;
-          outline: 1px solid white;
-          outline-offset: 3px;
+          border: 1px solid white;
           margin-right: .5rem;
+          transition: .6s;
+
+          &:hover {
+            background-color: black;
+            transition: .6s;
+          }
         }
       }
 
