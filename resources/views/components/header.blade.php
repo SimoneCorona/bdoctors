@@ -6,20 +6,23 @@
           <img src="{{ asset('images/logo.png')}}" alt="">
         </a>
           <div class="p-0 flex-grow-1" id="navbarSupportedContent">
-            <ul class="mb-0 d-flex justify-content-end">
+            <ul class="mb-0 p-0 d-flex justify-content-end">
               @if (!$user)
-              <li class="list-unstyled me-4">
+              <li class="list-unstyled">
                 <a class="mybtn nav-link px-2" aria-current="page" href="/login"><b>login</b></a>
               </li>
-              <li class="list-unstyled me-4">
+              <li class="list-unstyled">
                 <b><a class="mybtn nav-link px-2" href="/register">register</a></b>
               </li>
               @else
               
               <li class="position-relative list-unstyled me-4">
-                <div class="row ">
+                <div class="row g-0">
                   <div class="col-auto">
-                    <a class="nav-link px-2 mybtn" href="/admin">{{ $user->name }}</a>
+                    <a class="nav-link px-2 mybtn" href="/admin">
+                      <span class="d-none d-sm-inline-block">{{ $user->name }}</span>
+                      <span class="d-inline-block d-sm-none"><i class="fa-regular fa-user"></i></span>
+                    </a>
                   </div>
                   <div class="col-auto arrow ">
                     <span class="nav-link px-2 mybtn"></span>
@@ -65,7 +68,7 @@
   .logout{
     position: absolute;
     padding-left: 3.5rem; 
-    top: 28px;
+    /* top: 28px; */
     right: 0;
     border-top: 3px solid black;
   }

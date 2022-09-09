@@ -14,10 +14,10 @@
             </div>
           </div>
           <!-- / BOTTONE PREV -->
-          <div class="col-6 d-flex justify-content-center">
+          <div v-if="sponsored_users[counter]" class="col-6 d-flex justify-content-center">
             <!-- CARD CHE SI GIRA -->
-            <router-link :to="{ name: 'single-user', params: { slug: sponsored_users[counter].slug } }">
               <div class="mycard">
+              <router-link :to="{ name: 'single-user', params: { slug: sponsored_users[counter].slug } }">
                 <div class="mycard__inner">
                   <!-- FRONTE -->
                   <div class="mycard__front">
@@ -47,8 +47,8 @@
                     </h4>
                   </div>
                 </div>
+                </router-link>
               </div>
-              </router-link>
           </div>
           
           <!-- / CARD CHE SI GIRA -->

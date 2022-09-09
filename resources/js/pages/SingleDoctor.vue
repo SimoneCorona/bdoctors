@@ -171,7 +171,7 @@
         </div>
 
         <!-- Tutte le recensioni -->
-        <div class="all-revs row my-5 pt-5 px-3">
+        <div v-if="user.reviews" class="all-revs row my-5 pt-5 px-3">
           <div  v-if="user.reviews.length > 0">
             <h4 class="bd-word pt-4 pb-3 mb-5"><span>T</span>utte le recensioni</h4>
             <SingleDoctorReviews />
@@ -506,7 +506,7 @@ export default {
     },
     computed: {
         starsInReviews() {
-            return Math.round(this.user.avg_rating);
+            return Math.round(this.user.reviews_avg_rating);
         },
     },
     
