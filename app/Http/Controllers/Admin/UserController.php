@@ -159,7 +159,20 @@ class UserController extends Controller
      */
     public function sponsor()
     {
-        $user = Auth::user();
+        $logged_user = Auth::user();
+        $user = User::with(['sponsorships'])->where('id', '=', $logged_user->id)->first();
+        $final_sponsorship = $user->sponsorships()
+        ->wherePivot('date_end', '>', now())
+        ->orderByDesc('pivot_date_end')
+        ->first();
+
+        if ($final_sponsorship) {
+            $final_sponsorship_end = Carbon::parse($final_sponsorship->pivot->date_end);
+        }
+        else {
+            $final_sponsorship_end = '';
+        }
+
         $gateway = new \Braintree\Gateway([
             'environment' => env('BRAINTREE_ENVIRONMENT'),
             'merchantId' => env("BRAINTREE_MERCHANT_ID"),
@@ -167,34 +180,13 @@ class UserController extends Controller
             'privateKey' => env("BRAINTREE_PRIVATE_KEY")
         ]);
         $clientToken = $gateway->clientToken()->generate();
-        return view('admin.users.sponsor', compact('user', 'clientToken'));
+        return view('admin.users.sponsor', compact('user', 'final_sponsorship_end', 'clientToken'));
     }
 
     public function pay(Request $request)
     {
         $logged_user = Auth::user();
         $user = User::with(['sponsorships'])->where('id', '=', $logged_user->id)->first();
-
-        // $final_sponsorship = $user->sponsorships()
-        //     ->wherePivot('date_end', '>', now())
-        //     ->orderByDesc('pivot_date_end')
-        //     ->first();
-
-        // dd($final_sponsorship === true);
-
-        // dd($final_sponsorship[0]->pivot->date_end);
-        // $final_sponsorship_end = Carbon::parse($final_sponsorship->pivot->date_end);
-        // dd($final_sponsorship_end);
-        // dd($final_sponsorship->isNotEmpty());
-        // dd(now(),$final_sponsorship_end);
-        // $dati['tier'] = 'oro'; // TEST, DELETE LATER
-
-        // $sponsorship = Sponsorship::where('name', '=', $dati['tier'])->first();
-        // dd($sponsorship);
-        // $user->sponsorships()->attach($sponsorship->id, ['date_start' => $final_sponsorship_end->copy()->addSecond(), 'date_end' => $final_sponsorship_end->copy()->addHours($sponsorship->duration_h)]);
-        // $user->sponsorships()->attach($sponsorship->id,['date_start' => now(), 'date_end' => now()->addHours($sponsorship->duration_h)]);
-        // return;
-
 
         $dati = $request->all();
         switch ($dati['tier']) {
