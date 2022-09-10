@@ -14,8 +14,8 @@
                     <p class="mb-2">Il tuo profilo è sponsorizzato fino a data <strong>{{ $final_sponsorship_end }} </strong></p>
                     <p class="mb-4"> Acquista un piano di sponsorizzazione per estendere il termine. </p>
                     @endif
-                    <div class="col-sm-12 col-md-4 col-4">
-                        <div class="card text-center py-3 px-5 mb-3">
+                    <div class="col-sm-12 col-md-4">
+                        <div class="card text-center py-3 px-2 px-sm-5 px-md-2 px-lg-5 mb-3">
                             <h5>Piano "Bronzo"</h5>
                             <h6>Costo: 2,99 €</h6>
                             <p>Durata: 24h (1gg)</p>
@@ -24,8 +24,8 @@
                             <label class="btn btn-outline-dark" for="bronzo">Scegli</label>
                         </div>
                     </div>
-                    <div class="col-sm-12 col-md-4 col-4 ">
-                        <div class="card text-center py-3 px-5 mb-3">
+                    <div class="col-sm-12 col-md-4">
+                        <div class="card text-center py-3 px-2 px-sm-5 px-md-2 px-lg-5 mb-3">
                             <h5>Piano "Argento"</h5>
                             <h6>Costo: 5,99 €</h6>
                             <p>Durata: 72h (3gg)</p>
@@ -34,8 +34,8 @@
                             <label class="btn btn-outline-dark" for="argento">Scegli</label>
                         </div>
                     </div>
-                    <div class="col-sm-12 col-md-4 col-4 mb-3">
-                        <div class="card text-center py-3 px-5" style="height: 100%">
+                    <div class="col-sm-12 col-md-4 mb-3">
+                        <div class="card text-center py-3 px-2 px-sm-5 px-md-2 px-l-5" style="height: 100%">
                             <h5>Piano "Oro"</h5>
                             <h6>Costo: 9.99 €</h6>
                             <p>Durata: 144h (6gg)</p>
