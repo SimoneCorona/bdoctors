@@ -38,6 +38,10 @@
                         <li class="list-unstyled mb-3"><strong>Numero di telefono<br></strong>{{ $user->phone_number }}</li>
                         <li class="list-unstyled mb-3"><strong>Email<br></strong>{{ $user->email }}</li>
                     </ul>
+                    <div class="services pt-3 ps-3 ms-3">
+                        <h3 class="bd-word">Prestazioni</h3>
+                        <p>{{ $user->services ? $user->services : "Nessua prestazione segnalata dal dottore" }}</p>
+                    </div>
                     {{-- FINE INFO UTENTE --}}
                 </div>
 

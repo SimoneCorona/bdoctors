@@ -47,9 +47,8 @@
               </nav>
               @endif
         </div>
-    
-        <x-footer />
     </div>
+    <x-footer />
 @endsection
 
 <style>

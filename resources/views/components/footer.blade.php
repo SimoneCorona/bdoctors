@@ -5,22 +5,24 @@
             <div class="col-sm-6 col-md-4 col-lg-5">
               <h4><span class="d-inline-block bg-dark px-2 text-light">P</span> U B B L I C O</h4>
               <ul class="f-links list-unstyled">
-                <li><a>Home</a></li>
-                <li><a>Login</a></li>
-                <li><a>Registrati</a></li>
-                <li><a>Contatti</a></li>
-                <li><a>Privacy</a></li>
-                <li><a>FAQ</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/register">Registrati</a></li>
+                <li><a href="#">Contatti</a></li>
+                <li><a href="#">Privacy</a></li>
+                <li><a href="#">FAQ</a></li>
               </ul>
             </div>
       
           <div class="col-sm-6 col-md-5 col-lg-5">
             <h4><span class="d-inline-block bg-dark px-2 text-light">D</span> A S H B O A R D</h4>
             <ul class="f-links list-unstyled">
-              <li><a>Il tuo profilo</a></li>
-              <li><a>Modifica il profilo</a></li>
-              <li><a>Sponsorizza il tuo lavoro</a></li>
-              <li><a>Logout</a></li>
+              <li><a href="{{ route('admin.home') }}">Il tuo profilo</a></li>
+              <li><a href="{{ route('admin.users.edit') }}">Modifica profilo</a></li>
+              <li><a href="{{ route('admin.messages.index') }}">Messaggi</a></li>
+              <li><a href="{{ route('admin.reviews.index') }}">Recensioni</a></li>
+              <li><a href="{{ route('admin.users.sponsor') }}">Sponsorizza il tuo lavoro</a></li>
+              <li><a href="{{ route('logout') }}">Logout</a></li>
             </ul>
           </div>
       
@@ -30,18 +32,18 @@
             <div class="social container-fluid">
               <div class="row">
                 <div class="col-4 col-md-12 d-flex mb-3">
-                  <a href="#">
+                  <a href="https://www.instagram.com/">
                     <i class="fa-brands fa-instagram"></i>
                   </a>
-                  <a href="#">
+                  <a href="https://www.facebook.com/">
                     <i class="fa-brands fa-facebook"></i>
                   </a>
                 </div>
                 <div class="col-4 col-md-12 d-flex mb-3">
-                  <a href="#">
+                  <a href="https://www.linkedin.com/">
                     <i class="fa-brands fa-linkedin"></i>
                   </a>
-                  <a href="#">
+                  <a href="https://twitter.com/?lang=it">
                     <i class="fa-brands fa-twitter"></i>
                   </a>
                 </div>
@@ -72,6 +74,7 @@
       text-decoration: none; 
       cursor: pointer;
       text-transform: uppercase;
+      color: black;
     }
 
     .f-links li {

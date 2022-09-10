@@ -50,7 +50,7 @@
                     type="text"
                     class="form-control rounded-0 rounded-top"
                     v-model="message_author"
-                    placeholder="Nome e cognome"
+                    placeholder="Nome e cognome *"
                     :class="{ 'is-invalid': errors.message.includes('author') }"
                     aria-label="name"
                     aria-describedby="addon-wrapping"
@@ -67,7 +67,7 @@
                     type="email"
                     class="form-control rounded-0"
                     v-model="message_email"
-                    placeholder="Email"
+                    placeholder="Email *"
                     :class="{ 'is-invalid': errors.message.includes('email') }"
                     aria-label="email"
                     aria-describedby="addon-wrapping"
@@ -80,16 +80,14 @@
                   </div>
                 </div>
                 <div class="form-floating mb-3">
-                  <textarea
-                    class="form-control rounded-0 rounded-bottom"
+                  <textarea class="form-control rounded-0 rounded-bottom"
                     v-model="message_text"
-                    placeholder="Scrivi qui il tuo messaggio"
+                    placeholder="Scrivi qui il tuo messaggio *"
                     id="message-text"
                     style="height: 150px"
                     :class="{
                       'is-invalid': errors.message.includes('text_message'),
-                    }"
-                  ></textarea>
+                    }"></textarea>
                   <label for="message-text">Scrivi qui il tuo messaggio</label>
                   <div
                     v-show="errors.message.includes('text_message')"
@@ -137,7 +135,7 @@
                     type="text"
                     class="form-control rounded-0 rounded-top"
                     v-model="review_author"
-                    placeholder="Nome e cognome"
+                    placeholder="Nome e cognome *"
                     :class="{ 'is-invalid': errors.review.includes('author') }"
                     aria-label="name"
                     aria-describedby="addon-wrapping"
@@ -153,7 +151,7 @@
                   <textarea
                     class="form-control rounded-0 rounded-bottom"
                     v-model="review_text"
-                    placeholder="Scrivi qui il tuo messaggio"
+                    placeholder="Scrivi qui la tua recensione *"
                     id="floatingTextarea2"
                     style="height: 150px"
                   ></textarea>
@@ -307,24 +305,6 @@
     .container {
       .info-base {
         background-color: rgba(0,0,0,0.4);
-
-        // .avatar {
-        //   width: 20vw;
-        //   height: 100%;
-        //   padding: 20px;
-
-          // .avatar img {
-          //   aspect-ratio: 1 / 1;
-          //   width: 100%;
-          // }
-          
-
-        // .avatar img {
-        //   width: 100%;
-        //   height: 100%;
-        //   object-fit: cover;
-        //   }
-        // }
 
         .info-c {
           overflow: auto;
