@@ -1,7 +1,5 @@
 @extends('layouts.dashboard')
 
-<x-header />
-
 @section('content')
     <script src="https://js.braintreegateway.com/web/dropin/1.33.4/js/dropin.min.js"></script>
     <div class="sponsorship-c">
@@ -10,16 +8,20 @@
                 @csrf
                 <div class="row">
                     <h4 class="pt-2 mt-5 mb-2 text-uppercase">Sponsorizza il tuo profilo!</h4>
-                    <h6 class="mb-4">Sponsorizza il tuo profilo scegliendo fra questi piani, avrai più possibilità di essere
+                    <h6 class="mb-2">Sponsorizza il tuo profilo scegliendo fra questi piani, avrai più possibilità di essere
                         visitato!</h6>
+                    @if ($final_sponsorship_end)
+                    <p class="mb-2">Il tuo profilo è sponsorizzato fino a data <strong>{{ $final_sponsorship_end }} </strong></p>
+                    <p class="mb-4"> Acquista un piano di sponsorizzazione per estendere il termine. </p>
+                    @endif
                     <div class="col-sm-12 col-md-4 col-4">
                         <div class="card text-center py-3 px-5 mb-3">
                             <h5>Piano "Bronzo"</h5>
                             <h6>Costo: 2,99 €</h6>
                             <p>Durata: 24h (1gg)</p>
-                            <input type="radio" value="bronz0" name="tier" id="bronz0" class="btn-check"
+                            <input type="radio" value="bronzo" name="tier" id="bronzo" class="btn-check"
                                 autocomplete="off" required />
-                            <label class="btn btn-outline-dark" for="bronz0">Scegli</label>
+                            <label class="btn btn-outline-dark" for="bronzo">Scegli</label>
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-4 col-4 ">
