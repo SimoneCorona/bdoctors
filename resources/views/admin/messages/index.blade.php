@@ -61,6 +61,9 @@
           padding-left: 1rem;
           border-radius: 0;
         }
+.mybtn i {
+    line-height: unset;
+}
 .bd-word {
         text-transform: uppercase;
         letter-spacing: .4rem;

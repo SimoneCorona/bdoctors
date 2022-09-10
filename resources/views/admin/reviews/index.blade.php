@@ -51,8 +51,18 @@
     <x-footer />
 @endsection
 
-
 <style>
+.pagination .mybtn {
+          /* margin-top: 1rem;
+          height: 2.5rem;
+          line-height: 2.5rem; */
+          border: 1px solid white;
+          padding-left: 1rem;
+          border-radius: 0;
+        }
+.mybtn i {
+    line-height: unset;
+}
 .bd-word {
         text-transform: uppercase;
         letter-spacing: .4rem;
