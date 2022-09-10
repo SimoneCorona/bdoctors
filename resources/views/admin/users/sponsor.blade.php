@@ -35,7 +35,7 @@
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-4 mb-3">
-                        <div class="card text-center py-3 px-2 px-sm-5 px-md-2 px-l-5" style="height: 100%">
+                        <div class="card text-center py-3 px-2 px-sm-5 px-md-2 px-lg-5" style="height: 100%">
                             <h5>Piano "Oro"</h5>
                             <h6>Costo: 9.99 €</h6>
                             <p>Durata: 144h (6gg)</p>
