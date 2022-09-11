@@ -6,7 +6,7 @@
               <h4><span class="d-inline-block bg-dark px-2 text-light">P</span> U B B L I C O</h4>
               <ul class="f-links list-unstyled">
                 <li><a href="/">Home</a></li>
-                <li><a href="/login">Login</a></li>
+                <li><a href="/login">Accedi</a></li>
                 <li><a href="/register">Registrati</a></li>
                 <li><a href="#">Contatti</a></li>
                 <li><a href="#">Privacy</a></li>

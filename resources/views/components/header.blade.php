@@ -9,10 +9,10 @@
             <ul class="mb-0 p-0 d-flex justify-content-end">
               @if (!$user)
               <li class="list-unstyled">
-                <a class="mybtn nav-link px-2" aria-current="page" href="/login"><b>login</b></a>
+                <a class="mybtn border-0 nav-link me-3 px-2" aria-current="page" href="/login"><b>Accedi</b></a>
               </li>
               <li class="list-unstyled">
-                <b><a class="mybtn nav-link px-2" href="/register">register</a></b>
+                <b><a class="mybtn border-0 nav-link px-2" href="/register">Registrati</a></b>
               </li>
               @else
               
