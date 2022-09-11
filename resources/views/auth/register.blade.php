@@ -1,10 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="register-c d-flex align-items-center">
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card bg-transp">
                 <div class="card-header">{{ __('Benvenuto nuovo utente! Registrati qui compilando i campi, oppure se sei già registrato, accedi.') }}</div>
 
                 <div class="card-body">
@@ -112,7 +113,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button id="btn" type="submit" class="btn btn-primary text-light">
+                                <button id="btn" type="submit" class="register-btn">
                                     {{ __('Registrati') }}
                                 </button>
                             </div>
@@ -122,6 +123,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 <script >
 
@@ -164,4 +166,27 @@ function checkpwd(pwd1, pwd2) {
     
 }
 </script>
+
+<style>
+    .register-c {
+        background-image: url('/images/bg-admin.png'),
+        linear-gradient(rgba(255, 255, 255, 0.1),rgba(255, 255, 255, 0.1));
+        background-size: 100%;
+        background-blend-mode: overlay;
+        min-height: calc(100vh - 70px);
+        margin-top: -2rem;
+        margin-bottom: -4rem;
+    }
+
+    .bg-transp {
+        background-color: rgba(255,255,255,0.8);
+    }
+
+    .register-btn {
+        color: white;
+        border: none;
+        padding: .3rem 1.3rem;
+        background-color: rgb(0, 118, 139);
+    }
+</style>
 @endsection
