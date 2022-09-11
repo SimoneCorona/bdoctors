@@ -196,11 +196,13 @@
 
     .save-btn {
         background-color: rgb(0, 118, 139);
+        border: none;
 
     }
 
     .destroy-btn {
         background-color: rgb(216, 165, 117);
+        border: none;
 
     }
 </style>
