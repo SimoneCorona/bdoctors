@@ -15,7 +15,7 @@
                             <h1>{{ user.name }} {{ user.surname }}</h1>
                             <p><i class="fas fa-star" :class="n <= starsInReviews ? 'text-warning' : 'text-light'" v-for="n in 5" :key="n"></i></p>
                             <div v-for="specialty in user.specialties" :key="specialty.specialty_id">
-                                <router-link :to="{name: 'advanced-search', params: {specialty: specialty.specialty_slug }}"><p class="badge specialty-tag px-2 mx-1 text-light">{{ specialty.specialty_name }}</p></router-link>
+                                <router-link :to="{name: 'advanced-search', params: {specialty: specialty.specialty_slug }}"><p class="badge specialty-tag px-2 mx-1 text-light d-inline-block">{{ specialty.specialty_name }}</p></router-link>
                                 <!-- :to="{ name: 'single-user', params: { slug: sponsored_users[counter].slug } } -->
                             </div>
                             <p><strong class="text-uppercase">Email</strong><br>{{ user.email }}</p>
@@ -82,7 +82,7 @@
                 <div class="form-floating mb-3">
                   <textarea class="form-control rounded-0 rounded-bottom"
                     v-model="message_text"
-                    placeholder="Scrivi qui il tuo messaggio *"
+                    placeholder="`Scrivi qui il tuo messaggio *"
                     id="message-text"
                     style="height: 150px"
                     :class="{

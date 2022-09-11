@@ -24,16 +24,21 @@
                         <li class="list-unstyled">
                             <h2>{{ $user->name }} {{ $user->surname }}</h2>
                         </li>
-                        <li class="list-unstyled text-light">
-                            @foreach ($user->specialties as $specialty)
-                            <a class="link-btn px-3 py-1 me-2 text-light" href="{{ route('guest.home', 'search/' . $specialty->specialty_slug) }}"">
-                                {{ $specialty->specialty_name }}
-                            </a> 
-                                {{-- <span class="border border-dark bg-fume  hover-dark px-3 py-1 me-2 text-light">
-                                    
-                                </span> --}}
-                            @endforeach
+                        <li class="list-unstyled">
+                            <ul class="specialties-ul">
+                                @foreach ($user->specialties as $specialty)
+                                    <li class="list-unstyled text-light mb-2">
+                                        <a class="link-btn pe-3 py-1 me-2 text-light d-inline-block" href="{{ route('guest.home', 'search/' . $specialty->specialty_slug) }}"">
+                                            {{ $specialty->specialty_name }}
+                                        </a> 
+                                    </li>
+                                    {{-- <span class="border border-dark bg-fume  hover-dark px-3 py-1 me-2 text-light">
+                                        
+                                    </span> --}}
+                                @endforeach
+                            </ul>
                         </li>
+                        
                         <li class="list-unstyled mt-3 mb-3"><strong>Indirizzo<br></strong>{{ $user->address }}</li>
                         <li class="list-unstyled mb-3"><strong>Numero di telefono<br></strong>{{ $user->phone_number }}</li>
                         <li class="list-unstyled mb-3"><strong>Email<br></strong>{{ $user->email }}</li>
@@ -357,6 +362,10 @@
         background-size: 100%;
         background-blend-mode: overlay;
         padding-top: 4rem;
+    }
+
+    .specialties-ul li {
+        margin-left: -1.9rem;
     }
 
     .menu-icon {

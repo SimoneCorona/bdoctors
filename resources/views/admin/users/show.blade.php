@@ -20,7 +20,7 @@
             <span class="mb-3"> <h2>{{ $user->name }} {{ $user->surname }}</h2></span>
             <div>
                 @foreach($user->specialties as $specialty)
-                <span class="rounded-pill bg-primary px-3 py-1 me-2 text-light">
+                <span class="rounded-pill bg-primary px-3 py-1 mb-3 text-light">
                     {{ $specialty->specialty_name }}
                 </span>
             @endforeach
