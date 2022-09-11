@@ -105,7 +105,7 @@ export default {
 }
 
 .sponsored {
-    outline: 1px solid white;
+    outline: 3px solid white;
     background-color: rgba($color: #000000, $alpha: 0.3);
 }
 
