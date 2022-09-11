@@ -1,9 +1,11 @@
 <div>
-  <header class="position-fixed  fixed-top">
+  <header class="position-fixed fixed-top">
     <nav class=" border-bottom header-vl navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
+        
         <a class="navbar-brand " href="/">
-          <img src="{{ asset('images/logo.png')}}" alt="">
+          <img class="d-inline-block d-sm-none" src="{{ asset('images/small-logo.png')}}" alt="">
+          <img class="d-none d-sm-inline-block" src="{{ asset('images/logo.png')}}" alt="">
         </a>
           <div class="p-0 flex-grow-1" id="navbarSupportedContent">
             <ul class="mb-0 p-0 d-flex justify-content-end">
@@ -12,7 +14,7 @@
                 <a class="mybtn border-0 nav-link me-3 px-2" aria-current="page" href="/login"><b>Accedi</b></a>
               </li>
               <li class="list-unstyled">
-                <b><a class="mybtn border-0 nav-link px-2" href="/register">Registrati</a></b>
+                <b><a class="mybtn border-0 nav-link pe-1" href="/register">Registrati</a></b>
               </li>
               @else
               
@@ -82,6 +84,7 @@
    text-transform: uppercase;
    letter-spacing: 0.4em;
    margin: 0;
+   font-size: .8rem;
  }
 
 

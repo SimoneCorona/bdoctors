@@ -1,10 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="login-c d-flex align-items-center">
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card bg-transp">
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">
@@ -53,7 +54,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary text-light">
+                                <button type="submit" class="login-btn">
                                     {{ __('Login') }}
                                 </button>
 
@@ -70,4 +71,28 @@
         </div>
     </div>
 </div>
+</div>
+
+<style>
+    .login-c {
+        background-image: url('/images/bg-admin.png'),
+        linear-gradient(rgba(255, 255, 255, 0.1),rgba(255, 255, 255, 0.1));
+        background-size: 100%;
+        background-blend-mode: overlay;
+        min-height: calc(100vh - 70px);
+        margin-top: -2rem;
+        margin-bottom: -4rem;
+    }
+
+    .bg-transp {
+        background-color: rgba(255,255,255,0.8);
+    }
+
+    .login-btn {
+        color: white;
+        border: none;
+        padding: .3rem 1.3rem;
+        background-color: rgb(0, 118, 139);
+    }
+</style>
 @endsection
