@@ -31,7 +31,6 @@ class UserTableSeeder extends Seeder
             'profile_pics/fake_profiles/male/image011.jpg',
             'profile_pics/fake_profiles/male/image012.jpg',
             'profile_pics/fake_profiles/male/image013.jpg',
-            'profile_pics/fake_profiles/male/image014.jpg',
             'profile_pics/fake_profiles/male/image015.jpg',
             'profile_pics/fake_profiles/male/image016.jpg',
             'profile_pics/fake_profiles/male/image017.jpg',
@@ -63,6 +62,7 @@ class UserTableSeeder extends Seeder
             'profile_pics/fake_profiles/female/image019.jpg',
             'profile_pics/fake_profiles/female/image020.jpg',
             'profile_pics/fake_profiles/female/image021.jpg',
+            'profile_pics/fake_profiles/female/image022.jpg',
         ];
         $cv_array = [
             'Laurea in Medicina e Chirurgia, Università degli Studi di Bari Aldo Moro, Bari. Votazione di 110/110 e lode con plauso accademico
