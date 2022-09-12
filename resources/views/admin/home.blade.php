@@ -26,7 +26,7 @@
                         </li>
                         <li class="list-unstyled text-light">
                             @foreach ($user->specialties as $specialty)
-                            <a class="link-btn px-3 py-1 me-2 text-light" href="{{ route('guest.home', 'search/' . $specialty->specialty_slug) }}"">
+                            <a class="link-btn px-3 py-0 me-2 lh-base text-light" href="{{ route('guest.home', 'search/' . $specialty->specialty_slug) }}"">
                                 {{ $specialty->specialty_name }}
                             </a> 
                                 {{-- <span class="border border-dark bg-fume  hover-dark px-3 py-1 me-2 text-light">
@@ -40,7 +40,11 @@
                     </ul>
                     <div class="services pt-3 ps-3 ms-3">
                         <h3 class="bd-word">Prestazioni</h3>
-                        <p>{{ $user->services ? $user->services : "Nessua prestazione segnalata dal dottore" }}</p>
+                        @if ($user->services)
+                            <p>{{$user->services}}</p>
+                        @else
+                            <p>Nessuna prestazione. <a href="route('admin.users.edit')">Aggiungi ora.</a></p>
+                        @endif
                     </div>
                     {{-- FINE INFO UTENTE --}}
                 </div>

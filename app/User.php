@@ -21,6 +21,7 @@ class User extends Authenticatable
         'surname', 
         'address',
         'specialties_name', 
+        'services',
         'slug',
         'phone_number',
         'email', 
